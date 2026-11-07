@@ -1,0 +1,16 @@
+{
+  "name": "@fasal-awaaz/api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test test/unit.spec.js test/integration.spec.js",
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@fasal-awaaz/shared-types": "1.0.0",
+    "@fasal-awaaz/validation": "1.0.0",
+    "@fasal-awaaz/contracts": "1.0.0"
+  }
+}

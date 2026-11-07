@@ -1,0 +1,48 @@
+name: Fasal Awaaz CI & Security Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Check for accidentally committed secrets in mobile bundle
+        run: |
+          if grep -rnE "GNANI_API_KEY|GEMINI_API_KEY|JWT_ACCESS_SECRET" apps/mobile/src/; then
+            echo "FATAL: Backend secret key reference found in mobile client code!"
+            exit 1
+          fi
+
+      - name: Assert production config rejects unsafe settings
+        run: |
+          node -e "
+            const { validateStartupConfig } = require('./apps/api/src/common/env-validator.js');
+            const r = validateStartupConfig({
+              NODE_ENV: 'production', DATABASE_URL: 'x',
+              JWT_ACCESS_SECRET: 'a'.repeat(32), JWT_REFRESH_SECRET: 'b'.repeat(32),
+              ENABLE_DEV_MOCK_OTP: 'true', ENABLE_DEMO_ENDPOINT: 'true', PERSISTENCE: 'memory',
+            });
+            if (r.valid) { console.error('FATAL: unsafe production config was accepted'); process.exit(1); }
+            console.log('Production guard rejected:', r.errors.length, 'unsafe settings');
+          "
+
+      - name: Validate startup environment config
+        run: npm run verify:env
+
+      - name: Run Unit & Integration Tests
+        run: npm test
+
+      - name: Run Hackathon End-to-End Demo Verification
+        run: npm run demo:run

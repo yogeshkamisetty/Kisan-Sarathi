@@ -1,0 +1,82 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fasal-awaaz-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-fasal_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fasal_dev_pass_change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-fasal_awaaz}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./apps/api/prisma/migrations/20261104000000_init/migration.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fasal_user} -d ${POSTGRES_DB:-fasal_awaaz}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: fasal-awaaz-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: fasal-awaaz-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${OBJECT_STORAGE_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${OBJECT_STORAGE_SECRET_KEY:-minioadmin_change_me}
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.api
+    container_name: fasal-awaaz-api
+    restart: unless-stopped
+    env_file:
+      - .env.example
+    environment:
+      DATABASE_URL: postgresql://fasal_user:fasal_dev_pass_change_me@postgres:5432/fasal_awaaz?schema=public
+      REDIS_URL: redis://redis:6379
+      OBJECT_STORAGE_ENDPOINT: http://minio:9000
+      # Domain state is written through to disk, so it must live on a named volume —
+      # otherwise a container restart destroys in-flight farmer crop-loss drafts.
+      PERSISTENCE: file
+      DATA_DIR: /app/.data
+    volumes:
+      - apidata:/app/.data
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  apidata:
+  pgdata:
+  redisdata:
+  miniodata:

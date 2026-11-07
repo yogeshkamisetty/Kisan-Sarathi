@@ -1,0 +1,428 @@
+{
+  "syntheticLabel": "SYNTHETIC_DEMONSTRATION_DATASET",
+  "farmer": {
+    "id": "demo-farmer-ramesh-001",
+    "userId": "demo-user-ramesh-001",
+    "farmerName": "Ramesh Kumar (SYNTHETIC DEMO FARMER)",
+    "mobileNumber": "9876543210",
+    "state": "Andhra Pradesh",
+    "district": "Guntur",
+    "village": "Peddapalli",
+    "preferredLanguage": "hi-IN",
+    "assistedMode": "SELF",
+    "isSyntheticDemoData": true
+  },
+  "report": {
+    "id": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+    "idempotencyKey": "demo-seed-idem-key-001",
+    "reportNumber": "FA-2026-AN-000101",
+    "farmerId": "demo-farmer-ramesh-001",
+    "farmerProfile": {
+      "id": "demo-farmer-ramesh-001",
+      "userId": "demo-user-ramesh-001",
+      "farmerName": "Ramesh Kumar (SYNTHETIC DEMO FARMER)",
+      "mobileNumber": "9876543210",
+      "state": "Andhra Pradesh",
+      "district": "Guntur",
+      "village": "Peddapalli",
+      "preferredLanguage": "hi-IN",
+      "assistedMode": "SELF",
+      "isSyntheticDemoData": true
+    },
+    "workflowStatus": "COMPLETION_PENDING",
+    "submissionStatus": "ACKNOWLEDGEMENT_ENTERED",
+    "incidentCategory": "LOCALISED_CALAMITY",
+    "policyVersionId": "pol-pmfby-ap-rabi-2026-paddy-localised",
+    "readbackCompleted": true,
+    "farmerVerifiedAt": "2026-11-05T10:22:05.124Z",
+    "createdAtDevice": "2026-11-04T05:45:12+05:30",
+    "createdAtServer": "2026-11-05T10:22:05.102Z",
+    "updatedAt": "2026-11-05T10:22:05.127Z",
+    "finalisedAt": "2026-11-05T10:22:05.124Z",
+    "currentRevision": 3,
+    "extractedValues": {
+      "crop": {
+        "value": "paddy",
+        "unit": null,
+        "confidence": 0.97,
+        "source_text": "धान",
+        "status": "confirmed",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "loss_event": {
+        "value": "hailstorm",
+        "unit": null,
+        "confidence": 0.95,
+        "source_text": "ओलावृष्टि",
+        "status": "confirmed",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "incident_date": {
+        "value": "2026-11-03",
+        "unit": null,
+        "confidence": 1,
+        "source_text": "हाँ, कल यानी 3 नवंबर की शाम को नुकसान हुआ (Ambiguous \"कल\" confirmed as 3 November 2026)",
+        "status": "corrected",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "crop_stage": {
+        "value": "STANDING",
+        "unit": null,
+        "confidence": 0.96,
+        "source_text": "खड़ी फसल",
+        "status": "confirmed",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "affected_area": {
+        "value": 2,
+        "unit": "acre",
+        "confidence": 1,
+        "source_text": "तीन एकड़ नहीं, दो एकड़ नुकसान हुआ है (Corrected from 3 acres to 2 acres)",
+        "status": "corrected",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "village": {
+        "value": "Peddapalli",
+        "unit": null,
+        "confidence": 1,
+        "source_text": "Farmer onboarding profile",
+        "status": "confirmed",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "incident_time": {
+        "value": "evening (approx. 17:00-20:00)",
+        "unit": null,
+        "confidence": 0.9,
+        "source_text": "शाम",
+        "status": "approximate",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1"
+      },
+      "cultivated_area": {
+        "value": null,
+        "unit": null,
+        "confidence": 0,
+        "source_text": null,
+        "status": "missing"
+      },
+      "survey_number": {
+        "value": null,
+        "unit": null,
+        "confidence": 0,
+        "source_text": null,
+        "status": "missing"
+      },
+      "application_number": {
+        "value": null,
+        "unit": null,
+        "confidence": 0,
+        "source_text": null,
+        "status": "missing"
+      },
+      "evidence_photographs": {
+        "value": null,
+        "unit": null,
+        "confidence": 0,
+        "source_text": null,
+        "status": "missing"
+      },
+      "gps_coordinates": {
+        "value": null,
+        "unit": null,
+        "confidence": 0,
+        "source_text": null,
+        "status": "missing"
+      },
+      "insured_status": {
+        "value": "YES_INSURED",
+        "unit": null,
+        "confidence": 0.94,
+        "source_text": "फसल बीमा करवाया है",
+        "status": "needs_confirmation",
+        "source_turn_id": "53c5b704-5a26-40eb-a66b-d5bf1012b163"
+      }
+    },
+    "conversationTurns": [
+      {
+        "id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1",
+        "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+        "turnIndex": 1,
+        "speaker": "FARMER",
+        "language": "hi-IN",
+        "transcript": "मेरी धान की खड़ी फसल कल शाम ओलावृष्टि और भारी बारिश से 3 एकड़ खराब हो गई",
+        "processingStatus": "COMPLETED",
+        "provider": "gnani-prisma-v3.0",
+        "providerMode": "MOCK_DEVELOPMENT",
+        "providerRequestId": null,
+        "createdAt": "2026-11-05T10:22:05.102Z"
+      },
+      {
+        "id": "53c5b704-5a26-40eb-a66b-d5bf1012b163",
+        "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+        "turnIndex": 2,
+        "speaker": "FARMER",
+        "language": "hi-IN",
+        "transcript": "फसल बीमा करवाया है, लेकिन सर्वे नंबर अभी याद नहीं है",
+        "processingStatus": "COMPLETED",
+        "provider": "gnani-prisma-v3.0",
+        "providerMode": "MOCK_DEVELOPMENT",
+        "providerRequestId": null,
+        "createdAt": "2026-11-05T10:22:05.111Z"
+      }
+    ],
+    "evidenceItems": [],
+    "submissionRecords": [
+      {
+        "id": "dc53a063-171c-436f-9bd1-9e2617a1d73d",
+        "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+        "submissionChannel": "Krishi Rakshak Helpline 14447",
+        "farmerReportedSubmissionDate": "2026-11-05T10:22:05.127Z",
+        "officialReferenceNumber": "KRPH-2026-14447-88921-DEMO",
+        "acknowledgementFileId": null,
+        "verificationStatus": "FARMER_REPORTED_NOT_GOVERNMENT_VERIFIED",
+        "createdAt": "2026-11-05T10:22:05.127Z"
+      }
+    ],
+    "skippedOptionalFields": [
+      "survey_number"
+    ],
+    "lastAskedField": "incident_date",
+    "policyEvaluation": {
+      "scheme": "PMFBY",
+      "applicabilityStatus": "VERIFIED_POLICY_RULE_APPLIED",
+      "policyVersionId": "pol-pmfby-ap-rabi-2026-paddy-localised",
+      "policyVersion": "PMFBY-OG-2026.1",
+      "sourceUrl": "https://pmfby.gov.in/pdf/Revised_Operational_Guidelines.pdf",
+      "verifiedAt": "2026-11-04T00:00:00Z",
+      "effectiveFrom": "2026-10-15T00:00:00Z",
+      "effectiveUntil": "2027-04-30T23:59:59Z",
+      "season": "RABI",
+      "seasonSource": "DERIVED_FROM_INCIDENT_DATE",
+      "seasonYear": 2026,
+      "seasonConfident": false,
+      "seasonNote": "This date falls near a Kharif/Rabi season boundary; the applicable season depends on the state notification and the crop stage.",
+      "lossCategory": "LOCALISED_CALAMITY",
+      "intimationDeadlineHours": 72,
+      "completionDeadlineHours": 168,
+      "initialDeadlineIso": "2026-11-06T06:30:00.000Z",
+      "sevenDayCompletionDeadlineIso": "2026-11-10T06:30:00.000Z",
+      "hoursElapsed": 51.87,
+      "hoursRemaining": 20.13,
+      "withinInitial72HourWindow": true,
+      "urgencyLevel": "URGENT_LESS_THAN_24_HOURS_LEFT",
+      "explanation": "Verified PMFBY Localised Calamity rule: 72-hour initial intimation via Krishi Rakshak Helpline 14447 or Crop Insurance App, with 7-day completion window for pending survey/policy references.",
+      "timingWarnings": [],
+      "importantDisclaimer": "Saving a draft in Fasal Awaaz does NOT satisfy official PMFBY intimation requirements. You must submit your intimation through an official channel below.",
+      "officialChannels": [
+        {
+          "id": "KRPH_HELPLINE_14447",
+          "name": "Krishi Rakshak Portal & Helpline (KRPH)",
+          "channelType": "TELEPHONE_HELPLINE",
+          "contactNumber": "14447",
+          "RequiresExplicitUserTapToCall": true,
+          "worksWithoutInternet": true,
+          "officialUrl": "https://pmfby.gov.in/",
+          "verifiedAt": "2026-11-04",
+          "description": "Centralised toll-free helpline (14447) operated under PMFBY to register crop-loss intimations within 72 hours and receive an SMS ticket number."
+        },
+        {
+          "id": "CROP_INSURANCE_MOBILE_APP",
+          "name": "Official Crop Insurance Mobile App (MoA&FW)",
+          "channelType": "MOBILE_APP",
+          "androidPackage": "in.farmguide.farmerapp.central",
+          "worksWithoutInternet": false,
+          "officialUrl": "https://pmfby.gov.in/",
+          "verifiedAt": "2026-11-04",
+          "description": "Official Government of India Android application for direct crop-loss intimation and geo-tagged field photo submission."
+        },
+        {
+          "id": "NATIONAL_CROP_INSURANCE_PORTAL",
+          "name": "National Crop Insurance Portal (NCIP)",
+          "channelType": "WEB_PORTAL",
+          "officialUrl": "https://pmfby.gov.in/",
+          "worksWithoutInternet": false,
+          "verifiedAt": "2026-11-04",
+          "description": "Official PMFBY web portal for farmer login, policy status lookup, and online loss intimation."
+        },
+        {
+          "id": "CONCERNED_BANK_OR_CSC",
+          "name": "Concerned Bank Branch / PACS / Common Service Centre (CSC)",
+          "channelType": "IN_PERSON_INSTITUTION",
+          "worksWithoutInternet": true,
+          "officialUrl": "https://pmfby.gov.in/pdf/Revised_Operational_Guidelines.pdf",
+          "verifiedAt": "2026-11-04",
+          "description": "Present your printed or saved Crop Loss Intimation Draft at the bank branch where your crop loan/insurance is held or at an authorised CSC."
+        },
+        {
+          "id": "LOCAL_AGRICULTURE_DEPARTMENT",
+          "name": "Local Agriculture / Revenue Official (Block Agriculture Officer / Gram Sevak / Patwari)",
+          "channelType": "IN_PERSON_OFFICIAL",
+          "worksWithoutInternet": true,
+          "officialUrl": "https://pmfby.gov.in/pdf/Revised_Operational_Guidelines.pdf",
+          "verifiedAt": "2026-11-04",
+          "description": "Submit written crop-loss intimation to local agriculture or revenue officials if phone or internet connectivity is disrupted."
+        },
+        {
+          "id": "KISAN_CALL_CENTRE_18001801551",
+          "name": "Kisan Call Centre (General Advisory Only)",
+          "channelType": "ADVISORY_HELPLINE",
+          "contactNumber": "1800-180-1551",
+          "RequiresExplicitUserTapToCall": true,
+          "worksWithoutInternet": true,
+          "officialUrl": "https://pmfby.gov.in/",
+          "verifiedAt": "2026-11-04",
+          "description": "General agricultural guidance helpline. Note: Use 14447 specifically for registering PMFBY insurance loss intimations."
+        }
+      ]
+    }
+  },
+  "generatedDocument": {
+    "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+    "reportNumber": "FA-2026-AN-000101",
+    "revision": 3,
+    "watermark": "DRAFT – NOT OFFICIALLY SUBMITTED",
+    "disclaimer": "This document is a farmer-prepared information summary. It is not an official claim submission, official acknowledgement, eligibility determination or guarantee of compensation.",
+    "textContent": "================================================================================\nFASAL AWAAZ (KISANSAATHI)\nCROP LOSS INTIMATION DRAFT\n*** DRAFT – NOT OFFICIALLY SUBMITTED ***\n================================================================================\nDISCLAIMER: This document is a farmer-prepared information summary. It is not an official claim submission, official acknowledgement, eligibility determination or guarantee of compensation.\n--------------------------------------------------------------------------------\nReport Number: FA-2026-AN-000101 | Revision: v3\n\n1. FARMER INFORMATION\nFarmer name: Ramesh Kumar (SYNTHETIC DEMO FARMER)\nMobile number: 9876543210\nState: Andhra Pradesh\nDistrict: Guntur\nVillage: Peddapalli\nPreparation mode: SELF\n\n2. INCIDENT INFORMATION\nIncident category: LOCALISED_CALAMITY\nIncident type: hailstorm (confirmed)\nIncident date: 2026-11-03 (corrected)\nApproximate incident time: evening (approx. 17:00-20:00) (approximate)\nCrop stage: STANDING (confirmed)\nIncident description: मेरी धान की खड़ी फसल कल शाम ओलावृष्टि और भारी बारिश से 3 एकड़ खराब हो गई | फसल बीमा करवाया है, लेकिन सर्वे नंबर अभी याद नहीं है\n\n3. CROP INFORMATION\nCrop: paddy (confirmed)\nTotal cultivated area: Not provided (to be supplied if required)\nAffected area: 2\nArea unit: acre\n\n4. LAND INFORMATION\nSurvey number: MISSING – To be completed within 7-day follow-up window\nLocation: Peddapalli, Guntur, Andhra Pradesh\nLatitude: Not captured\nLongitude: Not captured\nLocation confirmation: confirmed\n\n5. INSURANCE INFORMATION\nInsurance scheme: PMFBY\nInsured status: YES_INSURED\nApplication number: MISSING – Keep passbook/receipt ready for 14447 / Bank\nOther reference: Bank account numbers are intentionally excluded for farmer privacy.\n\n6. SUPPORTING EVIDENCE\nPhotographs: 0 attached\nOther available documents: None attached\n\n7. MISSING INFORMATION CHECKLIST\n- cultivated_area: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL\n- survey_number: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL\n- application_number: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL\n- evidence_photographs: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL\n- gps_coordinates: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL\n\n8. VERIFICATION\nFarmer verification status: CONFIRMED AFTER VOICE READBACK\nCritical details read back: Yes (via Gnani Timbre TTS)\nCorrections made: 2\n\n9. TIMESTAMP INFORMATION\nDevice-generated timestamp: 2026-11-04T05:45:12+05:30\nServer-received timestamp: 2026-11-05T10:22:05.102Z\nReport revision: 3\nPolicy reference and version: PMFBY-OG-2026.1 (https://pmfby.gov.in/pdf/Revised_Operational_Guidelines.pdf)\n\n10. OFFICIAL SUBMISSION INFORMATION\nInternal Preparation Status: COMPLETION_PENDING\nOfficial Submission Status: NOT_SUBMITTED\nOfficial reference number: NOT YET SUBMITTED TO OFFICIAL CHANNEL\nReporting channel: Pending farmer action (Call 14447 / Crop Insurance App / Bank)\nAcknowledgement verification status: NOT_SUBMITTED (A generated draft is NOT an official claim submission)\n================================================================================",
+    "pdfBase64": "JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUuMjggODQxLjg5XSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgL0YyIDYgMCBSID4+ID4+ID4+CmVuZG9iago0IDAgb2JqCjw8IC9MZW5ndGggMzg1MiA+PgpzdHJlYW0KMC4xIDAuMzcgMC4xMyBSRyAwLjExIDAuMzcgMC4xMyByZyAwIDc3MS44OSA1OTUuMjggNzAgcmUgQiAKQlQgMSAxIDEgcmcgL0YyIDE4IFRmIDQwIDgwNi44OSBUZCAoS0lTQU5TQUFUSEkgLSBGQVNBTCBBV0FBWikgVGogRVQKQlQgMC45IDAuOTUgMC45IHJnIC9GMSA5IFRmIDQwIDc4OS44OSBUZCAoTXVsdGlsaW5ndWFsIEFJIFZvaWNlIEFzc2lzdGFudCBmb3IgVGltZWx5IENyb3AgTG9zcyBJbnRpbWF0aW9uIFwoUE1GQllcKSkgVGogRVQKMC43MyAwLjExIDAuMTEgUkcgMC45OSAwLjg5IDAuODkgcmcgNDAgNzMxLjg5IDUxNS4yOCAzMCByZSBCIApCVCAwLjczIDAuMTEgMC4xMSByZyAvRjIgMTIgVGYgNjAgNzQ2Ljg5IFRkIChEUkFGVCAtIE5PVCBPRkZJQ0lBTExZIFNVQk1JVFRFRCBUTyBHT1ZFUk5NRU5UKSBUaiBFVApCVCAwLjQ1IDAuMSAwLjEgcmcgL0YxIDcuNSBUZiA2MCA3MzYuODkgVGQgKFRoaXMgaXMgYSBmYXJtZXItcHJlcGFyZWQgc3VtbWFyeS4gWW91IG11c3QgY29udGFjdCAxNDQ0NyBvciBvZmZpY2lhbCBjaGFubmVscyB0byByZWdpc3RlciB5b3VyIGNsYWltLikgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YyIDkgVGYgNDAgNzEzLjg5IFRkIChSZXBvcnQgTnVtYmVyOiBGQS0yMDI2LUFOLTAwMDEwMSkgVGogRVQKQlQgMC4zIDAuMyAwLjMgcmcgL0YxIDkgVGYgMjQwIDcxMy44OSBUZCAoUmV2aXNpb246IHYzKSBUaiBFVApCVCAwLjMgMC4zIDAuMyByZyAvRjEgOCBUZiAzNjAgNzEzLjg5IFRkIChHZW5lcmF0ZWQ6IDIwMjYtMTEtMDVUMTA6MjI6MDUuMTI2WikgVGogRVQKMSB3IDAuODUgMC44NSAwLjg1IFJHIDQwIDcwNy44OSBtIDU1NS4yOCA3MDcuODkgbCBTCjAuODggMC45IDAuODggUkcgMC45NyAwLjk4IDAuOTcgcmcgNDAgNjMxLjg5IDUxNS4yOCA3MCByZSBCIApCVCAwLjA1IDAuMjMgMC4wNiByZyAvRjIgMTEgVGYgNTAgNjg2Ljg5IFRkICgxLiBGQVJNRVIgJiBMQU5EIFBST0ZJTEUpIFRqIEVUCkJUIDAuMSAwLjEgMC4xIHJnIC9GMSA5IFRmIDUwIDY2OC44OSBUZCAoRmFybWVyIE5hbWUgOiBSYW1lc2ggS3VtYXIgXChTWU5USEVUSUMgREVNTyBGQVJNRVJcKSkgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YxIDkgVGYgNTAgNjU0Ljg5IFRkIChNb2JpbGUgTnVtYmVyIDogOTg3NjU0MzIxMCkgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YxIDkgVGYgMzAwIDY2OC44OSBUZCAoVmlsbGFnZSA6IFBlZGRhcGFsbGkpIFRqIEVUCkJUIDAuMSAwLjEgMC4xIHJnIC9GMSA5IFRmIDMwMCA2NTQuODkgVGQgKERpc3RyaWN0ICYgU3RhdGU6IEd1bnR1ciwgQW5kaHJhIFByYWRlc2gpIFRqIEVUCkJUIDAuNyAwLjMgMC4xIHJnIC9GMiA5IFRmIDUwIDY0MC44OSBUZCAoU3VydmV5IC8gS2hhc3JhIDogTUlTU0lORyBcKDctRGF5IFdpbmRvd1wpKSBUaiBFVAowLjg4IDAuOSAwLjg4IFJHIDAuOTcgMC45OCAwLjk3IHJnIDQwIDU1MS44OSA1MTUuMjggNzAgcmUgQiAKQlQgMC4wNSAwLjIzIDAuMDYgcmcgL0YyIDExIFRmIDUwIDYwNi44OSBUZCAoMi4gQ1JPUCBMT1NTICYgQ0FMQU1JVFkgREVUQUlMUykgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YyIDkgVGYgNTAgNTg4Ljg5IFRkIChBZmZlY3RlZCBDcm9wIDogUEFERFkpIFRqIEVUCkJUIDAuMSAwLjEgMC4xIHJnIC9GMSA5IFRmIDUwIDU3NC44OSBUZCAoQ2FsYW1pdHkgVHlwZSA6IEhBSUxTVE9STSkgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YxIDkgVGYgNTAgNTYwLjg5IFRkIChEYXRlIG9mIEV2ZW50IDogMjAyNi0xMS0wMykgVGogRVQKQlQgMC43IDAuMSAwLjEgcmcgL0YyIDkgVGYgMzAwIDU4OC44OSBUZCAoQWZmZWN0ZWQgQXJlYSA6IDIgYWNyZSkgVGogRVQKQlQgMC4xIDAuMSAwLjEgcmcgL0YxIDkgVGYgMzAwIDU3NC44OSBUZCAoQ3JvcCBTdGFnZSA6IFNUQU5ESU5HKSBUaiBFVApCVCAwLjEgMC4xIDAuMSByZyAvRjEgOSBUZiAzMDAgNTYwLjg5IFRkIChJbnN1cmFuY2UgU2NoZW1lOiBQTUZCWSkgVGogRVQKMC44IDAuODUgMC45NSBSRyAwLjkzIDAuOTYgMSByZyA0MCA0ODEuODkgNTE1LjI4IDYwIHJlIEIgCkJUIDAuMSAwLjMgMC42IHJnIC9GMiAxMSBUZiA1MCA1MjYuODkgVGQgKDMuIE1FVEVPUk9MT0dJQ0FMIFJBREFSICYgU0FURUxMSVRFIEdST1VORElORykgVGogRVQKQlQgMC4xIDAuNCAwLjIgcmcgL0YyIDkgVGYgNTAgNTA4Ljg5IFRkIChJbnRpbWF0aW9uIFBsYXVzaWJpbGl0eSBJbmRleCBcKElQSVwpOiA5NCUgLSBISUdIIFBMQVVTSUJJTElUWSBcKEdSRUVOIENIQU5ORUxcKSkgVGogRVQKQlQgMC4zIDAuMyAwLjMgcmcgL0YxIDggVGYgNTAgNDk0Ljg5IFRkIChJbmRlcGVuZGVudCBEb3BwbGVyIHJhZGFyIGFuZCBwcmVjaXBpdGF0aW9uIGdyaWQgY29uZmlybSBzZXZlcmUgbG9jYWxpemVkIHdlYXRoZXIgZHVyaW5nIHRoZSByZXBvcnRlZCB3aW5kb3cuKSBUaiBFVAowLjkgMC45IDAuOSBSRyAxIDEgMSByZyA0MCA0MDYuODkgNTE1LjI4IDY1IHJlIEIgCkJUIDAuMiAwLjIgMC4yIHJnIC9GMiAxMCBUZiA1MCA0NTYuODkgVGQgKDQuIDctREFZIENPTVBMRVRJT04gV0lORE9XIENIRUNLTElTVCkgVGogRVQKQlQgMC41IDAuMiAwLjEgcmcgL0YxIDggVGYgNTAgNDM4Ljg5IFRkIChbUEVORElOR10gY3VsdGl2YXRlZF9hcmVhIC0gVG8gYmUgc3VibWl0dGVkIHRvIHN1cnZleW9yIHdpdGhpbiA3IGRheXMgfCBbUEVORElOR10gc3VydmV5X251bWJlciAtIFRvIGJlIHN1Ym1pdCkgVGogRVQKQlQgMC40IDAuNCAwLjQgcmcgL0YxIDcuNSBUZiA1MCA0MjIuODkgVGQgKFN0YXR1dG9yeSBSdWxlOiBQTUZCWSBhbGxvd3MgNzJoIGZvciBpbml0aWFsIGludGltYXRpb24sIGFuZCA3IGRheXMgdG8gY29tcGxldGUgbWlzc2luZyBzdXJ2ZXkvcmVjZWlwdCBudW1iZXJzLikgVGogRVQKMC4yIDAuNSAwLjIgUkcgMC45NSAxIDAuOTUgcmcgNDAgMzE2Ljg5IDUxNS4yOCA4MCByZSBCIApCVCAwLjA1IDAuMzUgMC4wOCByZyAvRjIgMTEgVGYgNTAgMzgxLjg5IFRkICg1LiBJTU1FRElBVEUgQUNUSU9OIFJFUVVJUkVEOiBPRkZJQ0lBTCBSRVBPUlRJTkcgQ0hBTk5FTFMpIFRqIEVUCkJUIDAuMSAwLjQgMC4xIHJnIC9GMiA5IFRmIDUwIDM2MS44OSBUZCAoU3RlcCAxOiBESUFMIFRPTEwtRlJFRSBIRUxQTElORSAxNDQ0NyBcKEtyaXNoaSBSYWtzaGFrIEhlbHBsaW5lXCkgd2l0aGluIDcyIGhvdXJzIG9mIGRhbWFnZS4pIFRqIEVUCkJUIDAuMSAwLjEgMC4xIHJnIC9GMSA4LjUgVGYgNTAgMzQ3Ljg5IFRkIChTdGVwIDI6IFJlYWQgYWxvdWQgdGhlIGRldGFpbHMgZnJvbSB0aGlzIGRyYWZ0IFwoUmVwb3J0IEZBLTIwMjYtQU4tMDAwMTAxXCkuKSBUaiBFVApCVCAwLjEgMC4xIDAuMSByZyAvRjEgOC41IFRmIDUwIDMzMy44OSBUZCAoU3RlcCAzOiBLZWVwIHlvdXIgU01TIGludGltYXRpb24gdGlja2V0IG51bWJlciBzYWZlIGFuZCBwcmVzZW50IHRoaXMgZHJhZnQgd2hlbiB0aGUgc3VydmV5b3IgdmlzaXRzLikgVGogRVQKMSB3IDAuODUgMC44NSAwLjg1IFJHIDQwIDUwIG0gNTU1LjI4IDUwIGwgUwpCVCAwLjUgMC41IDAuNSByZyAvRjEgNy41IFRmIDQwIDM2IFRkIChGYXNhbCBBd2FheiBpcyBhbiBBSS1hc3Npc3RlZCBwcmVwYXJhdGlvbiBzeXN0ZW0gdW5kZXIgdGhlIEtpc2FuU2FhdGhpIEluaXRpYXRpdmUuIE5vdCBhIGdvdmVybm1lbnQgYWdlbmN5LikgVGogRVQKQlQgMC4zIDAuMyAwLjMgcmcgL0YxIDcuNSBUZiA0MCAyNCBUZCAoSGVscGxpbmU6IDE0NDQ3IHwgUE1GQlkgT2ZmaWNpYWwgUG9ydGFsOiBodHRwczovL3BtZmJ5Lmdvdi5pbikgVGogRVQKQlQgMC4yIDAuMiAwLjIgcmcgL0YyIDggVGYgNDUwIDMwIFRkIChEcmFmdCBJRDogRkEtMjAyNi1BTi0wMDAxMDEpIFRqIEVUCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2EgPj4KZW5kb2JqCjYgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgPj4KZW5kb2JqCnhyZWYKMCA3CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDI1NyAwMDAwMCBuIAowMDAwMDA0MTYxIDAwMDAwIG4gCjAwMDAwMDQyMzEgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA3IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgo0MzA2CiUlRU9GCg==",
+    "pdfSize": 4510,
+    "pdfFilePath": "D:\\Yogesh\\Coding\\Gnani\\fasal-awaaz\\.data\\drafts\\FA-2026-AN-000101.pdf",
+    "missingFields": [
+      "cultivated_area",
+      "survey_number",
+      "application_number",
+      "evidence_photographs",
+      "gps_coordinates"
+    ],
+    "generatedAt": "2026-11-05T10:22:05.126Z"
+  },
+  "officialSubmissionRecord": {
+    "submissionRecord": {
+      "id": "dc53a063-171c-436f-9bd1-9e2617a1d73d",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "submissionChannel": "Krishi Rakshak Helpline 14447",
+      "farmerReportedSubmissionDate": "2026-11-05T10:22:05.127Z",
+      "officialReferenceNumber": "KRPH-2026-14447-88921-DEMO",
+      "acknowledgementFileId": null,
+      "verificationStatus": "FARMER_REPORTED_NOT_GOVERNMENT_VERIFIED",
+      "createdAt": "2026-11-05T10:22:05.127Z"
+    },
+    "submissionStatus": "ACKNOWLEDGEMENT_ENTERED",
+    "transparencyNotice": "Recorded as Farmer-Reported. Fasal Awaaz has not independently verified this reference number with government servers."
+  },
+  "auditTrail": [
+    {
+      "id": "6975a69d-918a-48ad-b844-437baae0c05e",
+      "actorId": "demo-user-ramesh-001",
+      "actorRole": "FARMER",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "action": "REPORT_DRAFT_CREATED",
+      "fieldName": null,
+      "previousValue": null,
+      "newValue": {
+        "reportNumber": "FA-2026-AN-000101",
+        "workflowStatus": "IN_PROGRESS",
+        "submissionStatus": "NOT_SUBMITTED"
+      },
+      "reason": null,
+      "source": "MOBILE_APP",
+      "timestamp": "2026-11-05T10:22:05.102Z"
+    },
+    {
+      "id": "30e6bbdd-c1c1-430a-98ed-1266f2a1cca7",
+      "actorId": "demo-user-ramesh-001",
+      "actorRole": "FARMER",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "action": "FARMER_FIELD_CORRECTION",
+      "fieldName": "affected_area",
+      "previousValue": {
+        "value": 3,
+        "unit": "acre",
+        "confidence": 0.98,
+        "source_text": "मेरी धान की खड़ी फसल कल शाम ओलावृष्टि और भारी बारिश से 3 एकड़",
+        "status": "needs_confirmation",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1"
+      },
+      "newValue": {
+        "value": 2,
+        "unit": "acre",
+        "confidence": 1,
+        "source_text": "तीन एकड़ नहीं, दो एकड़ नुकसान हुआ है (Corrected from 3 acres to 2 acres)",
+        "status": "corrected",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "reason": "Farmer corrected value during review/readback",
+      "source": "MOBILE_APP",
+      "timestamp": "2026-11-05T10:22:05.124Z"
+    },
+    {
+      "id": "cd008b1f-69d4-41f9-ab08-be3af73cdb8c",
+      "actorId": "demo-user-ramesh-001",
+      "actorRole": "FARMER",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "action": "FARMER_FIELD_CORRECTION",
+      "fieldName": "incident_date",
+      "previousValue": {
+        "value": "2026-11-03",
+        "unit": null,
+        "confidence": 0.62,
+        "source_text": "कल",
+        "status": "uncertain",
+        "ambiguous": true,
+        "ambiguityReason": "AMBIGUOUS_RELATIVE_DAY: \"कल\" can mean yesterday or tomorrow. Interpreted as yesterday; the farmer must confirm the exact date.",
+        "source_turn_id": "d24fd300-1ec3-494e-9c0d-18b26cf8dfc1"
+      },
+      "newValue": {
+        "value": "2026-11-03",
+        "unit": null,
+        "confidence": 1,
+        "source_text": "हाँ, कल यानी 3 नवंबर की शाम को नुकसान हुआ (Ambiguous \"कल\" confirmed as 3 November 2026)",
+        "status": "corrected",
+        "confirmedAt": "2026-11-05T10:22:05.124Z"
+      },
+      "reason": "Farmer resolved ambiguous relative day reference during voice readback",
+      "source": "MOBILE_APP",
+      "timestamp": "2026-11-05T10:22:05.124Z"
+    },
+    {
+      "id": "959b204d-b092-4333-85d9-6930efa3292b",
+      "actorId": "demo-user-ramesh-001",
+      "actorRole": "FARMER",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "action": "CRITICAL_FIELDS_READBACK_CONFIRMED_AND_FINALISED",
+      "fieldName": null,
+      "previousValue": null,
+      "newValue": {
+        "workflowStatus": "READY_FOR_EXPORT",
+        "submissionStatus": "NOT_SUBMITTED",
+        "policyVersionId": "pol-pmfby-ap-rabi-2026-paddy-localised"
+      },
+      "reason": null,
+      "source": "MOBILE_APP",
+      "timestamp": "2026-11-05T10:22:05.125Z"
+    },
+    {
+      "id": "4133844e-0c13-4f57-94e1-6088fd40c3ea",
+      "actorId": "demo-user-ramesh-001",
+      "actorRole": "FARMER",
+      "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+      "action": "OFFICIAL_SUBMISSION_REFERENCE_RECORDED",
+      "fieldName": null,
+      "previousValue": null,
+      "newValue": {
+        "id": "dc53a063-171c-436f-9bd1-9e2617a1d73d",
+        "reportId": "5fb9391e-991d-4c0b-9fcc-52339e3c487d",
+        "submissionChannel": "Krishi Rakshak Helpline 14447",
+        "farmerReportedSubmissionDate": "2026-11-05T10:22:05.127Z",
+        "officialReferenceNumber": "KRPH-2026-14447-88921-DEMO",
+        "acknowledgementFileId": null,
+        "verificationStatus": "FARMER_REPORTED_NOT_GOVERNMENT_VERIFIED",
+        "createdAt": "2026-11-05T10:22:05.127Z"
+      },
+      "reason": null,
+      "source": "MOBILE_APP",
+      "timestamp": "2026-11-05T10:22:05.127Z"
+    }
+  ]
+}

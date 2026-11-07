@@ -1,0 +1,355 @@
+// ============================================================================
+// KISANSAATHI — FASAL AWAAZ PRISMA SCHEMA (PostgreSQL 16)
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  FARMER
+  FAMILY_HELPER
+  CSC_OPERATOR
+  ADMIN
+}
+
+enum AccountStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum AssistedMode {
+  SELF
+  FAMILY_MEMBER
+  CSC_OPERATOR
+}
+
+enum ConsentType {
+  AUDIO_RECORDING
+  GNANI_CLOUD_VOICE_PROCESSING
+  PERSONAL_DATA_STORAGE
+  GPS_LOCATION_CAPTURE
+  PHOTO_EVIDENCE_UPLOAD
+}
+
+enum WorkflowStatus {
+  DRAFT_LOCAL
+  SYNC_PENDING
+  IN_PROGRESS
+  NEEDS_REVIEW
+  READY_FOR_EXPORT
+  EXPORTED
+  COMPLETION_PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum SubmissionStatus {
+  NOT_SUBMITTED
+  FARMER_REPORTED_SUBMITTED
+  ACKNOWLEDGEMENT_ENTERED
+  OFFICIALLY_VERIFIED
+}
+
+enum IncidentCategory {
+  LOCALISED_CALAMITY
+  POST_HARVEST_LOSS
+  OTHER_UNCLASSIFIED
+}
+
+enum CropStage {
+  STANDING
+  HARVESTED_IN_FIELD_DRYING
+  HARVESTED_STORED
+  OTHER_MANUAL_CLARIFICATION
+}
+
+enum TimePrecision {
+  EXACT
+  APPROXIMATE
+  UNKNOWN
+}
+
+enum ConfirmationStatus {
+  NEEDS_CONFIRMATION
+  CONFIRMED
+  CORRECTED
+  MISSING
+  APPROXIMATE
+  UNCERTAIN
+}
+
+model User {
+  id                String          @id @default(uuid())
+  mobileNumber      String?         @unique @map("mobile_number")
+  role              UserRole        @default(FARMER)
+  preferredLanguage String          @default("hi-IN") @map("preferred_language")
+  accountStatus     AccountStatus   @default(ACTIVE) @map("account_status")
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+
+  farmerProfiles    FarmerProfile[]
+  consents          ConsentRecord[]
+  auditEvents       AuditEvent[]
+
+  @@map("users")
+}
+
+model FarmerProfile {
+  id                   String       @id @default(uuid())
+  userId               String       @map("user_id")
+  farmerName           String       @map("farmer_name")
+  mobileNumber         String?      @map("mobile_number")
+  state                String
+  district             String
+  village              String
+  preferredLanguage    String       @default("hi-IN") @map("preferred_language")
+  assistedMode         AssistedMode @default(SELF) @map("assisted_mode")
+  assistedByName       String?      @map("assisted_by_name")
+  assistedByOperatorId String?      @map("assisted_by_operator_id")
+  createdAt            DateTime     @default(now()) @map("created_at")
+  updatedAt            DateTime     @updatedAt @map("updated_at")
+
+  user                 User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reports              Report[]
+
+  @@index([userId])
+  @@index([state, district, village])
+  @@map("farmer_profiles")
+}
+
+model ConsentRecord {
+  id             String      @id @default(uuid())
+  userId         String      @map("user_id")
+  consentType    ConsentType @map("consent_type")
+  purpose        String
+  consentVersion String      @map("consent_version")
+  granted        Boolean
+  grantedAt      DateTime    @default(now()) @map("granted_at")
+  withdrawnAt    DateTime?   @map("withdrawn_at")
+
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, consentType])
+  @@map("consent_records")
+}
+
+model PolicyVersion {
+  id                        String           @id @default(uuid())
+  state                     String
+  districtScope             String           @default("ALL") @map("district_scope")
+  season                    String
+  crop                      String
+  scheme                    String           @default("PMFBY")
+  lossCategory              IncidentCategory @map("loss_category")
+  eligibleEventCategories   Json             @map("eligible_event_categories")
+  intimationDeadlineHours   Int              @default(72) @map("intimation_deadline_hours")
+  completionDeadlineHours   Int              @default(168) @map("completion_deadline_hours")
+  postHarvestMaxDryingDays  Int              @default(14) @map("post_harvest_max_drying_days")
+  deadlineRuleExplanation   String           @map("deadline_rule_explanation")
+  sourceUrl                 String           @map("source_url")
+  verifiedAt                DateTime         @map("verified_at")
+  effectiveFrom             DateTime         @map("effective_from")
+  effectiveUntil            DateTime         @map("effective_until")
+  version                   String
+  active                    Boolean          @default(true)
+
+  reports                   Report[]
+
+  @@index([state, season, crop, active])
+  @@map("policy_versions")
+}
+
+model Report {
+  id                      String                     @id @default(uuid())
+  idempotencyKey          String                     @unique @map("idempotency_key")
+  farmerId                String                     @map("farmer_id")
+  reportNumber            String                     @unique @map("report_number")
+  workflowStatus          WorkflowStatus             @default(IN_PROGRESS) @map("workflow_status")
+  submissionStatus        SubmissionStatus           @default(NOT_SUBMITTED) @map("submission_status")
+  incidentCategory        IncidentCategory           @default(LOCALISED_CALAMITY) @map("incident_category")
+  policyVersionId         String?                    @map("policy_version_id")
+  readbackCompleted       Boolean                    @default(false) @map("readback_completed")
+  farmerVerifiedAt        DateTime?                  @map("farmer_verified_at")
+  createdAtDevice         DateTime                   @map("created_at_device")
+  createdAtServer         DateTime                   @default(now()) @map("created_at_server")
+  updatedAt               DateTime                   @updatedAt @map("updated_at")
+  finalisedAt             DateTime?                  @map("finalised_at")
+  currentRevision         Int                        @default(1) @map("current_revision")
+
+  farmer                  FarmerProfile              @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  policyVersion           PolicyVersion?             @relation(fields: [policyVersionId], references: [id])
+  incidentDetails         IncidentDetail?
+  cropDetails             CropDetail?
+  fieldDetails            FieldDetail?
+  insuranceReference      InsuranceReference?
+  conversationTurns       ConversationTurn[]
+  extractedValues         ExtractedValue[]
+  evidenceItems           EvidenceItem[]
+  submissionRecords       OfficialSubmissionRecord[]
+  auditEvents             AuditEvent[]
+
+  @@index([farmerId, workflowStatus])
+  @@map("reports")
+}
+
+model IncidentDetail {
+  id               String        @id @default(uuid())
+  reportId         String        @unique @map("report_id")
+  incidentType     String?       @map("incident_type")
+  incidentDate     DateTime?     @map("incident_date")
+  incidentTime     String?       @map("incident_time")
+  timePrecision    TimePrecision @default(APPROXIMATE) @map("time_precision")
+  cropStage        CropStage     @default(STANDING) @map("crop_stage")
+  harvestDate      DateTime?     @map("harvest_date")
+  eventDescription String?       @map("event_description")
+  farmerConfirmed  Boolean       @default(false) @map("farmer_confirmed")
+
+  report           Report        @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("incident_details")
+}
+
+model CropDetail {
+  id              String   @id @default(uuid())
+  reportId        String   @unique @map("report_id")
+  cropName        String?  @map("crop_name")
+  cropVariety     String?  @map("crop_variety")
+  cultivatedArea  Float?   @map("cultivated_area")
+  affectedArea    Float?   @map("affected_area")
+  areaUnit        String   @default("acre") @map("area_unit")
+  cropSeason      String   @default("KHARIF") @map("crop_season")
+  farmerConfirmed Boolean  @default(false) @map("farmer_confirmed")
+
+  report          Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("crop_details")
+}
+
+model FieldDetail {
+  id                String   @id @default(uuid())
+  reportId          String   @unique @map("report_id")
+  state             String
+  district          String
+  village           String
+  surveyNumber      String?  @map("survey_number")
+  latitude          Float?
+  longitude         Float?
+  locationSource    String   @default("FARMER_SPOKEN") @map("location_source")
+  locationConfirmed Boolean  @default(false) @map("location_confirmed")
+
+  report            Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("field_details")
+}
+
+model InsuranceReference {
+  id                 String   @id @default(uuid())
+  reportId           String   @unique @map("report_id")
+  insuranceScheme    String   @default("PMFBY") @map("insurance_scheme")
+  insuredStatus      String   @default("UNSURE") @map("insured_status")
+  applicationNumber  String?  @map("application_number")
+  policyReference    String?  @map("policy_reference")
+  nonSensitiveNotes  String?  @map("non_sensitive_notes")
+  verificationStatus String   @default("UNVERIFIED") @map("verification_status")
+
+  report             Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("insurance_references")
+}
+
+model ConversationTurn {
+  id                String           @id @default(uuid())
+  reportId          String           @map("report_id")
+  turnIndex         Int              @map("turn_index")
+  speaker           String
+  language          String
+  transcript        String
+  processingStatus  String           @default("COMPLETED") @map("processing_status")
+  provider          String           @default("gnani-prisma-v3.0")
+  providerMode      String           @default("LIVE_GNANI") @map("provider_mode")
+  providerRequestId String?          @map("provider_request_id")
+  createdAt         DateTime         @default(now()) @map("created_at")
+
+  report            Report           @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  extractedValues   ExtractedValue[]
+
+  @@index([reportId, turnIndex])
+  @@map("conversation_turns")
+}
+
+model ExtractedValue {
+  id                 String             @id @default(uuid())
+  reportId           String             @map("report_id")
+  fieldName          String             @map("field_name")
+  extractedValue     String?            @map("extracted_value")
+  unit               String?
+  confidence         Float              @default(0)
+  sourceText         String?            @map("source_text")
+  sourceTurnId       String?            @map("source_turn_id")
+  confirmationStatus ConfirmationStatus @default(NEEDS_CONFIRMATION) @map("confirmation_status")
+  confirmedAt        DateTime?          @map("confirmed_at")
+
+  report             Report             @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  sourceTurn         ConversationTurn?  @relation(fields: [sourceTurnId], references: [id], onDelete: SetNull)
+
+  @@index([reportId, fieldName])
+  @@map("extracted_values")
+}
+
+model EvidenceItem {
+  id              String    @id @default(uuid())
+  reportId        String    @map("report_id")
+  storageKey      String    @map("storage_key")
+  fileType        String    @map("file_type")
+  fileSize        Int       @map("file_size")
+  uploadStatus    String    @default("PENDING") @map("upload_status")
+  captureTime     DateTime  @default(now()) @map("capture_time")
+  latitude        Float?
+  longitude       Float?
+  farmerConfirmed Boolean   @default(false) @map("farmer_confirmed")
+
+  report          Report    @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("evidence_items")
+}
+
+model OfficialSubmissionRecord {
+  id                           String   @id @default(uuid())
+  reportId                     String   @map("report_id")
+  submissionChannel            String   @map("submission_channel")
+  farmerReportedSubmissionDate DateTime @map("farmer_reported_submission_date")
+  officialReferenceNumber      String?  @map("official_reference_number")
+  acknowledgementFileId        String?  @map("acknowledgement_file_id")
+  verificationStatus           String   @default("FARMER_REPORTED_UNVERIFIED") @map("verification_status")
+  createdAt                    DateTime @default(now()) @map("created_at")
+
+  report                       Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("official_submission_records")
+}
+
+model AuditEvent {
+  id            String   @id @default(uuid())
+  actorId       String   @map("actor_id")
+  actorRole     UserRole @default(FARMER) @map("actor_role")
+  reportId      String?  @map("report_id")
+  action        String
+  fieldName     String?  @map("field_name")
+  previousValue Json?    @map("previous_value")
+  newValue      Json?    @map("new_value")
+  timestamp     DateTime @default(now())
+  source        String   @default("MOBILE_APP")
+
+  actor         User     @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  report        Report?  @relation(fields: [reportId], references: [id], onDelete: SetNull)
+
+  @@index([reportId, timestamp])
+  @@map("audit_events")
+}

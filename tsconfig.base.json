@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": [
+      "ES2022"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fasal-awaaz/shared-types": [
+        "packages/shared-types/src/index.ts"
+      ],
+      "@fasal-awaaz/validation": [
+        "packages/validation/src/index.ts"
+      ],
+      "@fasal-awaaz/contracts": [
+        "packages/contracts/src/index.ts"
+      ]
+    }
+  }
+}

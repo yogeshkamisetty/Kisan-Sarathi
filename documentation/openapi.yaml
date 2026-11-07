@@ -1,0 +1,387 @@
+openapi: 3.1.0
+info:
+  title: KisanSaathi — Fasal Awaaz API
+  version: 1.0.0
+  description: >
+    Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation.
+    Strictly prepares structured crop-loss intimation drafts for PMFBY and does NOT act as an official government claim submission system.
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local Development Server
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Prevents duplicate records during offline sync retries.
+  schemas:
+    WorkflowStatus:
+      type: string
+      enum:
+        - DRAFT_LOCAL
+        - SYNC_PENDING
+        - IN_PROGRESS
+        - NEEDS_REVIEW
+        - READY_FOR_EXPORT
+        - EXPORTED
+        - COMPLETION_PENDING
+        - COMPLETED
+        - CANCELLED
+    SubmissionStatus:
+      type: string
+      enum:
+        - NOT_SUBMITTED
+        - FARMER_REPORTED_SUBMITTED
+        - ACKNOWLEDGEMENT_ENTERED
+        - OFFICIALLY_VERIFIED
+    ExtractedFieldStatus:
+      type: string
+      enum:
+        - needs_confirmation
+        - confirmed
+        - corrected
+        - missing
+        - approximate
+        - uncertain
+    ExtractedFieldValue:
+      type: object
+      required: [value, confidence, source_text, status]
+      properties:
+        value:
+          type: [string, number, "null"]
+        unit:
+          type: [string, "null"]
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        source_text:
+          type: [string, "null"]
+        status:
+          $ref: '#/components/schemas/ExtractedFieldStatus'
+paths:
+  /health:
+    get:
+      summary: System and database health check
+      security: []
+      responses:
+        '200':
+          description: Healthy
+  /auth/otp/request:
+    post:
+      summary: Request OTP for farmer or operator login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mobileNumber]
+              properties:
+                mobileNumber:
+                  type: string
+                  pattern: '^[6-9]\d{9}$'
+      responses:
+        '200':
+          description: OTP dispatched via configured OtpProvider
+  /auth/otp/verify:
+    post:
+      summary: Verify OTP and issue JWT access & refresh tokens
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [mobileNumber, otp]
+              properties:
+                mobileNumber:
+                  type: string
+                otp:
+                  type: string
+      responses:
+        '200':
+          description: Tokens issued
+  /auth/refresh:
+    post:
+      summary: Refresh short-lived access token
+      responses:
+        '200':
+          description: New access token issued
+  /auth/logout:
+    post:
+      summary: Revoke active session
+      responses:
+        '200':
+          description: Logged out
+  /languages:
+    get:
+      summary: List voice-workflow-verified languages
+      security: []
+      responses:
+        '200':
+          description: Array of supported languages and Gnani voice mappings
+  /languages/{languageCode}:
+    get:
+      summary: Get language pack and localized prompts
+      security: []
+      parameters:
+        - name: languageCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Language configuration details
+  /farmers/me:
+    get:
+      summary: Get current farmer profile
+      responses:
+        '200':
+          description: Farmer profile
+    patch:
+      summary: Update current farmer profile
+      responses:
+        '200':
+          description: Updated farmer profile
+  /farmers:
+    post:
+      summary: Create farmer profile (supports self, family helper, or CSC operator mode)
+      responses:
+        '201':
+          description: Created farmer profile
+  /reports:
+    post:
+      summary: Create new crop-loss intimation draft (idempotent)
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '201':
+          description: Draft created
+    get:
+      summary: List farmer's saved drafts and reports
+      responses:
+        '200':
+          description: Report list
+  /reports/{reportId}:
+    get:
+      summary: Get complete report details, extracted fields, and missing checklist
+      responses:
+        '200':
+          description: Full report object
+    patch:
+      summary: Update report fields with audit logging
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Report updated
+    delete:
+      summary: Delete draft report and associated local/server files
+      responses:
+        '200':
+          description: Report deleted
+  /reports/{reportId}/finalise:
+    post:
+      summary: Finalise draft after verifying critical-field spoken readback confirmation
+      responses:
+        '200':
+          description: Transitioned to READY_FOR_EXPORT
+  /reports/{reportId}/conversation/turns:
+    post:
+      summary: Submit voice transcript or text turn, extract fields, and receive next dynamic question
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Extraction result and next question
+  /reports/{reportId}/conversation:
+    get:
+      summary: Retrieve conversation turn history
+      responses:
+        '200':
+          description: Turn list
+  /reports/{reportId}/conversation/correct:
+    post:
+      summary: Record farmer correction to an extracted field with audit history
+      responses:
+        '200':
+          description: Field corrected and audit logged
+  /voice/transcribe:
+    post:
+      summary: Transcribe farmer speech via Gnani Prisma STT (POST https://api.vachana.ai/stt/v3)
+      responses:
+        '200':
+          description: Transcription result with providerMode and request_id
+  /voice/synthesize:
+    post:
+      summary: Synthesize question or readback via Gnani Timbre TTS (POST https://api.vachana.ai/api/v1/tts/inference)
+      responses:
+        '200':
+          description: Audio payload and text fallback
+  /voice/providers/health:
+    get:
+      summary: Check live connectivity and configuration status of Gnani Prisma STT & Timbre TTS
+      responses:
+        '200':
+          description: Provider health report
+  /reports/{reportId}/extract:
+    post:
+      summary: Run schema-constrained field extraction on transcript
+      responses:
+        '200':
+          description: Structured extraction JSON
+  /reports/{reportId}/validate:
+    post:
+      summary: Validate extracted values against agricultural and policy rules
+      responses:
+        '200':
+          description: Validation results
+  /reports/{reportId}/missing-fields:
+    get:
+      summary: List critical missing fields and 7-day completable fields
+      responses:
+        '200':
+          description: Missing field checklist
+  /reports/{reportId}/confirm:
+    post:
+      summary: Confirm critical fields after Gnani Timbre voice readback
+      responses:
+        '200':
+          description: Fields confirmed
+  /reports/{reportId}/evidence/upload-url:
+    post:
+      summary: Generate presigned S3/MinIO URL for photo evidence
+      responses:
+        '200':
+          description: Presigned upload URL
+  /reports/{reportId}/evidence/confirm-upload:
+    post:
+      summary: Confirm photo upload and attach geo/time metadata
+      responses:
+        '200':
+          description: Evidence confirmed
+  /reports/{reportId}/evidence:
+    get:
+      summary: List evidence attachments for report
+      responses:
+        '200':
+          description: Evidence list
+  /reports/{reportId}/evidence/{evidenceId}:
+    delete:
+      summary: Delete evidence item
+      responses:
+        '200':
+          description: Evidence deleted
+  /reports/{reportId}/documents:
+    post:
+      summary: Generate bilingual PDF and text Crop Loss Intimation Draft (DRAFT - NOT OFFICIALLY SUBMITTED)
+      responses:
+        '201':
+          description: Document generated
+    get:
+      summary: List generated documents for report
+      responses:
+        '200':
+          description: Document list
+  /documents/{documentId}:
+    get:
+      summary: Download generated PDF or text report
+      responses:
+        '200':
+          description: Document stream
+  /reports/{reportId}/submission-records:
+    post:
+      summary: Record farmer-reported official channel submission reference (labelled farmer-reported, not government-verified)
+      responses:
+        '201':
+          description: Official submission reference recorded
+    get:
+      summary: Get official submission records for report
+      responses:
+        '200':
+          description: Submission record list
+  /submission-records/{recordId}:
+    patch:
+      summary: Update submission record or attach acknowledgement photo
+      responses:
+        '200':
+          description: Submission record updated
+  /policies/applicable:
+    get:
+      summary: Find verified policy configuration for state, district, season, crop, and loss category
+      responses:
+        '200':
+          description: Matching PolicyVersion or UNCERTAIN_APPLICABILITY notice
+  /policies/{policyId}:
+    get:
+      summary: Get specific policy version record
+      responses:
+        '200':
+          description: PolicyVersion details
+  /reports/{reportId}/deadline-guidance:
+    get:
+      summary: Calculate policy-aware 72-hour intimation and 7-day completion guidance
+      responses:
+        '200':
+          description: Deadline calculation and verified official channel list
+  /intake/quick-voice:
+    post:
+      summary: Single-shot rapid intake via audio or raw text with automatic meteorological grounding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                farmerId: { type: string }
+                farmerName: { type: string }
+                phoneNumber: { type: string }
+                text: { type: string }
+                audioBase64: { type: string }
+                audioFormat: { type: string }
+                languageCode: { type: string }
+                channel: { type: string, enum: [WHATSAPP_VOICE, IVR_PHONE, TELEGRAM_BOT, WEB_ASSISTED] }
+      responses:
+        '201':
+          description: Rapid intake processed with draft, IPI score, PDF link and WhatsApp action card
+  /channels/whatsapp/webhook:
+    post:
+      summary: Inbound webhook for WhatsApp Business API (Twilio / Meta Cloud API)
+      responses:
+        '200':
+          description: Webhook received and dispatched to rapid intake pipeline
+  /reports/{reportId}/pdf:
+    get:
+      summary: Download dynamic binary A4 bilingual PDF draft
+      responses:
+        '200':
+          description: PDF binary file stream (application/pdf)
+  /reports/{reportId}/plausibility:
+    get:
+      summary: Get meteorological plausibility scoring (IPI) and surveyor triage priority
+      responses:
+        '200':
+          description: Plausibility analysis with confidence metrics and routing channel
+  /business/analytics:
+    get:
+      summary: Commercial unit economics, turnaround time, fraud prevention ROI and TAM analysis
+      responses:
+        '200':
+          description: Enterprise analytics payload
+

@@ -1,0 +1,25 @@
+FROM node:18-alpine AS base
+WORKDIR /app
+
+# Create non-root application user
+RUN addgroup -S fasal && adduser -S fasal -G fasal
+
+COPY package.json tsconfig.base.json ./
+COPY packages ./packages
+COPY apps/api ./apps/api
+COPY demo ./demo
+
+# Persistence directory. Creating it in the image means Docker initialises the named
+# volume with these permissions, so the non-root user can write farmer drafts.
+RUN mkdir -p /app/.data
+
+RUN chown -R fasal:fasal /app
+USER fasal
+
+VOLUME ["/app/.data"]
+
+EXPOSE 3000
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/v1/health || exit 1
+
+CMD ["node", "apps/api/src/main.js"]

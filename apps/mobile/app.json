@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Fasal Awaaz (KisanSaathi)",
+    "slug": "fasal-awaaz",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": [
+      "android"
+    ],
+    "android": {
+      "package": "in.kisansaathi.fasalawaaz",
+      "permissions": [
+        "RECORD_AUDIO",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    }
+  }
+}

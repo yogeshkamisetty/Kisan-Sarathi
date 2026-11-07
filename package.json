@@ -1,0 +1,25 @@
+{
+  "name": "fasal-awaaz-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KisanSaathi \u2014 Fasal Awaaz: Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "node --test apps/api/test/unit.spec.js apps/api/test/integration.spec.js",
+    "test:unit": "node --test apps/api/test/unit.spec.js",
+    "test:integration": "node --test apps/api/test/integration.spec.js",
+    "verify:env": "node ./infrastructure/scripts/verify-env.js",
+    "db:migrate": "npx prisma migrate deploy --schema=apps/api/prisma/schema.prisma",
+    "db:seed": "node apps/api/prisma/seed.js",
+    "start:api": "node apps/api/src/main.js",
+    "software": "node demo/interactive-software.js",
+    "demo:run": "node demo/run-hackathon-demo.js"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,73 @@
+================================================================================
+FASAL AWAAZ (KISANSAATHI)
+CROP LOSS INTIMATION DRAFT
+*** DRAFT – NOT OFFICIALLY SUBMITTED ***
+================================================================================
+DISCLAIMER: This document is a farmer-prepared information summary. It is not an official claim submission, official acknowledgement, eligibility determination or guarantee of compensation.
+--------------------------------------------------------------------------------
+Report Number: FA-2026-AN-000101 | Revision: v3
+
+1. FARMER INFORMATION
+Farmer name: Ramesh Kumar (SYNTHETIC DEMO FARMER)
+Mobile number: 9876543210
+State: Andhra Pradesh
+District: Guntur
+Village: Peddapalli
+Preparation mode: SELF
+
+2. INCIDENT INFORMATION
+Incident category: LOCALISED_CALAMITY
+Incident type: hailstorm (confirmed)
+Incident date: 2026-11-03 (corrected)
+Approximate incident time: evening (approx. 17:00-20:00) (approximate)
+Crop stage: STANDING (confirmed)
+Incident description: मेरी धान की खड़ी फसल कल शाम ओलावृष्टि और भारी बारिश से 3 एकड़ खराब हो गई | फसल बीमा करवाया है, लेकिन सर्वे नंबर अभी याद नहीं है
+
+3. CROP INFORMATION
+Crop: paddy (confirmed)
+Total cultivated area: Not provided (to be supplied if required)
+Affected area: 2
+Area unit: acre
+
+4. LAND INFORMATION
+Survey number: MISSING – To be completed within 7-day follow-up window
+Location: Peddapalli, Guntur, Andhra Pradesh
+Latitude: Not captured
+Longitude: Not captured
+Location confirmation: confirmed
+
+5. INSURANCE INFORMATION
+Insurance scheme: PMFBY
+Insured status: YES_INSURED
+Application number: MISSING – Keep passbook/receipt ready for 14447 / Bank
+Other reference: Bank account numbers are intentionally excluded for farmer privacy.
+
+6. SUPPORTING EVIDENCE
+Photographs: 0 attached
+Other available documents: None attached
+
+7. MISSING INFORMATION CHECKLIST
+- cultivated_area: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL
+- survey_number: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL
+- application_number: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL
+- evidence_photographs: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL
+- gps_coordinates: UNAVAILABLE / TO BE COMPLETED VIA OFFICIAL CHANNEL
+
+8. VERIFICATION
+Farmer verification status: CONFIRMED AFTER VOICE READBACK
+Critical details read back: Yes (via Gnani Timbre TTS)
+Corrections made: 2
+
+9. TIMESTAMP INFORMATION
+Device-generated timestamp: 2026-11-04T05:45:12+05:30
+Server-received timestamp: 2026-11-05T10:22:05.102Z
+Report revision: 3
+Policy reference and version: PMFBY-OG-2026.1 (https://pmfby.gov.in/pdf/Revised_Operational_Guidelines.pdf)
+
+10. OFFICIAL SUBMISSION INFORMATION
+Internal Preparation Status: COMPLETION_PENDING
+Official Submission Status: NOT_SUBMITTED
+Official reference number: NOT YET SUBMITTED TO OFFICIAL CHANNEL
+Reporting channel: Pending farmer action (Call 14447 / Crop Insurance App / Bank)
+Acknowledgement verification status: NOT_SUBMITTED (A generated draft is NOT an official claim submission)
+================================================================================

@@ -1,0 +1,25 @@
+{
+  "name": "@fasal-awaaz/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "main": "App.tsx",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fasal-awaaz/shared-types": "1.0.0",
+    "@fasal-awaaz/validation": "1.0.0",
+    "@fasal-awaaz/contracts": "1.0.0",
+    "expo": "~51.0.0",
+    "expo-av": "~14.0.0",
+    "expo-file-system": "~17.0.0",
+    "expo-location": "~17.0.0",
+    "expo-secure-store": "~13.0.0",
+    "expo-sqlite": "~14.0.0",
+    "react": "18.2.0",
+    "react-native": "0.74.5",
+    "zustand": "^4.5.2"
+  }
+}
