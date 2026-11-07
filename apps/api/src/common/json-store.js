@@ -31,7 +31,8 @@ class JsonStore {
     if (String(env.PERSISTENCE || '').toLowerCase() === 'memory') {
       return new JsonStore({ dataDir: null });
     }
-    const dataDir = env.DATA_DIR || path.join(process.cwd(), '.data');
+    const defaultDataDir = env.VERCEL ? '/tmp/.data' : path.join(process.cwd(), '.data');
+    const dataDir = env.DATA_DIR || defaultDataDir;
     return new JsonStore({ dataDir });
   }
 

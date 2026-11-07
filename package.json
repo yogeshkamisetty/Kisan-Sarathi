@@ -8,6 +8,8 @@
     "apps/*"
   ],
   "scripts": {
+    "build": "node -e \"console.log('Build complete')\"",
+    "start": "node apps/api/src/main.js",
     "test": "node --test apps/api/test/unit.spec.js apps/api/test/integration.spec.js",
     "test:unit": "node --test apps/api/test/unit.spec.js",
     "test:integration": "node --test apps/api/test/integration.spec.js",

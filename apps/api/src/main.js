@@ -168,8 +168,8 @@ function createAppContainer(env = process.env) {
   };
 }
 
-function createHttpServer(container = createAppContainer()) {
-  const server = http.createServer(async (req, res) => {
+function createRequestHandler(container = createAppContainer()) {
+  return async (req, res) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('X-Content-Type-Options', 'nosniff');
 
@@ -622,8 +622,13 @@ function createHttpServer(container = createAppContainer()) {
       res.writeHead(statusCode);
       res.end(JSON.stringify({ error: err.code || 'INTERNAL_ERROR', message }));
     }
-  });
+  };
+}
 
+function createHttpServer(container = createAppContainer()) {
+  const handler = createRequestHandler(container);
+  const server = http.createServer(handler);
+  server.handler = handler;
   return server;
 }
 
@@ -642,4 +647,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { createAppContainer, createHttpServer };
+module.exports = { createAppContainer, createHttpServer, createRequestHandler };
