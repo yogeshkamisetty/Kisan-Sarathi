@@ -1,5 +1,5 @@
 /**
- * KisanSaathi — Fasal Awaaz Android Application Root
+ * Kisan Sarathi (किसान सारथी) Android Application Root
  * Connects offline SQLite store, Gnani voice proxy, and the 11-screen farmer workflow.
  */
 import { FasalTheme } from './src/theme/colors';
@@ -17,7 +17,7 @@ import { Screen09_OfficialReportingGuidance } from './src/screens/Screen09_Offic
 import { Screen10_OfficialReferenceEntry } from './src/screens/Screen10_OfficialReferenceEntry';
 import { Screen11_FollowUpAndCompletion } from './src/screens/Screen11_FollowUpAndCompletion';
 
-export const FasalAwaazMobileWorkflow = {
+export const KisanSarathiMobileWorkflow = {
   theme: FasalTheme,
   translations: UI_TRANSLATIONS,
   screens: {
@@ -36,4 +36,6 @@ export const FasalAwaazMobileWorkflow = {
   },
 };
 
-export default FasalAwaazMobileWorkflow;
+export const FasalAwaazMobileWorkflow = KisanSarathiMobileWorkflow;
+
+export default KisanSarathiMobileWorkflow;

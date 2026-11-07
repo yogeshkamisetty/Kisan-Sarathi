@@ -57,7 +57,7 @@ class ReportGeneratorService {
 
     const textContent = [
       '================================================================================',
-      'FASAL AWAAZ (KISANSAATHI)',
+      'KISAN SARATHI (KISANSAATHI)',
       'CROP LOSS INTIMATION DRAFT',
       `*** ${MANDATORY_DRAFT_WATERMARK} ***`,
       '================================================================================',

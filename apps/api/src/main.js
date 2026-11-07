@@ -1,5 +1,5 @@
 /**
- * KisanSaathi — Fasal Awaaz HTTP REST API Server (/api/v1)
+ * Kisan Sarathi (किसान सारथी) HTTP REST API Server (/api/v1)
  * Modular Monolith entrypoint runnable directly with `node apps/api/src/main.js`
  */
 const http = require('node:http');
@@ -650,7 +650,7 @@ if (require.main === module) {
   server.listen(port, () => {
     console.log(
       JSON.stringify(
-        logger.info(`Fasal Awaaz API listening on port ${port}`, {
+        logger.info(`Kisan Sarathi API listening on port ${port}`, {
           gnaniMode: container.startupValidation.gnaniMode,
         })
       )

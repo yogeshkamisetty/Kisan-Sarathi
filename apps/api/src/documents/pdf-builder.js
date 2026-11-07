@@ -68,7 +68,7 @@ function buildPdfBinary({
 
   // Header Background Bar (Deep Agricultural Green)
   addRect(0, pageHeight - 70, pageWidth, 70, 0.1, 0.37, 0.13, 0.11, 0.37, 0.13);
-  addText('KISANSAATHI - FASAL AWAAZ', 40, pageHeight - 35, 18, true, 1, 1, 1);
+  addText('KISAN SARATHI (KISANSAATHI)', 40, pageHeight - 35, 18, true, 1, 1, 1);
   addText('Multilingual AI Voice Assistant for Timely Crop Loss Intimation (PMFBY)', 40, pageHeight - 52, 9, false, 0.9, 0.95, 0.9);
 
   // Prominent Draft Banner (Amber/Red Alert)
@@ -132,7 +132,7 @@ function buildPdfBinary({
 
   // Footer / Cryptographic Verification
   addLine(40, 50, pageWidth - 40, 50, 0.85, 0.85, 0.85, 1);
-  addText('Fasal Awaaz is an AI-assisted preparation system under the KisanSaathi Initiative. Not a government agency.', 40, 36, 7.5, false, 0.5, 0.5, 0.5);
+  addText('Kisan Sarathi is an AI-assisted preparation system under the KisanSaathi Initiative. Not a government agency.', 40, 36, 7.5, false, 0.5, 0.5, 0.5);
   addText('Helpline: 14447 | PMFBY Official Portal: https://pmfby.gov.in', 40, 24, 7.5, false, 0.3, 0.3, 0.3);
   addText(`Draft ID: ${reportNumber}`, 450, 30, 8, true, 0.2, 0.2, 0.2);
 

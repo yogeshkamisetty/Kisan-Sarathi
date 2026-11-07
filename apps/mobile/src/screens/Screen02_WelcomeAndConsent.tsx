@@ -8,9 +8,9 @@ import React from 'react';
 export function Screen02_WelcomeAndConsent({ onGrantConsents }: { onGrantConsents: (consents: string[]) => void }) {
   return {
     screenId: 'SCREEN_02_WELCOME_AND_CONSENT',
-    header: 'Fasal Awaaz — Speak. Verify. Prepare. Report.',
+    header: 'Kisan Sarathi — Speak. Verify. Prepare. Report.',
     mandatoryNotice:
-      'Fasal Awaaz helps you prepare crop-loss information using your voice. It does not officially submit an insurance claim.',
+      'Kisan Sarathi helps you prepare crop-loss information using your voice. It does not officially submit an insurance claim.',
     autoRecordingEnabled: false,
     requiredConsents: [
       'AUDIO_RECORDING',

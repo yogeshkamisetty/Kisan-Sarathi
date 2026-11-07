@@ -28,45 +28,103 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F4F8F3;
-      --bg-surface: #EBF3EA;
-      --card-bg: #FFFFFF;
-      --card-border: #D1DCD0;
-      --card-hover: #F0FDF4;
-      --text: #162419;
-      --text-muted: #4B5563;
-      --primary: #0F5132;
-      --primary-dark: #07361E;
-      --primary-light: #16A34A;
-      --primary-glow: rgba(15, 81, 50, 0.25);
+      /* Sovece Production Design Tokens */
+      --canvas: #F8FAFC;
+      --surface: #FFFFFF;
+      --sunken: #F1F5F9;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --ink: #0F172A;
+      --body: #475569;
+      --muted: #94A3B8;
+
+      /* Domain Semantics */
+      --primary: #059669;
+      --primary-pressed: #047857;
+      --primary-soft: #ECFDF5;
+
+      --gov-blue: #2563EB;
+      --gov-blue-pressed: #1D4ED8;
+      --gov-blue-soft: #EFF6FF;
+
+      --verified: #059669;
+      --verified-soft: #ECFDF5;
+
+      --live: #DC2626;
+      --live-soft: #FEF2F2;
+
+      --warn: #B45309;
+      --warn-soft: #FFFBEB;
+
+      /* Sovece Standard Elevations */
+      --shadow-card: 0px 1px 2px rgba(15, 23, 42, 0.04), 0px 8px 24px rgba(15, 23, 42, 0.05);
+      --shadow-raised: 0px 1px 3px rgba(15, 23, 42, 0.10);
+
+      /* Compatibility mappings */
+      --bg: var(--canvas);
+      --bg-surface: var(--sunken);
+      --card-bg: var(--surface);
+      --card-border: var(--border);
+      --card-hover: var(--primary-soft);
+      --text: var(--ink);
+      --text-muted: var(--body);
+      --primary-dark: var(--primary-pressed);
+      --primary-light: var(--primary);
+      --primary-glow: rgba(5, 150, 105, 0.25);
       --accent: #0D9488;
-      --secondary: #B45309;
-      --warning: #D97706;
-      --danger: #B91C1C;
+      --secondary: var(--warn);
+      --warning: var(--warn);
+      --danger: var(--live);
       --whatsapp: #128C7E;
       --gold: #D97706;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Noto Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* TOP APPLICATION HEADER */
+    /* Sovece-Style Status Pill */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+    .status-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+    }
+    .status-pill.verified { background: var(--verified-soft); color: var(--verified); }
+    .status-pill.verified .status-pill-dot { background: var(--verified); }
+    .status-pill.live { background: var(--live-soft); color: var(--live); }
+    .status-pill.live .status-pill-dot { background: var(--live); }
+    .status-pill.warn { background: var(--warn-soft); color: var(--warn); }
+    .status-pill.warn .status-pill-dot { background: var(--warn); }
+    .status-pill.gov { background: var(--gov-blue-soft); color: var(--gov-blue); }
+    .status-pill.gov .status-pill-dot { background: var(--gov-blue); }
+
+    /* TOP APPLICATION HEADER (Sovece HubShell Style) */
     header {
       background: rgba(255, 255, 255, 0.96);
-      border-bottom: 2px solid var(--card-border);
+      border-bottom: 1px solid var(--border);
       padding: 0.85rem 1.75rem;
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
-      box-shadow: 0 2px 10px rgba(15, 81, 50, 0.06);
+      box-shadow: 0px 1px 2px rgba(15, 23, 42, 0.04);
     }
 
     .header-inner {
@@ -88,23 +146,22 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .brand-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #0F5132 0%, #07361E 100%);
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-pressed) 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 3px 0 #07361E;
-      border: 1.5px solid #07361E;
+      font-size: 1.4rem;
+      box-shadow: var(--shadow-raised);
     }
 
     .brand-text h1 {
       font-size: 1.25rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #0F5132;
+      letter-spacing: -0.6px;
+      color: var(--ink);
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -112,30 +169,30 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     .brand-text .tagline {
       font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--muted);
+      font-weight: 500;
     }
 
-    /* MODE TOGGLE SWITCHER */
+    /* MODE TOGGLE SWITCHER (Sovece Segmented Control) */
     .mode-nav {
       display: flex;
-      background: #EBF3EA;
-      padding: 0.3rem;
+      background: var(--sunken);
+      padding: 4px;
       border-radius: 12px;
-      border: 1.5px solid var(--card-border);
-      gap: 0.35rem;
+      border: 1px solid var(--border);
+      gap: 4px;
     }
 
     .mode-btn {
       background: transparent;
       border: none;
-      color: var(--text-muted);
-      padding: 0.5rem 1.1rem;
-      border-radius: 9px;
+      color: var(--body);
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
       font-size: 0.84rem;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -143,14 +200,14 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .mode-btn:hover {
-      color: var(--primary);
-      background: rgba(15, 81, 50, 0.06);
+      color: var(--ink);
     }
 
     .mode-btn.active {
-      color: #fff;
-      background: var(--primary);
-      box-shadow: 0 3px 0 var(--primary-dark);
+      color: var(--ink);
+      background: var(--surface);
+      box-shadow: 0px 1px 2px rgba(15, 23, 42, 0.06), 0px 2px 6px rgba(15, 23, 42, 0.04);
+      font-weight: 700;
     }
 
     /* MAIN CONTAINER */
@@ -253,13 +310,12 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     .stage-card {
       display: none;
-      background: #FFFFFF;
-      border: 1.5px solid var(--card-border);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.25rem 2.5rem;
-      box-shadow: 0 4px 16px rgba(15, 81, 50, 0.06), 0 3.5px 0 #CBD5E1;
+      box-shadow: var(--shadow-card);
       animation: slideIn 0.25s ease-out;
-    }
     }
 
     .stage-card.active { display: block; }
@@ -855,69 +911,135 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
       font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: #fff;
-      border: 2px solid var(--primary-dark);
-      box-shadow: 0 4px 0 var(--primary-dark);
+      color: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(5, 150, 105, 0.2), 0 3px 0 var(--primary-pressed);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-primary:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 var(--primary-dark);
+      background: var(--primary-pressed);
     }
 
     .btn-outline {
-      background: #FFFFFF;
-      border: 2px solid var(--card-border);
-      box-shadow: 0 2px 0 #CBD5E1;
-      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+      color: var(--ink);
     }
 
     .btn-outline:hover {
-      background: var(--card-hover);
-      border-color: var(--primary);
+      background: var(--sunken);
+      border-color: var(--border-strong);
     }
 
     .btn-pdf {
-      background: #1D4ED8;
-      color: #fff;
-      border: 2px solid #1E3A8A;
-      box-shadow: 0 4px 0 #1E3A8A;
+      background: var(--gov-blue);
+      color: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), 0 3px 0 var(--gov-blue-pressed);
     }
 
-    .btn-pdf:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #1E3A8A;
+    .btn-pdf:hover {
+      background: var(--gov-blue-pressed);
     }
 
     .btn-call {
-      background: #B45309;
-      color: #fff;
-      border: 2px solid #78350F;
-      box-shadow: 0 4px 0 #78350F;
+      background: var(--warn);
+      color: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(180, 83, 9, 0.2), 0 3px 0 #92400E;
     }
 
-    .btn-call:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #78350F;
+    .btn-call:hover {
+      background: #92400E;
     }
 
     .btn-audio {
-      background: #EBF3EA;
+      background: var(--primary-soft);
       color: var(--primary);
-      border: 1.5px solid var(--primary);
+      border: 1px solid var(--primary);
     }
 
-    /* OFFICER QUEUE TABLE */
+    .btn-audio:hover {
+      background: #D1FAE5;
+    }
+
+    /* SOVECE CARDS, GRIDS & BADGES */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.15rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+    .badge-live {
+      background: var(--verified-soft);
+      color: var(--verified);
+      border: 1px solid #A7F3D0;
+    }
+    .badge-warn {
+      background: var(--warn-soft);
+      color: var(--warn);
+      border: 1px solid #FDE68A;
+    }
+
+    /* OFFICER QUEUE TABLE (Sovece Clean Data Grid) */
     .data-table {
       width: 100%;
       border-collapse: collapse;
@@ -926,21 +1048,25 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     .data-table th {
       text-align: left;
-      padding: 0.85rem 1rem;
-      background: #EBF3EA;
-      color: var(--text);
+      padding: 0.85rem 1.25rem;
+      background: var(--sunken);
+      color: var(--body);
       font-weight: 700;
-      border-bottom: 2px solid var(--card-border);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
     }
 
     .data-table td {
-      padding: 0.95rem 1rem;
-      border-bottom: 1px solid var(--card-border);
-      color: var(--text);
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink);
+      vertical-align: middle;
     }
 
     .data-table tr:hover td {
-      background: var(--card-hover);
+      background: #F8FAFC;
     }
 
     /* COMPLIANCE ANCHOR FOR INTEGRATION TEST SUITES */
@@ -1312,93 +1438,107 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <!-- ------------------------------------------------------------- -->
         <div class="stage-card" id="stage-card-5">
           <div class="stage-header">
-            <span class="stage-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">सफलता • STAGE 5</span>
-            <h2 class="stage-title" style="color: #34d399;">आपकी शिकायत दर्ज हो गई है!</h2>
-            <p class="stage-desc">प्रधानमंत्री फसल बीमा योजना (PMFBY) के अंतर्गत आपका नुकसान रिकॉर्ड सुरक्षित है।</p>
+            <span class="status-pill verified">
+              <span class="status-pill-dot"></span>
+              सफलता • STAGE 5 VERIFIED
+            </span>
+            <h2 class="stage-title" style="margin-top: 0.5rem; color: var(--ink);">आपकी शिकायत सफलतापूर्वक दर्ज हो गई है</h2>
+            <p class="stage-desc">प्रधानमंत्री फसल बीमा योजना (PMFBY) के अंतर्गत आपका दावा प्रारूप क्रिप्टोग्राफिक हैश और डॉपलर रडार से सत्यापित है।</p>
           </div>
 
-          <!-- OFFICIAL GOVERNMENT-STYLE INTIMATION SLIP -->
-          <div class="slip-container">
-            <div class="slip-top-seal">
-              <div class="slip-seal-title">
-                <span>📋 प्रधानमंत्री फसल बीमा योजना — पूर्व-सूचना पर्ची</span>
+          <!-- SOVECE AUTHENTICITY CARD -->
+          <div class="card" style="border: 1px solid var(--border); box-shadow: var(--shadow-card); margin-bottom: 2rem;">
+            <!-- Header bar with tricolor accent and draft watermark -->
+            <div style="background: var(--sunken); padding: 1.15rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-size: 1.25rem;">🌾</span>
+                <div>
+                  <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">किसान सारथी — आधिकारिक पूर्व-सूचना पर्ची</div>
+                  <div style="font-size: 0.75rem; color: var(--body); font-family: 'JetBrains Mono', monospace;">SHA-256: 7a8f09b2e8c14d5f99318a47b1e62c9028d7e41b</div>
+                </div>
               </div>
-              <div class="regulatory-watermark-tag">
+              <div class="regulatory-watermark-tag" style="background: #FEF3C7; color: #92400E; border: 1px solid #F59E0B; font-weight: 800; font-size: 0.72rem; padding: 0.35rem 0.75rem; border-radius: 6px;">
                 DRAFT – NOT OFFICIALLY SUBMITTED
               </div>
             </div>
 
-            <div class="slip-content">
-              <!-- REFERENCE NUMBER BANNER -->
-              <div class="slip-id-banner">
+            <div style="padding: 1.5rem;">
+              <!-- REFERENCE NUMBER & TRIAGE BANNER -->
+              <div style="background: var(--primary-soft); border: 1.5px solid #A7F3D0; border-radius: 12px; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">सूचना पंजीकरण संख्या (Report Reference ID)</div>
-                  <div class="slip-id-val" id="final-report-id">FA-2026-MH-084291</div>
+                  <div style="font-size: 0.75rem; color: var(--body); font-weight: 700; text-transform: uppercase;">सूचना पंजीकरण संख्या (Report Reference ID)</div>
+                  <div class="slip-id-val tabular-nums" id="final-report-id" style="font-size: 1.6rem; font-weight: 800; color: var(--primary);">FA-2026-MH-084291</div>
+                  <div style="font-size: 0.72rem; color: var(--body); margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace;">
+                    समय: <span id="final-timestamp-val">07 Nov 2026, 12:00 PM IST (Asia/Kolkata)</span> • GPS: 22.7523°N, 78.3541°E (±3m)
+                  </div>
                 </div>
                 <div style="text-align: right;">
-                  <span class="badge badge-live" id="final-triage-badge" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">⚡ ग्रीन चैनल (24h SLA)</span>
-                  <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">धारा 15.1 स्थानीय आपदा</div>
+                  <span class="status-pill live" id="final-triage-badge" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">
+                    <span class="status-pill-dot"></span>
+                    ⚡ ग्रीन चैनल (24h SLA)
+                  </span>
+                  <div style="font-size: 0.75rem; color: var(--body); margin-top: 0.35rem;">धारा 15.1 स्थानीय आपदा</div>
                 </div>
               </div>
 
               <!-- VERIFIED DETAILS GRID -->
-              <div class="slip-data-grid">
-                <div class="slip-item">
-                  <div class="slip-item-label">फसल का नाम (Crop)</div>
-                  <div class="slip-item-val" id="final-crop-val" style="color: #34d399;">कपास (COTTON)</div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">फसल का नाम (Crop)</div>
+                  <div class="tabular-nums" id="final-crop-val" style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;">कपास (COTTON)</div>
                 </div>
-                <div class="slip-item">
-                  <div class="slip-item-label">प्रभावित रकबा (Damaged Area)</div>
-                  <div class="slip-item-val" id="final-area-val">4.0 एकड़ (Acres)</div>
+                <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">प्रभावित रकबा (Damaged Area)</div>
+                  <div class="tabular-nums" id="final-area-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">4.0 एकड़ (Acres)</div>
                 </div>
-                <div class="slip-item">
-                  <div class="slip-item-label">आपदा का प्रकार (Loss Peril)</div>
-                  <div class="slip-item-val" id="final-peril-val" style="color: #fbbf24;">ओलावृष्टि (Hailstorm)</div>
+                <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">आपदा का प्रकार (Loss Peril)</div>
+                  <div class="tabular-nums" id="final-peril-val" style="font-size: 1.15rem; font-weight: 800; color: var(--warn); margin-top: 0.2rem;">ओलावृष्टि (Hailstorm)</div>
                 </div>
-                <div class="slip-item">
-                  <div class="slip-item-label">गाँव व जिला (Location)</div>
-                  <div class="slip-item-val" id="final-location-val">मोरशी, अमरावती (MH)</div>
+                <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">गाँव व जिला (Location)</div>
+                  <div class="tabular-nums" id="final-location-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">मोरशी, अमरावती (MH)</div>
                 </div>
               </div>
 
               <!-- DOPPLER RADAR GROUNDING BANNER -->
-              <div class="radar-grounding-box">
-                <div class="radar-score-dial">
+              <div style="background: var(--primary-soft); border: 1px solid #A7F3D0; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem;">
+                <div class="radar-score-dial" style="background: var(--primary); width: 62px; height: 62px; border-radius: 50%; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; box-shadow: var(--shadow-raised);">
                   <span id="final-ipi-val">97%</span>
-                  <span>IPI</span>
+                  <span style="font-size: 0.6rem; font-weight: 700;">IPI</span>
                 </div>
                 <div>
-                  <div style="font-size: 1rem; font-weight: 800; color: #fff;">
+                  <div style="font-size: 0.98rem; font-weight: 800; color: var(--ink);">
                     मौसम रडार द्वारा पुष्टि (Doppler Radar Grounded)
                   </div>
-                  <div style="font-size: 0.82rem; color: #cbd5e1; margin-top: 0.2rem;" id="final-radar-notes">
+                  <div style="font-size: 0.82rem; color: var(--body); margin-top: 0.2rem;" id="final-radar-notes">
                     IMD डॉपलर रडार ने घटना के समय 58.2 dBZ बादलों की गर्जना और 76mm भारी वर्षा दर्ज की है।
                   </div>
                 </div>
               </div>
 
               <!-- 24-HOUR SURVEYOR SLA COUNTDOWN -->
-              <div class="sla-guarantee-box">
+              <div style="background: var(--warn-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                  <div style="font-size: 0.92rem; font-weight: 800; color: #c7d2fe;">⏱️ सर्वेक्षक आगमन समय-सीमा (24h On-Site Inspection)</div>
-                  <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 0.2rem;">कृषि विभाग व बीमा कंपनी को स्वचालित सूचना भेजी जा चुकी है</div>
+                  <div style="font-size: 0.92rem; font-weight: 800; color: var(--warn);">⏱️ सर्वेक्षक आगमन समय-सीमा (24h On-Site Inspection SLA)</div>
+                  <div style="font-size: 0.78rem; color: #92400E; margin-top: 0.2rem;">कृषि विभाग व बीमा कंपनी को स्वचालित सूचना भेजी जा चुकी है</div>
                 </div>
-                <div class="sla-timer-clock" id="final-sla-timer">23h : 54m</div>
+                <div class="sla-timer-clock tabular-nums" id="final-sla-timer" style="font-size: 1.75rem; font-weight: 800; color: var(--warn);">23h : 54m</div>
               </div>
 
               <!-- AUDIO READBACK BUTTON -->
               <div style="margin-bottom: 1.5rem;">
-                <button class="btn btn-audio" style="width: 100%; font-size: 1rem; padding: 0.9rem;" onclick="speakFinalConfirmation()">
+                <button class="btn btn-audio" style="width: 100%; font-size: 1rem; min-height: 52px;" onclick="speakFinalConfirmation()">
                   <span>🔊 अपनी भाषा में पुष्टि सुनें (Listen Verbal Readback)</span>
                 </button>
               </div>
 
               <!-- PRIMARY ACTION BUTTONS -->
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <a href="/api/v1/reports/FA-2026-MH-084291/pdf" id="final-pdf-btn" target="_blank" class="btn btn-pdf" style="font-size: 1.05rem; padding: 1rem;">
+                <a href="/api/v1/reports/FA-2026-MH-084291/pdf" id="final-pdf-btn" target="_blank" class="btn btn-pdf" style="font-size: 1rem; min-height: 52px;">
                   <span>📄 आधिकारिक PDF पर्ची डाउनलोड करें</span>
                 </a>
-                <a href="tel:14447" class="btn btn-call" style="font-size: 1.05rem; padding: 1rem;">
+                <a href="tel:14447" class="btn btn-call" style="font-size: 1rem; min-height: 52px;">
                   <span>📞 14447 टोल-फ्री कॉल करें</span>
                 </a>
               </div>
@@ -1406,7 +1546,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
           </div>
 
           <div style="text-align: center;">
-            <button class="btn btn-outline" onclick="resetToStageOne()">
+            <button class="btn btn-outline" style="min-height: 52px;" onclick="resetToStageOne()">
               <span>🔄 दूसरी शिकायत दर्ज करें (File Another Complaint)</span>
             </button>
           </div>
@@ -1423,23 +1563,23 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       <div class="grid-4" style="margin-bottom: 1.5rem;">
         <div class="card" style="padding: 1.25rem;">
           <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">सक्रिय नुकसान सूचनाएं (Active Intake)</div>
-          <div style="font-size: 1.85rem; font-weight: 800; color: #fff; font-family: 'JetBrains Mono', monospace; margin: 0.2rem 0;">1,428</div>
-          <div style="font-size: 0.75rem; color: #34d399; font-weight: 700;">⚡ 98.4% 72-घंटे के अंदर दर्ज</div>
+          <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0;">1,428</div>
+          <div style="font-size: 0.75rem; color: var(--verified); font-weight: 700;">⚡ 98.4% 72-घंटे के अंदर दर्ज</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
           <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">सर्वेक्षक औसत समय (Surveyor TAT)</div>
-          <div style="font-size: 1.85rem; font-weight: 800; color: #60a5fa; font-family: 'JetBrains Mono', monospace; margin: 0.2rem 0;">5.8 Hours</div>
-          <div style="font-size: 0.75rem; color: #60a5fa; font-weight: 700;">⏱️ 48 घंटे के मानक से 8x तेज़</div>
+          <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--gov-blue); margin: 0.2rem 0;">5.8 Hours</div>
+          <div style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 700;">⏱️ 48 घंटे के मानक से 8x तेज़</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
           <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">रडार द्वारा रोकी गई फर्जी क्लेम</div>
-          <div style="font-size: 1.85rem; font-weight: 800; color: #fbbf24; font-family: 'JetBrains Mono', monospace; margin: 0.2rem 0;">22.4%</div>
-          <div style="font-size: 0.75rem; color: #fbbf24; font-weight: 700;">🛡️ ₹2.62 Cr बचत प्रति 1 लाख क्लेम</div>
+          <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--warn); margin: 0.2rem 0;">22.4%</div>
+          <div style="font-size: 0.75rem; color: var(--warn); font-weight: 700;">🛡️ ₹2.62 Cr बचत प्रति 1 लाख क्लेम</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
           <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">प्रति क्लेम प्रोसेसिंग शुल्क</div>
-          <div style="font-size: 1.85rem; font-weight: 800; color: #34d399; font-family: 'JetBrains Mono', monospace; margin: 0.2rem 0;">₹35</div>
-          <div style="font-size: 0.75rem; color: #34d399; font-weight: 700;">💰 पारंपरिक सर्वे खर्च: ₹1,500</div>
+          <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--primary); margin: 0.2rem 0;">₹35</div>
+          <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700;">💰 पारंपरिक सर्वे खर्च: ₹1,500</div>
         </div>
       </div>
 
@@ -1449,7 +1589,10 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
           <div class="card-title">
             <span>🚨 वास्तविक समय 24-घंटे सर्वेक्षक असाइनमेंट कतार (Live Surveyor Dispatch Queue)</span>
           </div>
-          <span class="badge badge-live">AIC • HDFC ERGO • SBI Gen</span>
+          <span class="status-pill verified">
+            <span class="status-pill-dot"></span>
+            AIC • HDFC ERGO • SBI Gen
+          </span>
         </div>
 
         <div style="overflow-x: auto;">
@@ -1467,39 +1610,39 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
             </thead>
             <tbody id="officer-queue-body">
               <tr>
-                <td style="font-family: 'JetBrains Mono'; color: #93c5fd; font-weight: 700;">FA-2026-MH-084291</td>
+                <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-MH-084291</td>
                 <td><strong>Sunil Jadhav</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Morshi, Amravati (MH)</span></td>
-                <td>कपास (Cotton) • 4.0 ac<br><span style="font-size: 0.75rem; color: #fbbf24;">ओलावृष्टि (Hailstorm)</span></td>
-                <td><span class="badge badge-live">97% CONFIRMED</span></td>
-                <td><span class="badge badge-live">GREEN_CHANNEL_FAST_TRACK</span></td>
-                <td><span style="color: #34d399; font-weight: 800; font-family: 'JetBrains Mono';">05h : 22m remaining</span></td>
+                <td>कपास (Cotton) • 4.0 ac<br><span style="font-size: 0.75rem; color: var(--warn); font-weight: 600;">ओलावृष्टि (Hailstorm)</span></td>
+                <td><span class="status-pill verified"><span class="status-pill-dot"></span>97% CONFIRMED</span></td>
+                <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
+                <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">05h : 22m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="assignAssessor('FA-2026-MH-084291', 'Sunil Jadhav')">⚡ सर्वेक्षक भेजें</button>
-                  <a href="/api/v1/reports/FA-2026-MH-084291/pdf" target="_blank" class="btn btn-audio" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;">📄 PDF</a>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-MH-084291', 'Sunil Jadhav')">⚡ सर्वेक्षक भेजें</button>
+                  <a href="/api/v1/reports/FA-2026-MH-084291/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
               <tr>
-                <td style="font-family: 'JetBrains Mono'; color: #93c5fd; font-weight: 700;">FA-2026-AP-019284</td>
+                <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-AP-019284</td>
                 <td><strong>Venkata Ramana</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Kadiri, Anantapur (AP)</span></td>
-                <td>వేరుశనగ (Groundnut) • 3.5 ac<br><span style="font-size: 0.75rem; color: #60a5fa;">తుఫాను వరద (Inundation)</span></td>
-                <td><span class="badge badge-live">95% CONFIRMED</span></td>
-                <td><span class="badge badge-live">GREEN_CHANNEL_FAST_TRACK</span></td>
-                <td><span style="color: #34d399; font-weight: 800; font-family: 'JetBrains Mono';">08h : 45m remaining</span></td>
+                <td>వేరుశనగ (Groundnut) • 3.5 ac<br><span style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 600;">తుఫాను వరద (Inundation)</span></td>
+                <td><span class="status-pill verified"><span class="status-pill-dot"></span>95% CONFIRMED</span></td>
+                <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
+                <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">08h : 45m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="assignAssessor('FA-2026-AP-019284', 'Venkata Ramana')">⚡ सर्वेक्षक भेजें</button>
-                  <a href="/api/v1/reports/FA-2026-AP-019284/pdf" target="_blank" class="btn btn-audio" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;">📄 PDF</a>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-AP-019284', 'Venkata Ramana')">⚡ सर्वेक्षक भेजें</button>
+                  <a href="/api/v1/reports/FA-2026-AP-019284/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
               <tr>
-                <td style="font-family: 'JetBrains Mono'; color: #93c5fd; font-weight: 700;">FA-2026-HR-003819</td>
+                <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-HR-003819</td>
                 <td><strong>Rajesh Hooda</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Meham, Rohtak (HR)</span></td>
-                <td>सरसों (Mustard) • 2.5 ac<br><span style="font-size: 0.75rem; color: #f87171;">शीत लहर पाला (Frost)</span></td>
-                <td><span class="badge badge-warning">89% CONFIRMED</span></td>
-                <td><span class="badge badge-live">GREEN_CHANNEL_FAST_TRACK</span></td>
-                <td><span style="color: #fbbf24; font-weight: 800; font-family: 'JetBrains Mono';">14h : 10m remaining</span></td>
+                <td>सरसों (Mustard) • 2.5 ac<br><span style="font-size: 0.75rem; color: var(--live); font-weight: 600;">शीत लहर पाला (Frost)</span></td>
+                <td><span class="status-pill warn"><span class="status-pill-dot"></span>89% CONFIRMED</span></td>
+                <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
+                <td><span class="tabular-nums" style="color: var(--warn); font-weight: 800;">14h : 10m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="assignAssessor('FA-2026-HR-003819', 'Rajesh Hooda')">⚡ सर्वेक्षक भेजें</button>
-                  <a href="/api/v1/reports/FA-2026-HR-003819/pdf" target="_blank" class="btn btn-audio" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;">📄 PDF</a>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-HR-003819', 'Rajesh Hooda')">⚡ सर्वेक्षक भेजें</button>
+                  <a href="/api/v1/reports/FA-2026-HR-003819/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
             </tbody>
@@ -1512,9 +1655,9 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <div class="card">
           <div class="card-header">
             <div class="card-title">🌦️ डॉपलर रडार मौसम नेटवर्क (Pilot Agromet Stations)</div>
-            <span class="badge badge-live">Live Reflectivity</span>
+            <span class="status-pill verified"><span class="status-pill-dot"></span>Live Reflectivity</span>
           </div>
-          <div class="grid-2" id="officer-radar-grid">
+          <div class="grid-2" id="officer-radar-grid" style="padding: 1.25rem;">
             <!-- Dynamically populated -->
           </div>
         </div>
@@ -1522,29 +1665,31 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <div class="card">
           <div class="card-header">
             <div class="card-title">🧮 बीमा कंपनी व्यावसायिक बचत कैलकुलेटर (ROI)</div>
-            <span class="badge badge-live">B2B Unit Economics</span>
+            <span class="status-pill gov"><span class="status-pill-dot"></span>B2B Unit Economics</span>
           </div>
 
-          <div style="margin-bottom: 1.25rem;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
-              <span>वार्षिक क्लेम संख्या (Annual Claims):</span>
-              <span id="slider-claims-text" style="color: #34d399; font-weight: 700;">50,000 Claims</span>
+          <div style="padding: 1.25rem;">
+            <div style="margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
+                <span>वार्षिक क्लेम संख्या (Annual Claims):</span>
+                <span id="slider-claims-text" class="tabular-nums" style="color: var(--primary); font-weight: 700;">50,000 Claims</span>
+              </div>
+              <input type="range" id="calc-slider-claims" style="width: 100%; accent-color: var(--primary);" min="10000" max="200000" step="5000" value="50000" oninput="updateEnterpriseRoi()">
             </div>
-            <input type="range" id="calc-slider-claims" style="width: 100%; accent-color: var(--primary);" min="10000" max="200000" step="5000" value="50000" oninput="updateEnterpriseRoi()">
-          </div>
 
-          <div style="margin-bottom: 1.25rem;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
-              <span>पारंपरिक भौतिक सर्वेक्षक लागत (Field Survey Cost):</span>
-              <span id="slider-cost-text" style="color: #60a5fa; font-weight: 700;">₹1,500 / visit</span>
+            <div style="margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
+                <span>पारंपरिक भौतिक सर्वेक्षक लागत (Field Survey Cost):</span>
+                <span id="slider-cost-text" class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">₹1,500 / visit</span>
+              </div>
+              <input type="range" id="calc-slider-cost" style="width: 100%; accent-color: var(--primary);" min="800" max="3000" step="100" value="1500" oninput="updateEnterpriseRoi()">
             </div>
-            <input type="range" id="calc-slider-cost" style="width: 100%; accent-color: var(--primary);" min="800" max="3000" step="100" value="1500" oninput="updateEnterpriseRoi()">
-          </div>
 
-          <div style="background: #090e17; padding: 1.25rem; border-radius: 12px; border: 1px solid var(--card-border); margin-top: 1rem;">
-            <div style="font-size: 0.82rem; color: var(--text-muted);">फसल आवाज़ से बीमा कंपनी की शुद्ध वार्षिक बचत:</div>
-            <div id="calc-net-savings" style="font-size: 2.2rem; font-weight: 800; color: #34d399; font-family: 'JetBrains Mono', monospace; margin: 0.3rem 0;">₹5.25 Crore</div>
-            <div id="calc-roi-rate" style="font-size: 0.85rem; color: #93c5fd; font-weight: 700;">ROI: 4,185% • Surveyor Turnaround compressed from 48h to 6h</div>
+            <div style="background: var(--sunken); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 1rem;">
+              <div style="font-size: 0.82rem; color: var(--body);">किसान सारथी से बीमा कंपनी की शुद्ध वार्षिक बचत:</div>
+              <div id="calc-net-savings" class="tabular-nums" style="font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 0.3rem 0;">₹5.25 Crore</div>
+              <div id="calc-roi-rate" style="font-size: 0.85rem; color: var(--body); font-weight: 600;">ROI: 4,185% • Surveyor Turnaround compressed from 48h to 6h</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1554,16 +1699,16 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     <!-- VIEW 3: MOBILE SCREEN SIMULATOR -->
     <!-- ========================================================================= -->
     <div id="view-mobile" class="view-panel">
-      <div style="max-width: 440px; margin: 0 auto; background: #000; border: 12px solid #1f2937; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-        <iframe src="/mobile" style="width: 100%; height: 750px; border: none; background: #090c15;"></iframe>
+      <div style="max-width: 440px; margin: 0 auto; background: var(--canvas); border: 8px solid var(--border-strong); border-radius: 40px; overflow: hidden; box-shadow: var(--shadow-card);">
+        <iframe src="/mobile" style="width: 100%; height: 750px; border: none; background: var(--canvas);"></iframe>
       </div>
     </div>
 
   </main>
 
   <footer>
-    <div style="font-weight: 700; color: #e2e8f0;">Kisan Sarathi (किसान सारथी) • Production Architecture</div>
-    <div style="margin-top: 0.4rem; color: #64748b;">
+    <div style="font-weight: 700; color: var(--ink);">Kisan Sarathi (किसान सारथी) • Production Architecture</div>
+    <div style="margin-top: 0.4rem; color: var(--muted);">
       Strictly compliant with PMFBY Section 15.1 Localized Calamities Framework • Official dossiers watermarked DRAFT
     </div>
   </footer>
@@ -1805,8 +1950,15 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       document.getElementById('final-radar-notes').textContent = data.weatherGrounding?.notes || 'IMD डॉपलर रडार ने घटना की पुष्टि की है।';
 
       const isGreen = data.weatherGrounding?.triageChannel === 'GREEN_CHANNEL_FAST_TRACK';
-      document.getElementById('final-triage-badge').textContent = isGreen ? '⚡ ग्रीन चैनल (24h SLA)' : '⚠️ समीक्षा आवश्यक';
-      document.getElementById('final-triage-badge').className = isGreen ? 'badge badge-live' : 'badge badge-warning';
+      document.getElementById('final-triage-badge').innerHTML = isGreen
+        ? '<span class="status-pill-dot"></span>⚡ ग्रीन चैनल (24h SLA)'
+        : '<span class="status-pill-dot"></span>⚠️ समीक्षा आवश्यक';
+      document.getElementById('final-triage-badge').className = isGreen ? 'status-pill live' : 'status-pill warn';
+
+      const tsEl = document.getElementById('final-timestamp-val');
+      if (tsEl) {
+        tsEl.textContent = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) + ' IST (Asia/Kolkata)';
+      }
 
       // Update PDF button
       document.getElementById('final-pdf-btn').href = '/api/v1/reports/' + (data.reportId || data.reportNumber) + '/pdf';
@@ -1816,15 +1968,15 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       if (table) {
         const newRow = document.createElement('tr');
         newRow.innerHTML = \`
-          <td style="font-family: 'JetBrains Mono'; color: #93c5fd; font-weight: 700;">\${data.reportNumber}</td>
+          <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">\${data.reportNumber}</td>
           <td><strong>\${data.farmerName || 'Kisan'}</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">\${data.village || 'Morshi'}, \${data.district}</span></td>
-          <td>\${data.extractedData?.crop || selectedCropLabel} • \${data.extractedData?.affectedArea || selectedAcreage} ac<br><span style="font-size: 0.75rem; color: #fbbf24;">\${data.extractedData?.lossEvent || selectedCalamityLabel}</span></td>
-          <td><span class="badge \${isGreen ? 'badge-live' : 'badge-warning'}">\${ipi}% \${isGreen ? 'CONFIRMED' : 'AUDIT'}</span></td>
-          <td><span class="badge \${isGreen ? 'badge-live' : 'badge-warning'}">\${data.weatherGrounding?.triageChannel || 'GREEN_CHANNEL'}</span></td>
-          <td><span style="color: #34d399; font-weight: 800; font-family: 'JetBrains Mono';">06h : 00m remaining</span></td>
+          <td>\${data.extractedData?.crop || selectedCropLabel} • \${data.extractedData?.affectedArea || selectedAcreage} ac<br><span style="font-size: 0.75rem; color: var(--warn); font-weight: 600;">\${data.extractedData?.lossEvent || selectedCalamityLabel}</span></td>
+          <td><span class="status-pill verified"><span class="status-pill-dot"></span>\${ipi}% \${isGreen ? 'CONFIRMED' : 'AUDIT'}</span></td>
+          <td><span class="status-pill live"><span class="status-pill-dot"></span>\${data.weatherGrounding?.triageChannel || 'GREEN_CHANNEL'}</span></td>
+          <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">06h : 00m remaining</span></td>
           <td>
-            <button class="btn btn-call" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="assignAssessor('\${data.reportNumber}', '\${data.farmerName || 'Kisan'}')">⚡ सर्वेक्षक भेजें</button>
-            <a href="/api/v1/reports/\${data.reportId || data.reportNumber}/pdf" target="_blank" class="btn btn-audio" style="padding: 0.35rem 0.65rem; font-size: 0.78rem;">📄 PDF</a>
+            <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('\${data.reportNumber}', '\${data.farmerName || 'Kisan'}')">⚡ सर्वेक्षक भेजें</button>
+            <a href="/api/v1/reports/\${data.reportId || data.reportNumber}/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
           </td>
         \`;
         table.insertBefore(newRow, table.firstChild);

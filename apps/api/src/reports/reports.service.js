@@ -776,7 +776,7 @@ class ReportsService {
       submissionRecord: record,
       submissionStatus: report.submissionStatus,
       transparencyNotice:
-        'Recorded as Farmer-Reported. Fasal Awaaz has not independently verified this reference number with government servers.',
+        'Recorded as Farmer-Reported. Kisan Sarathi has not independently verified this reference number with government servers.',
     };
   }
 

@@ -1,14 +1,14 @@
-# KisanSaathi — *Fasal Awaaz* (फ़सल आवाज़ / పంట గొంతుక)
+# Kisan Sarathi (किसान सारथी / కిసాన్ సారథి)
 **Speak. Verify. Prepare. Report.**
-*Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation*
+*Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation & 24-Hour Surveyor Triage*
 
 ---
 
 ## 1. Overview & Strict Product Boundary
-**Fasal Awaaz** (built under the **KisanSaathi** initiative) is a voice-first, offline-capable Android mobile application and modular monolith backend that helps Indian farmers explain agricultural crop damage in their native language, verifies critical details aloud via **Gnani AI**, and generates a timestamped bilingual **Crop Loss Intimation Draft** for the **Pradhan Mantri Fasal Bima Yojana (PMFBY)**.
+**Kisan Sarathi (किसान सारथी)** (under the **KisanSaathi** initiative) is a voice-first, offline-capable Android mobile application and modular monolith backend that helps Indian farmers explain agricultural crop damage in their native language, verifies critical details aloud via **Gnani AI**, and generates a timestamped bilingual **Crop Loss Intimation Draft** for the **Pradhan Mantri Fasal Bima Yojana (PMFBY)** with instant Doppler radar meteorological grounding.
 
 > **CRITICAL PRODUCT BOUNDARY:**
-> Fasal Awaaz is an **AI-assisted crop-loss intimation preparation system**. It is **NOT** an official government claim-submission portal, insurance company, or claim adjudication system. Every generated report visibly displays **`DRAFT – NOT OFFICIALLY SUBMITTED`** and guides the farmer to lodge official intimation via verified government channels (such as **Krishi Rakshak Helpline 14447** or the **Crop Insurance App**).
+> Kisan Sarathi is an **AI-assisted crop-loss intimation preparation system**. It is **NOT** an official government claim-submission portal, insurance company, or claim adjudication system. Every generated report visibly displays **`DRAFT – NOT OFFICIALLY SUBMITTED`** and guides the farmer to lodge official intimation via verified government channels (such as **Krishi Rakshak Helpline 14447** or the **Crop Insurance App**).
 
 ---
 

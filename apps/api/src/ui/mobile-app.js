@@ -1,7 +1,7 @@
 /**
- * KisanSaathi — Fasal Awaaz Mobile Web App
+ * Kisan Sarathi (किसान सारथी) Mobile Web App
  * 
- * Gemini-inspired conversational voice assistant ecosystem optimized for mobile screens.
+ * Sovece-inspired conversational voice assistant ecosystem optimized for mobile screens.
  * Ultra-fast vernacular voice-driven interaction, instant schema-constrained entity extraction,
  * real-time meteorological grounding, and immediate PMFBY intimation draft PDF generation.
  */
@@ -12,22 +12,48 @@ function renderMobileAppHtml() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Fasal Awaaz — Mobile Voice Assistant</title>
+  <title>Kisan Sarathi — Mobile Voice Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F4F8F3;
+      /* Sovece Production Design Tokens */
+      --canvas: #F8FAFC;
       --surface: #FFFFFF;
-      --surface-border: #CBD5E1;
-      --text: #162419;
-      --muted: #4B5563;
+      --sunken: #F1F5F9;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --ink: #0F172A;
+      --body: #475569;
+      --muted: #94A3B8;
+
+      --primary: #059669;
+      --primary-pressed: #047857;
+      --primary-soft: #ECFDF5;
+
+      --gov-blue: #2563EB;
+      --gov-blue-pressed: #1D4ED8;
+      --gov-blue-soft: #EFF6FF;
+
+      --verified: #059669;
+      --verified-soft: #ECFDF5;
+      --live: #DC2626;
+      --live-soft: #FEF2F2;
+      --warn: #B45309;
+      --warn-soft: #FFFBEB;
+
+      --shadow-card: 0px 1px 2px rgba(15, 23, 42, 0.04), 0px 8px 24px rgba(15, 23, 42, 0.05);
+      --shadow-raised: 0px 1px 3px rgba(15, 23, 42, 0.10);
+
+      /* Compatibility aliases */
+      --bg: var(--canvas);
+      --surface-border: var(--border);
+      --text: var(--ink);
       --gemini-blue: #0D9488;
       --gemini-purple: #4338CA;
       --gemini-coral: #B45309;
-      --primary: #0F5132;
-      --primary-glow: rgba(15, 81, 50, 0.25);
+      --primary-glow: rgba(5, 150, 105, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }

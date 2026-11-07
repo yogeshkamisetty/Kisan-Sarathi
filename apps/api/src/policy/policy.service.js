@@ -408,10 +408,10 @@ class PolicyEngineService {
         ...seasonContext,
         urgencyLevel: 'HIGH_CONTACT_OFFICIAL_CHANNEL_IMMEDIATELY',
         explanation: lapsed
-          ? `A verified rule exists for ${state} / ${effectiveSeason} / ${crop}, but it does not cover the reported incident date (${incidentDateIso}); its notified period has lapsed or had not yet begun. Fasal Awaaz will not apply an out-of-date deadline. Contact Helpline 14447, the Crop Insurance App, or your local Agriculture Office immediately to confirm the current rule.`
+          ? `A verified rule exists for ${state} / ${effectiveSeason} / ${crop}, but it does not cover the reported incident date (${incidentDateIso}); its notified period has lapsed or had not yet begun. Kisan Sarathi will not apply an out-of-date deadline. Contact Helpline 14447, the Crop Insurance App, or your local Agriculture Office immediately to confirm the current rule.`
           : `A verified state/district/crop notification rule could not be confirmed automatically for this combination (${state || 'unknown state'} / ${effectiveSeason || 'unknown season'} / ${crop || 'unknown crop'}). Under standard PMFBY guidelines, localised calamity and post-harvest losses typically require intimation within 72 hours. Do not wait—contact Helpline 14447, the Crop Insurance App, or your local Agriculture Office immediately.`,
         importantDisclaimer:
-          'Saving a draft in Fasal Awaaz does NOT satisfy official PMFBY intimation requirements.',
+          'Saving a draft in Kisan Sarathi does NOT satisfy official PMFBY intimation requirements.',
         officialChannels: OFFICIAL_PMFBY_CHANNELS,
       };
     }
@@ -431,7 +431,7 @@ class PolicyEngineService {
         urgencyLevel: 'MODERATE_CLARIFY_WITH_OFFICIAL_CHANNEL',
         explanation: `Reported event "${lossEvent}" is not in the standard automated list (${matchedPolicy.eligibleEventCategories.join(', ')}) for ${lossCategory}. Not all weather damage is assessed as an individual farm-level claim (widespread yield loss is assessed via area-level CCEs). Please contact Helpline 14447 or your bank/agriculture officer to confirm.`,
         importantDisclaimer:
-          'Saving a draft in Fasal Awaaz does NOT satisfy official PMFBY intimation requirements.',
+          'Saving a draft in Kisan Sarathi does NOT satisfy official PMFBY intimation requirements.',
         officialChannels: OFFICIAL_PMFBY_CHANNELS,
       };
     }
@@ -484,7 +484,7 @@ class PolicyEngineService {
       explanation: matchedPolicy.deadlineRuleExplanation,
       timingWarnings: timing.warnings,
       importantDisclaimer:
-        'Saving a draft in Fasal Awaaz does NOT satisfy official PMFBY intimation requirements. You must submit your intimation through an official channel below.',
+        'Saving a draft in Kisan Sarathi does NOT satisfy official PMFBY intimation requirements. You must submit your intimation through an official channel below.',
       officialChannels: OFFICIAL_PMFBY_CHANNELS,
     };
   }

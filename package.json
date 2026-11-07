@@ -2,7 +2,7 @@
   "name": "fasal-awaaz-monorepo",
   "version": "1.0.0",
   "private": true,
-  "description": "KisanSaathi \u2014 Fasal Awaaz: Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation",
+  "description": "Kisan Sarathi (किसान सारथी): Multilingual AI Voice Assistant for Timely Crop Loss Intimation Preparation & 24h Surveyor Triage",
   "workspaces": [
     "packages/*",
     "apps/*"
