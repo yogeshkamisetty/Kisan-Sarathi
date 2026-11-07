@@ -1,5 +1,5 @@
 /**
- * Kisan Sarathi (किसान सारथी) — Production Staged Software Frontend
+ * Kisan Sarathi — Production Staged Software Frontend
  *
  * High-performance, self-contained, staged software application designed for
  * maximum farmer understandability and executive command center operations.
@@ -1105,7 +1105,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         </div>
         <div class="brand-icon">🌾</div>
         <div class="brand-text">
-          <h1>Kisan Sarathi <span style="font-size: 0.95rem; font-weight: 700; color: #0F5132;">(किसान सारथी)</span></h1>
+          <h1>Kisan Sarathi <span style="font-size: 0.95rem; font-weight: 700; color: #059669;">(Crop Insurance Assistant)</span></h1>
           <div class="tagline">PMFBY Vernacular AI Voice Intake & 24-Hour Surveyor Triage Platform</div>
         </div>
       </div>
@@ -1114,17 +1114,17 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
         <a href="tel:14447" class="btn btn-call" style="min-height: 40px; padding: 0.4rem 0.9rem; font-size: 0.85rem; border-radius: 10px;">
           <span>📞</span>
-          <span>हेल्पलाइन 14447</span>
+          <span>Helpline 14447</span>
         </a>
         <div class="mode-nav">
           <button class="mode-btn active" id="btn-mode-farmer" onclick="setAppMode('farmer')">
-            <span>👨‍🌾 किसान सेवा पोर्टल (Farmer Flow)</span>
+            <span>👨‍🌾 Farmer Intake Flow</span>
           </button>
           <button class="mode-btn" id="btn-mode-officer" onclick="setAppMode('officer')">
-            <span>🏛️ अधिकारी व बीमा डैशबोर्ड (Officer Console)</span>
+            <span>🏛️ Officer & Insurer Console</span>
           </button>
           <button class="mode-btn" id="btn-mode-mobile" onclick="setAppMode('mobile')">
-            <span>📱 मोबाइल सिम्युलेटर (Mobile View)</span>
+            <span>📱 Mobile View Simulator</span>
           </button>
         </div>
       </div>
@@ -1143,23 +1143,23 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <div class="stepper-nav">
           <div class="step-pill active" id="step-nav-1" onclick="goToStage(1)">
             <div class="step-bubble">1</div>
-            <span>भाषा (Language)</span>
+            <span>Language</span>
           </div>
           <div class="step-pill" id="step-nav-2" onclick="goToStage(2)">
             <div class="step-bubble">2</div>
-            <span>स्थान (Place)</span>
+            <span>Location</span>
           </div>
           <div class="step-pill" id="step-nav-3" onclick="goToStage(3)">
             <div class="step-bubble">3</div>
-            <span>फसल व आपदा (Crop/Damage)</span>
+            <span>Crop & Peril</span>
           </div>
           <div class="step-pill" id="step-nav-4" onclick="goToStage(4)">
             <div class="step-bubble">4</div>
-            <span>बोलकर बताएं (Voice)</span>
+            <span>Voice Intake</span>
           </div>
           <div class="step-pill" id="step-nav-5" onclick="goToStage(5)">
             <div class="step-bubble">5</div>
-            <span>प्रमाणित पर्ची (Verified Slip)</span>
+            <span>Verified Slip</span>
           </div>
         </div>
       </div>
@@ -1171,40 +1171,40 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <!-- ------------------------------------------------------------- -->
         <div class="stage-card active" id="stage-card-1">
           <div class="stage-header">
-            <span class="stage-badge">चरण 1 • STAGE 1</span>
-            <h2 class="stage-title">अपनी भाषा चुनें (Select Your Mother Tongue)</h2>
-            <p class="stage-desc">जिस भाषा में आप सबसे सहज महसूस करते हैं, उसे चुनें। हमारा AI सहायक उसी भाषा में आपसे बात करेगा।</p>
+            <span class="stage-badge">STAGE 1 OF 5</span>
+            <h2 class="stage-title">Select Your Language</h2>
+            <p class="stage-desc">Choose the language you are most comfortable speaking. Our AI assistant will speak, understand, and generate your report in that language.</p>
           </div>
 
           <div class="lang-grid">
-            <div class="lang-card selected" onclick="chooseLanguage('hi-IN', 'हिन्दी', this)">
-              <span class="lang-script">हिन्दी</span>
-              <span class="lang-english">Hindi</span>
-              <div class="lang-speaker-icon">🔊</div>
-            </div>
-            <div class="lang-card" onclick="chooseLanguage('te-IN', 'తెలుగు', this)">
-              <span class="lang-script">తెలుగు</span>
-              <span class="lang-english">Telugu</span>
-              <div class="lang-speaker-icon">🔊</div>
-            </div>
-            <div class="lang-card" onclick="chooseLanguage('mr-IN', 'मराठी', this)">
-              <span class="lang-script">मराठी</span>
-              <span class="lang-english">Marathi</span>
-              <div class="lang-speaker-icon">🔊</div>
-            </div>
-            <div class="lang-card" onclick="chooseLanguage('ta-IN', 'தமிழ்', this)">
-              <span class="lang-script">தமிழ்</span>
-              <span class="lang-english">Tamil</span>
-              <div class="lang-speaker-icon">🔊</div>
-            </div>
-            <div class="lang-card" onclick="chooseLanguage('kn-IN', 'ಕನ್ನಡ', this)">
-              <span class="lang-script">ಕನ್ನಡ</span>
-              <span class="lang-english">Kannada</span>
-              <div class="lang-speaker-icon">🔊</div>
-            </div>
-            <div class="lang-card" onclick="chooseLanguage('en-IN', 'English', this)">
+            <div class="lang-card selected" onclick="chooseLanguage('en-IN', 'English', this)">
               <span class="lang-script">English</span>
-              <span class="lang-english">Indian English</span>
+              <span class="lang-english">Indian English (Default)</span>
+              <div class="lang-speaker-icon">🔊</div>
+            </div>
+            <div class="lang-card" onclick="chooseLanguage('hi-IN', 'Hindi', this)">
+              <span class="lang-script">Hindi</span>
+              <span class="lang-english">Hindi Voice Agent</span>
+              <div class="lang-speaker-icon">🔊</div>
+            </div>
+            <div class="lang-card" onclick="chooseLanguage('te-IN', 'Telugu', this)">
+              <span class="lang-script">Telugu</span>
+              <span class="lang-english">Telugu Voice Agent</span>
+              <div class="lang-speaker-icon">🔊</div>
+            </div>
+            <div class="lang-card" onclick="chooseLanguage('mr-IN', 'Marathi', this)">
+              <span class="lang-script">Marathi</span>
+              <span class="lang-english">Marathi Voice Agent</span>
+              <div class="lang-speaker-icon">🔊</div>
+            </div>
+            <div class="lang-card" onclick="chooseLanguage('ta-IN', 'Tamil', this)">
+              <span class="lang-script">Tamil</span>
+              <span class="lang-english">Tamil Voice Agent</span>
+              <div class="lang-speaker-icon">🔊</div>
+            </div>
+            <div class="lang-card" onclick="chooseLanguage('kn-IN', 'Kannada', this)">
+              <span class="lang-script">Kannada</span>
+              <span class="lang-english">Kannada Voice Agent</span>
               <div class="lang-speaker-icon">🔊</div>
             </div>
           </div>
@@ -1212,7 +1212,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
           <div class="step-actions">
             <div></div>
             <button class="btn btn-primary" onclick="goToStage(2)">
-              <span>अगला कदम: स्थान चुनें (Next: Place) ➔</span>
+              <span>Next: Location Details ➔</span>
             </button>
           </div>
         </div>
@@ -1222,41 +1222,41 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <!-- ------------------------------------------------------------- -->
         <div class="stage-card" id="stage-card-2">
           <div class="stage-header">
-            <span class="stage-badge">चरण 2 • STAGE 2</span>
-            <h2 class="stage-title" id="stage-2-title">आपका जिला व मोबाइल नंबर</h2>
-            <p class="stage-desc" id="stage-2-desc">नजदीकी मौसम रडार स्टेशन से पुष्टि और सर्वेक्षक भेजने के लिए अपना क्षेत्र चुनें।</p>
+            <span class="stage-badge">STAGE 2 OF 5</span>
+            <h2 class="stage-title" id="stage-2-title">District & Contact Details</h2>
+            <p class="stage-desc" id="stage-2-desc">Select your monitored pilot district to synchronize with the nearest IMD Doppler weather radar and surveyor dispatch network.</p>
           </div>
 
-          <div style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: #e2e8f0;">
-            पायलट जिला चुनें (Select Monitored Pilot District):
+          <div style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--ink);">
+            Select Monitored Pilot District:
           </div>
           <div class="district-grid">
             <div class="district-card selected" onclick="selectDistrict('Amravati', 'Maharashtra', 'HDFC ERGO', this)">
               <div class="district-icon">📍</div>
               <div>
-                <div style="font-size: 1.05rem; font-weight: 800; color: #fff;">अमरावती (Amravati, MH)</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">विदर्भ क्लस्टर III • HDFC ERGO General</div>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">Amravati (MH)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Vidarbha Cluster III • HDFC ERGO General</div>
               </div>
             </div>
             <div class="district-card" onclick="selectDistrict('Anantapur', 'Andhra Pradesh', 'AIC of India', this)">
               <div class="district-icon">📍</div>
               <div>
-                <div style="font-size: 1.05rem; font-weight: 800; color: #fff;">अनंतपुर (Anantapur, AP)</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">रायलसीमा क्लस्टर • Agriculture Insurance Co.</div>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">Anantapur (AP)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Rayalaseema Cluster • Agriculture Insurance Co.</div>
               </div>
             </div>
             <div class="district-card" onclick="selectDistrict('Rohtak', 'Haryana', 'SBI General', this)">
               <div class="district-icon">📍</div>
               <div>
-                <div style="font-size: 1.05rem; font-weight: 800; color: #fff;">रोहतक (Rohtak, HR)</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">हरियाणा जोन • SBI General Insurance</div>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">Rohtak (HR)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Haryana Zone • SBI General Insurance</div>
               </div>
             </div>
             <div class="district-card" onclick="selectDistrict('Guntur', 'Andhra Pradesh', 'AIC of India', this)">
               <div class="district-icon">📍</div>
               <div>
-                <div style="font-size: 1.05rem; font-weight: 800; color: #fff;">गुंटूर (Guntur, AP)</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">तटीय क्लस्टर • Doppler Radar Station Hub</div>
+                <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">Guntur (AP)</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Coastal Cluster • Doppler Radar Station Hub</div>
               </div>
             </div>
           </div>
@@ -1264,11 +1264,11 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
           <div class="form-box">
             <div class="grid-2">
               <div>
-                <label class="input-label">गाँव / तहसील का नाम (Village / Tehsil):</label>
-                <input type="text" id="input-village" class="styled-input" value="मोरशी (Morshi)">
+                <label class="input-label">Village / Tehsil Name:</label>
+                <input type="text" id="input-village" class="styled-input" value="Morshi">
               </div>
               <div>
-                <label class="input-label">किसान का मोबाइल नंबर (Mobile for SMS/PDF):</label>
+                <label class="input-label">Farmer Mobile Number (for SMS & WhatsApp Receipt):</label>
                 <input type="tel" id="input-phone" class="styled-input" value="9876543210">
               </div>
             </div>
@@ -1276,10 +1276,10 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
           <div class="step-actions">
             <button class="btn btn-outline" onclick="goToStage(1)">
-              <span>⬅ वापस (Back)</span>
+              <span>⬅ Back</span>
             </button>
             <button class="btn btn-primary" onclick="goToStage(3)">
-              <span>अगला कदम: फसल व आपदा (Next: Crop & Damage) ➔</span>
+              <span>Next: Crop & Peril ➔</span>
             </button>
           </div>
         </div>
@@ -1289,93 +1289,93 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <!-- ------------------------------------------------------------- -->
         <div class="stage-card" id="stage-card-3">
           <div class="stage-header">
-            <span class="stage-badge">चरण 3 • STAGE 3</span>
-            <h2 class="stage-title">फसल व आपदा का चयन</h2>
-            <p class="stage-desc">खेत में किस कारण से नुकसान हुआ और कौन सी फसल प्रभावित हुई? (Touch with 1 finger)</p>
+            <span class="stage-badge">STAGE 3 OF 5</span>
+            <h2 class="stage-title">Crop & Damage Peril Selection</h2>
+            <p class="stage-desc">Select the loss cause and affected crop in your agricultural field.</p>
           </div>
 
           <!-- 1. CALAMITY ICONS -->
-          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: #fff;">
-            1. किस आपदा से नुकसान हुआ? (Damage Peril):
+          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: var(--ink);">
+            1. What caused the damage? (Loss Peril):
           </div>
-          <div class="visual-tiles-grid">
-            <div class="visual-tile selected" onclick="pickCalamity('hailstorm', 'ओलावृष्टि', this)">
+          <div class="visual-tiles-grid" id="calamity-grid">
+            <div class="visual-tile selected" onclick="pickCalamity('hailstorm', 'Hailstorm', this)">
               <span class="visual-icon">🌨️</span>
-              <div class="visual-title">ओलावृष्टि</div>
-              <div class="visual-sub">Hailstorm • बर्फ के गोले</div>
+              <div class="visual-title">Hailstorm</div>
+              <div class="visual-sub">Convective Ice Pellets & Thunder</div>
             </div>
-            <div class="visual-tile" onclick="pickCalamity('inundation', 'जलभराव व बाढ़', this)">
+            <div class="visual-tile" onclick="pickCalamity('inundation', 'Flood / Inundation', this)">
               <span class="visual-icon">🌊</span>
-              <div class="visual-title">जलभराव / बाढ़</div>
-              <div class="visual-sub">Inundation • खेत में पानी</div>
+              <div class="visual-title">Inundation</div>
+              <div class="visual-sub">Flash Flood & Standing Field Water</div>
             </div>
-            <div class="visual-tile" onclick="pickCalamity('unseasonal_rain', 'असमय भारी बारिश', this)">
+            <div class="visual-tile" onclick="pickCalamity('unseasonal_rain', 'Unseasonal Heavy Rain', this)">
               <span class="visual-icon">🌧️</span>
-              <div class="visual-title">असमय बारिश</div>
-              <div class="visual-sub">Unseasonal Heavy Rain</div>
+              <div class="visual-title">Unseasonal Rain</div>
+              <div class="visual-sub">Severe Continuous Precipitation</div>
             </div>
-            <div class="visual-tile" onclick="pickCalamity('frost', 'पाला व ठंड', this)">
+            <div class="visual-tile" onclick="pickCalamity('frost', 'Frost / Cold Wave', this)">
               <span class="visual-icon">❄️</span>
-              <div class="visual-title">पाला / शीत लहर</div>
-              <div class="visual-sub">Frost • ठंड से सूखना</div>
+              <div class="visual-title">Frost / Cold Wave</div>
+              <div class="visual-sub">Sub-Zero Freezing & Leaf Scorching</div>
             </div>
-            <div class="visual-tile" onclick="pickCalamity('squall', 'तेज़ आंधी व चक्रवात', this)">
+            <div class="visual-tile" onclick="pickCalamity('squall', 'Squall / Cyclone', this)">
               <span class="visual-icon">🌪️</span>
-              <div class="visual-title">तेज़ आंधी</div>
-              <div class="visual-sub">Squall • पौधे गिरना</div>
+              <div class="visual-title">Squall / Cyclone</div>
+              <div class="visual-sub">High Wind Gusts & Stem Lodging</div>
             </div>
-            <div class="visual-tile" onclick="pickCalamity('pest', 'कीट व रोग', this)">
+            <div class="visual-tile" onclick="pickCalamity('pest', 'Pest Attack / Disease', this)">
               <span class="visual-icon">🐛</span>
-              <div class="visual-title">कीट आक्रमण</div>
-              <div class="visual-sub">Pest Attack • फसल रोग</div>
+              <div class="visual-title">Pest Attack</div>
+              <div class="visual-sub">Epidemic Swarm & Fungal Disease</div>
             </div>
           </div>
 
           <!-- 2. CROP SELECTOR -->
-          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: #fff;">
-            2. आपकी कौन सी फसल है? (Affected Crop):
+          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: var(--ink);">
+            2. What is your affected crop? (Affected Crop):
           </div>
-          <div class="visual-tiles-grid" style="grid-template-columns: repeat(4, 1fr);">
-            <div class="visual-tile selected" onclick="pickCrop('cotton', 'कपास (Cotton)', this)">
+          <div class="visual-tiles-grid" id="crop-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="visual-tile selected" onclick="pickCrop('cotton', 'Cotton', this)">
               <span class="visual-icon">⚪</span>
-              <div class="visual-title">कपास</div>
-              <div class="visual-sub">Cotton</div>
+              <div class="visual-title">Cotton</div>
+              <div class="visual-sub">Kharif Cash Crop</div>
             </div>
-            <div class="visual-tile" onclick="pickCrop('groundnut', 'मूंगफली (Groundnut)', this)">
+            <div class="visual-tile" onclick="pickCrop('groundnut', 'Groundnut', this)">
               <span class="visual-icon">🥜</span>
-              <div class="visual-title">मूंगफली</div>
-              <div class="visual-sub">Groundnut</div>
+              <div class="visual-title">Groundnut</div>
+              <div class="visual-sub">Oilseed Crop</div>
             </div>
-            <div class="visual-tile" onclick="pickCrop('soybean', 'सोयाबीन (Soybean)', this)">
+            <div class="visual-tile" onclick="pickCrop('soybean', 'Soybean', this)">
               <span class="visual-icon">🌿</span>
-              <div class="visual-title">सोयाबीन</div>
-              <div class="visual-sub">Soybean</div>
+              <div class="visual-title">Soybean</div>
+              <div class="visual-sub">Legume & Oilseed</div>
             </div>
-            <div class="visual-tile" onclick="pickCrop('mustard', 'सरसों (Mustard)', this)">
+            <div class="visual-tile" onclick="pickCrop('mustard', 'Mustard', this)">
               <span class="visual-icon">🟡</span>
-              <div class="visual-title">सरसों</div>
-              <div class="visual-sub">Mustard</div>
+              <div class="visual-title">Mustard</div>
+              <div class="visual-sub">Rabi Oilseed</div>
             </div>
           </div>
 
           <!-- 3. DAMAGED ACREAGE -->
-          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: #fff;">
-            3. कितना रकबा प्रभावित हुआ? (Damaged Area):
+          <div style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.65rem; color: var(--ink);">
+            3. How much land area was affected? (Damaged Area):
           </div>
           <div class="acre-selector-strip">
-            <div class="acre-pill" onclick="pickAcre(1, this)">1 एकड़</div>
-            <div class="acre-pill" onclick="pickAcre(2, this)">2 एकड़</div>
-            <div class="acre-pill" onclick="pickAcre(3, this)">3 एकड़</div>
-            <div class="acre-pill selected" onclick="pickAcre(4, this)">4 एकड़</div>
-            <div class="acre-pill" onclick="pickAcre(5, this)">5+ एकड़</div>
+            <div class="acre-pill" onclick="pickAcre(1, this)">1 Acre</div>
+            <div class="acre-pill" onclick="pickAcre(2, this)">2 Acres</div>
+            <div class="acre-pill" onclick="pickAcre(3, this)">3 Acres</div>
+            <div class="acre-pill selected" onclick="pickAcre(4, this)">4 Acres</div>
+            <div class="acre-pill" onclick="pickAcre(5, this)">5+ Acres</div>
           </div>
 
           <div class="step-actions">
             <button class="btn btn-outline" onclick="goToStage(2)">
-              <span>⬅ वापस (Back)</span>
+              <span>⬅ Back</span>
             </button>
             <button class="btn btn-primary" onclick="goToStage(4)">
-              <span>अगला कदम: बोलकर बताएं (Next: Speak Voice) ➔</span>
+              <span>Next: Voice Intake ➔</span>
             </button>
           </div>
         </div>
@@ -1385,9 +1385,9 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         <!-- ------------------------------------------------------------- -->
         <div class="stage-card" id="stage-card-4">
           <div class="stage-header">
-            <span class="stage-badge">चरण 4 • STAGE 4</span>
-            <h2 class="stage-title">अपनी मातृभाषा में बोलें</h2>
-            <p class="stage-desc">माइक दबाकर 15-20 सेकंड में बताएं कि खेत में क्या हुआ। हमारा AI स्वतः सारी जानकारी निकाल लेगा।</p>
+            <span class="stage-badge">STAGE 4 OF 5</span>
+            <h2 class="stage-title">Describe Damage in Natural Language</h2>
+            <p class="stage-desc">Tap the microphone and describe what happened to your field in natural language. Our AI will transcribe, extract verified facts, and ground the report with Doppler radar.</p>
           </div>
 
           <div class="voice-interactive-stage">
@@ -1399,36 +1399,36 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
               </button>
             </div>
 
-            <div class="voice-prompt-big" id="stage-voice-prompt">बोलने के लिए माइक दबाएं</div>
+            <div class="voice-prompt-big" id="stage-voice-prompt">Tap microphone to speak</div>
             <div class="voice-prompt-sub" id="stage-voice-sub">
-              जैसे बोलें: "कल रात भारी ओलावृष्टि से मेरे 4 एकड़ कपास की फसल पूरी तरह नष्ट हो गई है रामनगर गाँव में..."
+              For example: "Last night heavy hailstorm and storm rain completely damaged my 4 acres of standing cotton crop in Ramnagar village, Morshi..."
             </div>
 
             <!-- QUICK ONE-TAP SCENARIO SAMPLES -->
             <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">
-              या त्वरित परीक्षण के लिए नमूना वॉइस क्लिप चुनें (Quick Sample):
+              Or select a verified sample test scenario:
             </div>
             <div class="sample-chip-row">
-              <button class="sample-chip" onclick="applySampleScenario('amravati')">⛈️ अमरावती: कपास ओलावृष्टि</button>
-              <button class="sample-chip" onclick="applySampleScenario('anantapur')">🌊 अनंतपुर: వేరుశనగ వరద</button>
-              <button class="sample-chip" onclick="applySampleScenario('rohtak')">❄️ रोहतक: सरसों पाला</button>
+              <button class="sample-chip" onclick="applySampleScenario('amravati')">⛈️ Amravati: Cotton Hailstorm (4 Acres)</button>
+              <button class="sample-chip" onclick="applySampleScenario('anantapur')">🌊 Anantapur: Groundnut Flood (3.5 Acres)</button>
+              <button class="sample-chip" onclick="applySampleScenario('rohtak')">❄️ Rohtak: Mustard Frost (2.5 Acres)</button>
             </div>
 
             <!-- LIVE TRANSCRIPT -->
             <div class="transcript-display-box">
               <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">
-                बोला गया विवरण (Spoken Transcript):
+                Spoken Transcript:
               </div>
-              <textarea id="stage-transcript-box" style="width: 100%; background: transparent; border: none; color: #fff; font-size: 1.05rem; font-family: inherit; resize: none; outline: none;" rows="3">कल रात भारी ओलावृष्टि से मेरे 4 एकड़ कपास की फसल पूरी तरह नष्ट हो गई है। यह मोरशी के रामनगर गाँव में हुआ है।</textarea>
+              <textarea id="stage-transcript-box" style="width: 100%; background: transparent; border: none; color: var(--ink); font-size: 1.05rem; font-family: inherit; resize: none; outline: none;" rows="3">Last night heavy hailstorm and convective storm rain completely damaged my 4 acres of standing cotton crop in Ramnagar village, Morshi.</textarea>
             </div>
           </div>
 
           <div class="step-actions">
             <button class="btn btn-outline" onclick="goToStage(3)">
-              <span>⬅ वापस (Back)</span>
+              <span>⬅ Back</span>
             </button>
             <button class="btn btn-primary" id="btn-analyze-submit" style="font-size: 1.05rem; padding: 0.95rem 2rem;" onclick="processStageDistress()">
-              <span>⚡ AI मौसम जांच व प्रमाणित पर्ची बनाएं (Analyze & Verify) ➔</span>
+              <span>⚡ AI Radar Analysis & Generate Slip ➔</span>
             </button>
           </div>
         </div>
@@ -1440,10 +1440,10 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
           <div class="stage-header">
             <span class="status-pill verified">
               <span class="status-pill-dot"></span>
-              सफलता • STAGE 5 VERIFIED
+              SUCCESS • STAGE 5 VERIFIED
             </span>
-            <h2 class="stage-title" style="margin-top: 0.5rem; color: var(--ink);">आपकी शिकायत सफलतापूर्वक दर्ज हो गई है</h2>
-            <p class="stage-desc">प्रधानमंत्री फसल बीमा योजना (PMFBY) के अंतर्गत आपका दावा प्रारूप क्रिप्टोग्राफिक हैश और डॉपलर रडार से सत्यापित है।</p>
+            <h2 class="stage-title" style="margin-top: 0.5rem; color: var(--ink);">Your Crop Loss Intimation Has Been Recorded</h2>
+            <p class="stage-desc">Your preliminary intimation draft is cryptographically grounded with Doppler radar under PMFBY Section 15.1.</p>
           </div>
 
           <!-- SOVECE AUTHENTICITY CARD -->
@@ -1453,7 +1453,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
               <div style="display: flex; align-items: center; gap: 0.6rem;">
                 <span style="font-size: 1.25rem;">🌾</span>
                 <div>
-                  <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">किसान सारथी — आधिकारिक पूर्व-सूचना पर्ची</div>
+                  <div style="font-size: 1.05rem; font-weight: 800; color: var(--ink);">Kisan Sarathi — Official Intimation Slip</div>
                   <div style="font-size: 0.75rem; color: var(--body); font-family: 'JetBrains Mono', monospace;">SHA-256: 7a8f09b2e8c14d5f99318a47b1e62c9028d7e41b</div>
                 </div>
               </div>
@@ -1466,38 +1466,38 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
               <!-- REFERENCE NUMBER & TRIAGE BANNER -->
               <div style="background: var(--primary-soft); border: 1.5px solid #A7F3D0; border-radius: 12px; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                  <div style="font-size: 0.75rem; color: var(--body); font-weight: 700; text-transform: uppercase;">सूचना पंजीकरण संख्या (Report Reference ID)</div>
+                  <div style="font-size: 0.75rem; color: var(--body); font-weight: 700; text-transform: uppercase;">Report Reference ID</div>
                   <div class="slip-id-val tabular-nums" id="final-report-id" style="font-size: 1.6rem; font-weight: 800; color: var(--primary);">FA-2026-MH-084291</div>
                   <div style="font-size: 0.72rem; color: var(--body); margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace;">
-                    समय: <span id="final-timestamp-val">07 Nov 2026, 12:00 PM IST (Asia/Kolkata)</span> • GPS: 22.7523°N, 78.3541°E (±3m)
+                    Recorded: <span id="final-timestamp-val">07 Nov 2026, 12:00 PM IST (Asia/Kolkata)</span> • GPS: 22.7523°N, 78.3541°E (±3m)
                   </div>
                 </div>
                 <div style="text-align: right;">
                   <span class="status-pill live" id="final-triage-badge" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">
                     <span class="status-pill-dot"></span>
-                    ⚡ ग्रीन चैनल (24h SLA)
+                    ⚡ Green Channel (24h SLA)
                   </span>
-                  <div style="font-size: 0.75rem; color: var(--body); margin-top: 0.35rem;">धारा 15.1 स्थानीय आपदा</div>
+                  <div style="font-size: 0.75rem; color: var(--body); margin-top: 0.35rem;">Section 15.1 Localized Calamity</div>
                 </div>
               </div>
 
               <!-- VERIFIED DETAILS GRID -->
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                 <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
-                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">फसल का नाम (Crop)</div>
-                  <div class="tabular-nums" id="final-crop-val" style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;">कपास (COTTON)</div>
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">Crop Name (Crop)</div>
+                  <div class="tabular-nums" id="final-crop-val" style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-top: 0.2rem;">COTTON (Kharif)</div>
                 </div>
                 <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
-                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">प्रभावित रकबा (Damaged Area)</div>
-                  <div class="tabular-nums" id="final-area-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">4.0 एकड़ (Acres)</div>
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">Damaged Area</div>
+                  <div class="tabular-nums" id="final-area-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">4.0 Acres</div>
                 </div>
                 <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
-                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">आपदा का प्रकार (Loss Peril)</div>
-                  <div class="tabular-nums" id="final-peril-val" style="font-size: 1.15rem; font-weight: 800; color: var(--warn); margin-top: 0.2rem;">ओलावृष्टि (Hailstorm)</div>
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">Loss Peril</div>
+                  <div class="tabular-nums" id="final-peril-val" style="font-size: 1.15rem; font-weight: 800; color: var(--warn); margin-top: 0.2rem;">Hailstorm</div>
                 </div>
                 <div style="background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem;">
-                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">गाँव व जिला (Location)</div>
-                  <div class="tabular-nums" id="final-location-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">मोरशी, अमरावती (MH)</div>
+                  <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-weight: 700;">Location</div>
+                  <div class="tabular-nums" id="final-location-val" style="font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-top: 0.2rem;">Morshi, Amravati (MH)</div>
                 </div>
               </div>
 
@@ -1509,10 +1509,10 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
                 </div>
                 <div>
                   <div style="font-size: 0.98rem; font-weight: 800; color: var(--ink);">
-                    मौसम रडार द्वारा पुष्टि (Doppler Radar Grounded)
+                    Doppler Radar Meteorological Confirmation
                   </div>
                   <div style="font-size: 0.82rem; color: var(--body); margin-top: 0.2rem;" id="final-radar-notes">
-                    IMD डॉपलर रडार ने घटना के समय 58.2 dBZ बादलों की गर्जना और 76mm भारी वर्षा दर्ज की है।
+                    IMD Doppler radar recorded 58.2 dBZ convective cloud reflectivity and 76mm precipitation during the event window.
                   </div>
                 </div>
               </div>
@@ -1520,8 +1520,8 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
               <!-- 24-HOUR SURVEYOR SLA COUNTDOWN -->
               <div style="background: var(--warn-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                  <div style="font-size: 0.92rem; font-weight: 800; color: var(--warn);">⏱️ सर्वेक्षक आगमन समय-सीमा (24h On-Site Inspection SLA)</div>
-                  <div style="font-size: 0.78rem; color: #92400E; margin-top: 0.2rem;">कृषि विभाग व बीमा कंपनी को स्वचालित सूचना भेजी जा चुकी है</div>
+                  <div style="font-size: 0.92rem; font-weight: 800; color: var(--warn);">⏱️ Loss Assessor On-Site Inspection SLA (24h Window)</div>
+                  <div style="font-size: 0.78rem; color: #92400E; margin-top: 0.2rem;">Automated dispatch notification delivered to Agriculture Dept and Insurance Assessor.</div>
                 </div>
                 <div class="sla-timer-clock tabular-nums" id="final-sla-timer" style="font-size: 1.75rem; font-weight: 800; color: var(--warn);">23h : 54m</div>
               </div>
@@ -1529,17 +1529,17 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
               <!-- AUDIO READBACK BUTTON -->
               <div style="margin-bottom: 1.5rem;">
                 <button class="btn btn-audio" style="width: 100%; font-size: 1rem; min-height: 52px;" onclick="speakFinalConfirmation()">
-                  <span>🔊 अपनी भाषा में पुष्टि सुनें (Listen Verbal Readback)</span>
+                  <span>🔊 Listen to Verbal Readback</span>
                 </button>
               </div>
 
               <!-- PRIMARY ACTION BUTTONS -->
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <a href="/api/v1/reports/FA-2026-MH-084291/pdf" id="final-pdf-btn" target="_blank" class="btn btn-pdf" style="font-size: 1rem; min-height: 52px;">
-                  <span>📄 आधिकारिक PDF पर्ची डाउनलोड करें</span>
+                  <span>📄 Download Official PDF Draft</span>
                 </a>
                 <a href="tel:14447" class="btn btn-call" style="font-size: 1rem; min-height: 52px;">
-                  <span>📞 14447 टोल-फ्री कॉल करें</span>
+                  <span>📞 Call Helpline 14447</span>
                 </a>
               </div>
             </div>
@@ -1547,7 +1547,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
           <div style="text-align: center;">
             <button class="btn btn-outline" style="min-height: 52px;" onclick="resetToStageOne()">
-              <span>🔄 दूसरी शिकायत दर्ज करें (File Another Complaint)</span>
+              <span>🔄 File Another Report</span>
             </button>
           </div>
         </div>
@@ -1562,24 +1562,24 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       <!-- EXECUTIVE METRICS BAR -->
       <div class="grid-4" style="margin-bottom: 1.5rem;">
         <div class="card" style="padding: 1.25rem;">
-          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">सक्रिय नुकसान सूचनाएं (Active Intake)</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Active Loss Intimations</div>
           <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0;">1,428</div>
-          <div style="font-size: 0.75rem; color: var(--verified); font-weight: 700;">⚡ 98.4% 72-घंटे के अंदर दर्ज</div>
+          <div style="font-size: 0.75rem; color: var(--verified); font-weight: 700;">⚡ 98.4% recorded within 72h window</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
-          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">सर्वेक्षक औसत समय (Surveyor TAT)</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Surveyor Average Turnaround (TAT)</div>
           <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--gov-blue); margin: 0.2rem 0;">5.8 Hours</div>
-          <div style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 700;">⏱️ 48 घंटे के मानक से 8x तेज़</div>
+          <div style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 700;">⏱️ 8x faster than 48h statutory benchmark</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
-          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">रडार द्वारा रोकी गई फर्जी क्लेम</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Fraudulent / Ineligible Claims Flagged</div>
           <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--warn); margin: 0.2rem 0;">22.4%</div>
-          <div style="font-size: 0.75rem; color: var(--warn); font-weight: 700;">🛡️ ₹2.62 Cr बचत प्रति 1 लाख क्लेम</div>
+          <div style="font-size: 0.75rem; color: var(--warn); font-weight: 700;">🛡️ ₹2.62 Cr saved per 100k claims</div>
         </div>
         <div class="card" style="padding: 1.25rem;">
-          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">प्रति क्लेम प्रोसेसिंग शुल्क</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Per-Claim Processing Cost</div>
           <div class="tabular-nums" style="font-size: 1.85rem; font-weight: 800; color: var(--primary); margin: 0.2rem 0;">₹35</div>
-          <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700;">💰 पारंपरिक सर्वे खर्च: ₹1,500</div>
+          <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700;">💰 Traditional survey cost: ₹1,500</div>
         </div>
       </div>
 
@@ -1587,7 +1587,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       <div class="card" style="margin-bottom: 1.5rem;">
         <div class="card-header">
           <div class="card-title">
-            <span>🚨 वास्तविक समय 24-घंटे सर्वेक्षक असाइनमेंट कतार (Live Surveyor Dispatch Queue)</span>
+            <span>🚨 Real-Time 24-Hour Surveyor Dispatch Queue</span>
           </div>
           <span class="status-pill verified">
             <span class="status-pill-dot"></span>
@@ -1600,48 +1600,48 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
             <thead>
               <tr>
                 <th>Report #</th>
-                <th>किसान व स्थान (Farmer & Location)</th>
-                <th>फसल व आपदा (Crop & Peril)</th>
-                <th>मौसम स्कोर (IPI Radar)</th>
-                <th>प्रायोरिटी चैनल (Channel)</th>
-                <th>24h SLA शेष समय</th>
-                <th>कार्रवाई (Action)</th>
+                <th>Farmer & Location</th>
+                <th>Crop & Peril</th>
+                <th>Radar Grounding (IPI)</th>
+                <th>Priority Channel</th>
+                <th>24h SLA Remaining</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody id="officer-queue-body">
               <tr>
                 <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-MH-084291</td>
                 <td><strong>Sunil Jadhav</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Morshi, Amravati (MH)</span></td>
-                <td>कपास (Cotton) • 4.0 ac<br><span style="font-size: 0.75rem; color: var(--warn); font-weight: 600;">ओलावृष्टि (Hailstorm)</span></td>
+                <td>Cotton • 4.0 ac<br><span style="font-size: 0.75rem; color: var(--warn); font-weight: 600;">Hailstorm</span></td>
                 <td><span class="status-pill verified"><span class="status-pill-dot"></span>97% CONFIRMED</span></td>
                 <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
                 <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">05h : 22m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-MH-084291', 'Sunil Jadhav')">⚡ सर्वेक्षक भेजें</button>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-MH-084291', 'Sunil Jadhav')">⚡ Dispatch Surveyor</button>
                   <a href="/api/v1/reports/FA-2026-MH-084291/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
               <tr>
                 <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-AP-019284</td>
                 <td><strong>Venkata Ramana</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Kadiri, Anantapur (AP)</span></td>
-                <td>వేరుశనగ (Groundnut) • 3.5 ac<br><span style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 600;">తుఫాను వరద (Inundation)</span></td>
+                <td>Groundnut • 3.5 ac<br><span style="font-size: 0.75rem; color: var(--gov-blue); font-weight: 600;">Cyclone Inundation</span></td>
                 <td><span class="status-pill verified"><span class="status-pill-dot"></span>95% CONFIRMED</span></td>
                 <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
                 <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">08h : 45m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-AP-019284', 'Venkata Ramana')">⚡ सर्वेक्षक भेजें</button>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-AP-019284', 'Venkata Ramana')">⚡ Dispatch Surveyor</button>
                   <a href="/api/v1/reports/FA-2026-AP-019284/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
               <tr>
                 <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">FA-2026-HR-003819</td>
                 <td><strong>Rajesh Hooda</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">Meham, Rohtak (HR)</span></td>
-                <td>सरसों (Mustard) • 2.5 ac<br><span style="font-size: 0.75rem; color: var(--live); font-weight: 600;">शीत लहर पाला (Frost)</span></td>
+                <td>Mustard • 2.5 ac<br><span style="font-size: 0.75rem; color: var(--live); font-weight: 600;">Cold Wave Frost</span></td>
                 <td><span class="status-pill warn"><span class="status-pill-dot"></span>89% CONFIRMED</span></td>
                 <td><span class="status-pill live"><span class="status-pill-dot"></span>GREEN_CHANNEL</span></td>
                 <td><span class="tabular-nums" style="color: var(--warn); font-weight: 800;">14h : 10m remaining</span></td>
                 <td>
-                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-HR-003819', 'Rajesh Hooda')">⚡ सर्वेक्षक भेजें</button>
+                  <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('FA-2026-HR-003819', 'Rajesh Hooda')">⚡ Dispatch Surveyor</button>
                   <a href="/api/v1/reports/FA-2026-HR-003819/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
                 </td>
               </tr>
@@ -1654,7 +1654,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       <div class="grid-2">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🌦️ डॉपलर रडार मौसम नेटवर्क (Pilot Agromet Stations)</div>
+            <div class="card-title">🌦️ Doppler Radar Agromet Weather Network (Pilot Stations)</div>
             <span class="status-pill verified"><span class="status-pill-dot"></span>Live Reflectivity</span>
           </div>
           <div class="grid-2" id="officer-radar-grid" style="padding: 1.25rem;">
@@ -1664,14 +1664,14 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🧮 बीमा कंपनी व्यावसायिक बचत कैलकुलेटर (ROI)</div>
+            <div class="card-title">🧮 Insurer Commercial ROI & Loss Ratio Calculator</div>
             <span class="status-pill gov"><span class="status-pill-dot"></span>B2B Unit Economics</span>
           </div>
 
           <div style="padding: 1.25rem;">
             <div style="margin-bottom: 1.25rem;">
               <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
-                <span>वार्षिक क्लेम संख्या (Annual Claims):</span>
+                <span>Annual Claim Volume:</span>
                 <span id="slider-claims-text" class="tabular-nums" style="color: var(--primary); font-weight: 700;">50,000 Claims</span>
               </div>
               <input type="range" id="calc-slider-claims" style="width: 100%; accent-color: var(--primary);" min="10000" max="200000" step="5000" value="50000" oninput="updateEnterpriseRoi()">
@@ -1679,14 +1679,14 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
             <div style="margin-bottom: 1.25rem;">
               <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600;">
-                <span>पारंपरिक भौतिक सर्वेक्षक लागत (Field Survey Cost):</span>
+                <span>Traditional Field Survey Cost:</span>
                 <span id="slider-cost-text" class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">₹1,500 / visit</span>
               </div>
               <input type="range" id="calc-slider-cost" style="width: 100%; accent-color: var(--primary);" min="800" max="3000" step="100" value="1500" oninput="updateEnterpriseRoi()">
             </div>
 
             <div style="background: var(--sunken); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 1rem;">
-              <div style="font-size: 0.82rem; color: var(--body);">किसान सारथी से बीमा कंपनी की शुद्ध वार्षिक बचत:</div>
+              <div style="font-size: 0.82rem; color: var(--body);">Net Annual Insurer Savings with Kisan Sarathi:</div>
               <div id="calc-net-savings" class="tabular-nums" style="font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 0.3rem 0;">₹5.25 Crore</div>
               <div id="calc-roi-rate" style="font-size: 0.85rem; color: var(--body); font-weight: 600;">ROI: 4,185% • Surveyor Turnaround compressed from 48h to 6h</div>
             </div>
@@ -1707,7 +1707,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
   </main>
 
   <footer>
-    <div style="font-weight: 700; color: var(--ink);">Kisan Sarathi (किसान सारथी) • Production Architecture</div>
+    <div style="font-weight: 700; color: var(--ink);">Kisan Sarathi • Production Enterprise Architecture</div>
     <div style="margin-top: 0.4rem; color: var(--muted);">
       Strictly compliant with PMFBY Section 15.1 Localized Calamities Framework • Official dossiers watermarked DRAFT
     </div>
@@ -1720,21 +1720,21 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     // MULTILINGUAL GREETINGS & PROMPTS
     const GREETINGS = {
-      'hi-IN': 'नमस्ते किसान भाई, किसान सारथी में आपका स्वागत है। नुकसान की सूचना दर्ज करने के लिए माइक दबाएं।',
-      'te-IN': 'నమస్కారం రైతు సోదరా, కిసాన్ సారథికి స్వాగతం. పంట నష్ట సమాచారం నమోదు చేయడానికి మైక్ నొక్కండి.',
-      'mr-IN': 'नमस्कार शेतकरी बंधू, किसान सारथी मध्ये आपले स्वागत आहे. नुकसान नोंदवण्यासाठी माइक दाबा.',
-      'ta-IN': 'வணக்கம் விவசாய நண்பரே, கிசான் சாரதிக்கு வரவேற்கிறோம்.',
-      'kn-IN': 'ನಮಸ್ಕಾರ ರೈತ ಬಾಂಧವರೇ, ಕಿಸಾನ್ ಸಾರಥಿಗೆ ಸ್ವಾಗತ.',
+      'hi-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.',
+      'te-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.',
+      'mr-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.',
+      'ta-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.',
+      'kn-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.',
       'en-IN': 'Welcome Farmer Friend to Kisan Sarathi. Tap microphone to report your crop loss.'
     };
 
-    let selectedLang = 'hi-IN';
+    let selectedLang = 'en-IN';
     let selectedDistrict = 'Amravati';
     let selectedState = 'Maharashtra';
     let selectedCalamityKey = 'hailstorm';
-    let selectedCalamityLabel = 'ओलावृष्टि';
+    let selectedCalamityLabel = 'Hailstorm';
     let selectedCropKey = 'cotton';
-    let selectedCropLabel = 'कपास (Cotton)';
+    let selectedCropLabel = 'Cotton';
     let selectedAcreage = 4;
     let isRecording = false;
     let recognition = null;
@@ -1776,19 +1776,20 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       // Voice greeting
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(GREETINGS[code] || GREETINGS['hi-IN']);
+        const utter = new SpeechSynthesisUtterance(GREETINGS[code] || GREETINGS['en-IN']);
         utter.lang = code;
         window.speechSynthesis.speak(utter);
       }
 
-      // Pre-fill transcript with appropriate language sample
+      // Pre-fill transcript with appropriate scenario
       if (code === 'te-IN') {
         selectDistrict('Anantapur', 'Andhra Pradesh', 'AIC of India');
         applySampleScenario('anantapur');
-      } else if (code === 'mr-IN') {
-        selectDistrict('Amravati', 'Maharashtra', 'HDFC ERGO');
-        applySampleScenario('amravati');
+      } else if (code === 'hi-IN') {
+        selectDistrict('Rohtak', 'Haryana', 'SBI General');
+        applySampleScenario('rohtak');
       } else {
+        selectDistrict('Amravati', 'Maharashtra', 'HDFC ERGO');
         applySampleScenario('amravati');
       }
     }
@@ -1800,29 +1801,21 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       document.querySelectorAll('.district-card').forEach(c => c.classList.remove('selected'));
       if (el) el.classList.add('selected');
 
-      document.getElementById('input-village').value = dist === 'Anantapur' ? 'కదిరి (Kadiri)' : dist === 'Rohtak' ? 'महम (Meham)' : 'मोरशी (Morshi)';
+      document.getElementById('input-village').value = dist === 'Anantapur' ? 'Kadiri' : dist === 'Rohtak' ? 'Meham' : 'Morshi';
     }
 
     // STAGE 3: PICK CALAMITY & CROP
     function pickCalamity(key, label, el) {
       selectedCalamityKey = key;
       selectedCalamityLabel = label;
-      document.querySelectorAll('#stage-card-3 .visual-tile').forEach(t => {
-        if (t.parentElement.previousElementSibling?.textContent.includes('आपदा')) {
-          t.classList.remove('selected');
-        }
-      });
+      document.querySelectorAll('#calamity-grid .visual-tile').forEach(t => t.classList.remove('selected'));
       el.classList.add('selected');
     }
 
     function pickCrop(key, label, el) {
       selectedCropKey = key;
       selectedCropLabel = label;
-      document.querySelectorAll('#stage-card-3 .visual-tile').forEach(t => {
-        if (t.parentElement.previousElementSibling?.textContent.includes('फसल')) {
-          t.classList.remove('selected');
-        }
-      });
+      document.querySelectorAll('#crop-grid .visual-tile').forEach(t => t.classList.remove('selected'));
       el.classList.add('selected');
     }
 
@@ -1862,7 +1855,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     function startStageVoice() {
       isRecording = true;
-      document.getElementById('stage-voice-prompt').textContent = 'सुन रहे हैं... कृपया बोलें...';
+      document.getElementById('stage-voice-prompt').textContent = 'Listening... Please speak details of crop loss...';
       document.getElementById('stage-mic-btn').classList.add('recording');
       document.getElementById('stage-mic-btn').innerHTML = '⏹️';
       document.getElementById('orb-ripple').classList.add('active');
@@ -1880,7 +1873,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     function stopStageVoice() {
       isRecording = false;
-      document.getElementById('stage-voice-prompt').textContent = 'बोलने के लिए माइक दबाएं';
+      document.getElementById('stage-voice-prompt').textContent = 'Tap microphone to speak';
       document.getElementById('stage-mic-btn').classList.remove('recording');
       document.getElementById('stage-mic-btn').innerHTML = '🎙️';
       document.getElementById('orb-ripple').classList.remove('active');
@@ -1892,9 +1885,9 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     // SAMPLE SCENARIOS
     const PRESETS = {
-      amravati: 'कल रात भारी ओलावृष्टि से मेरे 4 एकड़ कपास की फसल पूरी तरह नष्ट हो गई है। यह मोरशी के रामनगर गाँव में हुआ है।',
-      anantapur: 'గత రాత్రి కురిసిన తుఫాను భారీ వర్షాలకు కదిరి తాలూకాలో మా 3.5 ఎకరాల వేరుశనగ పంట మొత్తం నీట మునిగిపోయింది.',
-      rohtak: 'महम गाँव में अत्यधिक पाला पड़ने से मेरी 2.5 एकड़ सरसों की फसल सूख गई है और फलियां झड़ गई हैं।'
+      amravati: 'Last night heavy hailstorm and storm rain completely destroyed my 4 acres of standing cotton crop in Ramnagar village, Morshi tehsil.',
+      anantapur: 'Severe cyclonic inundation and flash flood submerged our 3.5 acres of groundnut crop in Kadiri taluk.',
+      rohtak: 'Sub-zero cold wave and heavy ground frost ruined 2.5 acres of flowering mustard in Meham village.'
     };
 
     function applySampleScenario(key) {
@@ -1908,7 +1901,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     async function processStageDistress() {
       const btn = document.getElementById('btn-analyze-submit');
       btn.disabled = true;
-      btn.innerHTML = '<span>⚡ डॉपलर रडार जांच व पर्ची निर्माण जारी है...</span>';
+      btn.innerHTML = '<span>⚡ AI Doppler Radar Grounding & Slip Generation in Progress...</span>';
 
       const utterance = document.getElementById('stage-transcript-box').value;
       const phone = document.getElementById('input-phone').value;
@@ -1931,28 +1924,28 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         populateFinalSlip(data);
         goToStage(5);
       } catch (err) {
-        alert('त्रुटि: ' + err.message);
+        alert('Error: ' + err.message);
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>⚡ AI मौसम जांच व प्रमाणित पर्ची बनाएं (Analyze & Verify) ➔</span>';
+        btn.innerHTML = '<span>⚡ Analyze Weather & Generate Verified Slip ➔</span>';
       }
     }
 
     function populateFinalSlip(data) {
       document.getElementById('final-report-id').textContent = data.reportNumber;
       document.getElementById('final-crop-val').textContent = (data.extractedData?.crop || selectedCropLabel).toUpperCase();
-      document.getElementById('final-area-val').textContent = (data.extractedData?.affectedArea || selectedAcreage) + ' एकड़ (' + (data.extractedData?.areaUnit || 'acre') + ')';
+      document.getElementById('final-area-val').textContent = (data.extractedData?.affectedArea || selectedAcreage) + ' Acres (' + (data.extractedData?.areaUnit || 'acre') + ')';
       document.getElementById('final-peril-val').textContent = data.extractedData?.lossEvent || selectedCalamityLabel;
       document.getElementById('final-location-val').textContent = (data.village || document.getElementById('input-village').value) + ', ' + data.district;
 
       const ipi = data.weatherGrounding?.plausibilityScorePercent || 97;
       document.getElementById('final-ipi-val').textContent = ipi + '%';
-      document.getElementById('final-radar-notes').textContent = data.weatherGrounding?.notes || 'IMD डॉपलर रडार ने घटना की पुष्टि की है।';
+      document.getElementById('final-radar-notes').textContent = data.weatherGrounding?.notes || 'IMD Doppler Radar network corroborated localized meteorological disturbance.';
 
       const isGreen = data.weatherGrounding?.triageChannel === 'GREEN_CHANNEL_FAST_TRACK';
       document.getElementById('final-triage-badge').innerHTML = isGreen
-        ? '<span class="status-pill-dot"></span>⚡ ग्रीन चैनल (24h SLA)'
-        : '<span class="status-pill-dot"></span>⚠️ समीक्षा आवश्यक';
+        ? '<span class="status-pill-dot"></span>⚡ Green Channel Fast-Track (24h SLA)'
+        : '<span class="status-pill-dot"></span>⚠️ Physical Audit Recommended';
       document.getElementById('final-triage-badge').className = isGreen ? 'status-pill live' : 'status-pill warn';
 
       const tsEl = document.getElementById('final-timestamp-val');
@@ -1969,13 +1962,13 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
         const newRow = document.createElement('tr');
         newRow.innerHTML = \`
           <td class="tabular-nums" style="color: var(--gov-blue); font-weight: 700;">\${data.reportNumber}</td>
-          <td><strong>\${data.farmerName || 'Kisan'}</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">\${data.village || 'Morshi'}, \${data.district}</span></td>
+          <td><strong>\${data.farmerName || 'Farmer Friend'}</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">\${data.village || 'Morshi'}, \${data.district}</span></td>
           <td>\${data.extractedData?.crop || selectedCropLabel} • \${data.extractedData?.affectedArea || selectedAcreage} ac<br><span style="font-size: 0.75rem; color: var(--warn); font-weight: 600;">\${data.extractedData?.lossEvent || selectedCalamityLabel}</span></td>
           <td><span class="status-pill verified"><span class="status-pill-dot"></span>\${ipi}% \${isGreen ? 'CONFIRMED' : 'AUDIT'}</span></td>
           <td><span class="status-pill live"><span class="status-pill-dot"></span>\${data.weatherGrounding?.triageChannel || 'GREEN_CHANNEL'}</span></td>
           <td><span class="tabular-nums" style="color: var(--verified); font-weight: 800;">06h : 00m remaining</span></td>
           <td>
-            <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('\${data.reportNumber}', '\${data.farmerName || 'Kisan'}')">⚡ सर्वेक्षक भेजें</button>
+            <button class="btn btn-call" style="padding: 0.4rem 0.85rem; font-size: 0.78rem; min-height: 38px;" onclick="assignAssessor('\${data.reportNumber}', '\${data.farmerName || 'Farmer Friend'}')">⚡ Dispatch Surveyor</button>
             <a href="/api/v1/reports/\${data.reportId || data.reportNumber}/pdf" target="_blank" class="btn btn-audio" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; min-height: 38px;">📄 PDF</a>
           </td>
         \`;
@@ -1990,10 +1983,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       const peril = document.getElementById('final-peril-val').textContent;
       const rep = document.getElementById('final-report-id').textContent;
 
-      let msg = 'किसान भाई, आपकी ' + crop + ' की फसल में ' + area + ' का ' + peril + ' से नुकसान दर्ज कर लिया गया है। संदर्भ संख्या है ' + rep + '। 24 घंटे में सर्वेक्षक आपके खेत में आएगा।';
-      if (selectedLang === 'te-IN') {
-        msg = 'రైతు సోదరా, మీ ' + crop + ' పంట ' + area + ' లో ' + peril + ' నష్టం నమోదైంది. రిఫరెన్స్ సంఖ్య ' + rep + '.';
-      }
+      let msg = 'Farmer friend, your intimation for ' + crop + ' crop loss of ' + area + ' caused by ' + peril + ' has been officially registered under reference ID ' + rep + '. A verified loss assessor has been dispatched to visit within 24 hours.';
 
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -2011,7 +2001,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     // OFFICER ACTIONS & CALCULATORS
     function assignAssessor(repNum, farmerName) {
-      alert('✅ सर्वेक्षक नियुक्त किया गया!\\n\\nरिपोर्ट: ' + repNum + '\\nकिसान: ' + farmerName + '\\nअसाइंड टीम: संयुक्त कृषि व बीमा सर्वेक्षक\\nसमय-सीमा: 24 घंटे के अंदर भौतिक निरीक्षण अनिवार्य।');
+      alert('✅ Surveyor Dispatched!\\n\\nReport: ' + repNum + '\\nFarmer: ' + farmerName + '\\nAssigned Team: Joint Agriculture & Insurance Surveyor\\nDeadline: Physical on-site inspection within 24 hours.');
     }
 
     function updateEnterpriseRoi() {

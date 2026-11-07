@@ -1,5 +1,5 @@
 /**
- * Kisan Sarathi (किसान सारथी) Mobile Web App
+ * Kisan Sarathi Mobile Web App
  * 
  * Sovece-inspired conversational voice assistant ecosystem optimized for mobile screens.
  * Ultra-fast vernacular voice-driven interaction, instant schema-constrained entity extraction,
@@ -425,12 +425,12 @@ function renderMobileAppHtml() {
       </div>
     </div>
     <select id="mobile-lang-select" class="lang-pill" onchange="changeLanguage()">
-      <option value="hi-IN">हिन्दी</option>
-      <option value="te-IN">తెలుగు</option>
-      <option value="ta-IN">தமிழ்</option>
-      <option value="kn-IN">ಕನ್ನಡ</option>
-      <option value="ml-IN">മലയാളം</option>
-      <option value="en-IN">English</option>
+      <option value="en-IN" selected>English</option>
+      <option value="hi-IN">Hindi</option>
+      <option value="te-IN">Telugu</option>
+      <option value="ta-IN">Tamil</option>
+      <option value="kn-IN">Kannada</option>
+      <option value="ml-IN">Malayalam</option>
     </select>
   </header>
 
@@ -438,17 +438,17 @@ function renderMobileAppHtml() {
   <div class="chat-container" id="chat-stream">
     <div class="message assistant">
       <div class="msg-bubble">
-        नमस्ते! मैं किसान सारथी मोबाइल सहायक हूँ। 🌾<br><br>
-        अगर आपकी फसल को ओलावृष्टि, बारिश या बाढ़ से नुकसान हुआ है, तो नीचे माइक दबाकर अपनी भाषा में बताएं।
+        Hello! I am Kisan Sarathi, your AI crop loss assistant. 🌾<br><br>
+        If your crops suffered damage from hailstorm, unseasonal rainfall, or flooding, tap the microphone below or select a sample scenario to generate your PMFBY intimation.
       </div>
     </div>
   </div>
 
   <!-- Quick Context Chips -->
   <div class="chip-scroll">
-    <div class="chip" onclick="quickSpeak('कल रात भारी ओलावृष्टि से मेरे 5 एकड़ कपास की फसल नष्ट हो गई रामनगर गाँव में')">⛈️ अमरावती: कपास ओलावृष्टि</div>
-    <div class="chip" onclick="quickSpeak('కదిరి తాలూకాలో తుఫాను వర్షాలకు మా 3 ఎకరాల వేరుశనగ పంట మొత్తం మునిగిపోయింది')">🌊 అనంతపురం: వేరుశనగ వరద</div>
-    <div class="chip" onclick="quickSpeak('महम गाँव में अत्यधिक पाला पड़ने से 2.5 एकड़ सरसों खराब हो गई')">❄️ रोहतक: सरसों पाला</div>
+    <div class="chip" onclick="quickSpeak('Last night heavy hailstorm and storm rain destroyed my 5 acres of cotton crop in Ramnagar village')">⛈️ Amravati: Cotton Hailstorm</div>
+    <div class="chip" onclick="quickSpeak('Severe flood water submerged our 3.5 acres of groundnut crop completely in Kadiri taluk')">🌊 Anantapur: Groundnut Flood</div>
+    <div class="chip" onclick="quickSpeak('Sub-zero cold wave and heavy ground frost ruined 2.5 acres of mustard in Meham village')">❄️ Rohtak: Mustard Frost</div>
   </div>
 
   <!-- Gemini-style Voice & Input Control -->
@@ -464,7 +464,7 @@ function renderMobileAppHtml() {
     </div>
 
     <form class="input-bar" onsubmit="handleSend(event)">
-      <input type="text" id="text-prompt" class="chat-input" placeholder="या यहाँ लिखकर भेजें...">
+      <input type="text" id="text-prompt" class="chat-input" placeholder="Or type crop damage details here...">
       <button type="submit" class="send-btn">➔</button>
     </form>
   </div>
@@ -515,7 +515,7 @@ function renderMobileAppHtml() {
         // Fallback simulation
         setTimeout(() => {
           stopListening();
-          quickSpeak('कल रात भारी ओलावृष्टि से मेरे 5 एकड़ कपास की फसल नष्ट हो गई रामनगर गाँव में');
+          quickSpeak('Last night heavy hailstorm and storm rain destroyed my 5 acres of cotton crop in Ramnagar village');
         }, 3000);
       }
     }
@@ -585,7 +585,7 @@ function renderMobileAppHtml() {
         botMsg.className = 'message assistant';
         botMsg.innerHTML = 
           '<div class="msg-bubble">' +
-          'आपका फसल नुकसान मसौदा तैयार कर लिया गया है। ✅' +
+          'Your crop loss intimation draft has been generated successfully. ✅' +
           '<div class="intimation-card">' +
             '<div class="card-top">' +
               '<span class="report-badge">' + data.reportNumber + '</span>' +
@@ -597,7 +597,7 @@ function renderMobileAppHtml() {
               '<div class="data-item"><div class="data-label">Crop</div><div class="data-val">' + (data.extractedData?.crop || 'Cotton') + '</div></div>' +
               '<div class="data-item"><div class="data-label">Area</div><div class="data-val">' + (data.extractedData?.affectedArea || '5') + ' Acres</div></div>' +
               '<div class="data-item"><div class="data-label">Peril</div><div class="data-val">' + (data.extractedData?.lossEvent || 'Hailstorm') + '</div></div>' +
-              '<div class="data-item"><div class="data-label">Village</div><div class="data-val">' + (data.village || 'रामनगर') + '</div></div>' +
+              '<div class="data-item"><div class="data-label">Village</div><div class="data-val">' + (data.village || 'Ramnagar') + '</div></div>' +
             '</div>' +
             '<div style="font-size: 0.72rem; color: #94a3b8; margin: 0.4rem 0;">' +
               '• ' + (data.weatherGrounding?.notes || 'IMD radar verified severe convective storm in district window.') +
@@ -615,7 +615,7 @@ function renderMobileAppHtml() {
         stream.removeChild(thinkingMsg);
         const errBubble = document.createElement('div');
         errBubble.className = 'message assistant';
-        errBubble.innerHTML = '<div class="msg-bubble" style="color: #f87171;">त्रुटि: ' + escapeHtml(err.message) + '</div>';
+        errBubble.innerHTML = '<div class="msg-bubble" style="color: #f87171;">Error: ' + escapeHtml(err.message) + '</div>';
         stream.appendChild(errBubble);
       }
     }

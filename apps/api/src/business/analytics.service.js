@@ -16,7 +16,7 @@ class BusinessAnalyticsService {
 
     return {
       executiveSummary: {
-        platformName: 'Kisan Sarathi (किसान सारथी) Enterprise',
+        platformName: 'Kisan Sarathi Enterprise',
         targetSector: 'PMFBY Agri-InsurTech & Disaster Response',
         currency: 'INR (₹)',
         operationalStatus: 'ACTIVE_PRODUCTION_PROTOTYPE',
