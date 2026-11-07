@@ -742,7 +742,7 @@ describe('6. Innovative Zero-App Intake, Meteorological Grounding & Dynamic PDF 
       // Verifies watermark is embedded
       assert.ok(pdfBytes.toString('binary').includes('DRAFT - NOT OFFICIALLY SUBMITTED'));
 
-      // 3. WhatsApp Business Webhook Format Intake
+      // 3. WhatsApp Business Webhook Format Intake (JSON)
       const webhookRes = await fetch(`http://127.0.0.1:${port}/api/v1/channels/whatsapp/webhook`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -755,6 +755,24 @@ describe('6. Innovative Zero-App Intake, Meteorological Grounding & Dynamic PDF 
       const webhookBody = await webhookRes.json();
       assert.equal(webhookBody.extractedData.crop, 'wheat');
       assert.equal(webhookBody.extractedData.lossEvent, 'inundation');
+
+      // 3b. Twilio WhatsApp Sandbox Inbound Form Webhook (TwiML XML response)
+      const twilioParams = new URLSearchParams();
+      twilioParams.append('AccountSid', 'AC_TEST_SANDBOX_123');
+      twilioParams.append('From', 'whatsapp:+919876543210');
+      twilioParams.append('To', 'whatsapp:+14155238886');
+      twilioParams.append('Body', 'कल रात भारी ओलावृष्टि से मेरे 4 एकड़ कपास की फसल नष्ट हो गई रामनगर गाँव में');
+
+      const twilioRes = await fetch(`http://127.0.0.1:${port}/api/v1/channels/whatsapp/webhook`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: twilioParams.toString(),
+      });
+      assert.equal(twilioRes.status, 200);
+      assert.ok(twilioRes.headers.get('content-type').includes('text/xml'));
+      const twilioXml = await twilioRes.text();
+      assert.ok(twilioXml.includes('<Response><Message>'));
+      assert.ok(twilioXml.includes('14447'));
 
       // 4. Executive Business Analytics & Insurer ROI Metrics
       const analyticsRes = await fetch(`http://127.0.0.1:${port}/api/v1/business/analytics`);

@@ -25,6 +25,15 @@ const { renderDashboardHtml } = require('./ui/dashboard.js');
 const { renderMobileAppHtml } = require('./ui/mobile-app.js');
 const { VERIFIED_LANGUAGES, ConsentType } = require('../../../packages/shared-types/src/index.js');
 
+function escapeXml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 function readJsonBody(req) {
   return new Promise((resolve, reject) => {
     let body = '';
@@ -38,9 +47,31 @@ function readJsonBody(req) {
     });
     req.on('end', () => {
       if (!body.trim()) return resolve({});
+      const contentType = req.headers['content-type'] || '';
+      if (contentType.includes('application/x-www-form-urlencoded')) {
+        try {
+          const params = new URLSearchParams(body);
+          const parsed = {};
+          for (const [k, v] of params.entries()) {
+            parsed[k] = v;
+          }
+          return resolve(parsed);
+        } catch {}
+      }
       try {
         resolve(JSON.parse(body));
       } catch {
+        // Fallback for form-encoded payloads without explicit header
+        try {
+          const params = new URLSearchParams(body);
+          const parsed = {};
+          for (const [k, v] of params.entries()) {
+            parsed[k] = v;
+          }
+          if (Object.keys(parsed).length > 0 && !body.startsWith('{')) {
+            return resolve(parsed);
+          }
+        } catch {}
         const err = new Error('INVALID_JSON');
         err.statusCode = 400;
         reject(err);
@@ -417,15 +448,62 @@ function createHttpServer(container = createAppContainer()) {
 
       if (req.method === 'POST' && path === '/api/v1/channels/whatsapp/webhook') {
         const body = await readJsonBody(req);
-        // Extracts message text/audio from simulated or live Meta WhatsApp Webhook payload
-        const messageText = body.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.text?.body || body.text || body.message;
-        const senderPhone = body.entry?.[0]?.changes?.[0]?.value?.contacts?.[0]?.wa_id || body.from || body.farmerPhone || '9876543210';
+        const isTwilio = Boolean(
+          body.AccountSid ||
+          body.MessageSid ||
+          (body.From && String(body.From).startsWith('whatsapp:')) ||
+          req.headers['content-type']?.includes('application/x-www-form-urlencoded')
+        );
+
+        // Extracts message text/audio from Twilio WhatsApp Sandbox OR Meta WhatsApp Webhook payload
+        const messageText =
+          body.Body ||
+          body.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.text?.body ||
+          body.text ||
+          body.message ||
+          '';
+
+        const rawPhone =
+          body.From ||
+          body.entry?.[0]?.changes?.[0]?.value?.contacts?.[0]?.wa_id ||
+          body.from ||
+          body.farmerPhone ||
+          '9876543210';
+        const senderPhone = String(rawPhone).replace(/^whatsapp:\+?/, '').replace(/^\+/, '');
+
+        // Handle Twilio Voice Note / Media attachment if sent by farmer
+        let audioBuffer = null;
+        if (body.MediaUrl0) {
+          try {
+            const mediaRes = await fetch(body.MediaUrl0);
+            if (mediaRes.ok) {
+              const arrayBuf = await mediaRes.arrayBuffer();
+              audioBuffer = Buffer.from(arrayBuf);
+            }
+          } catch (e) {
+            logger.warn('Failed to fetch Twilio audio note', { error: e.message });
+          }
+        } else if (body.audioBase64) {
+          audioBuffer = Buffer.from(body.audioBase64, 'base64');
+        }
+
         const result = await container.rapidIntakeService.processQuickIntake({
           farmerPhone: senderPhone,
-          textUtterance: messageText,
+          textUtterance: messageText || (audioBuffer ? null : 'कल रात भारी ओलावृष्टि से मेरी फसल नष्ट हो गई'),
+          audioBuffer,
           audioBase64: body.audioBase64 || null,
-          channelSource: 'WHATSAPP_BUSINESS_API',
+          channelSource: isTwilio ? 'TWILIO_WHATSAPP_SANDBOX' : 'WHATSAPP_BUSINESS_API',
         });
+
+        // Twilio requires TwiML XML response (<Response><Message>...</Message></Response>)
+        if (isTwilio && req.headers['content-type']?.includes('application/x-www-form-urlencoded')) {
+          const twiml = `<?xml version="1.0" encoding="UTF-8"?><Response><Message>${escapeXml(result.whatsappResponseCard)}</Message></Response>`;
+          res.setHeader('Content-Type', 'text/xml; charset=utf-8');
+          res.writeHead(200);
+          res.end(twiml);
+          return;
+        }
+
         res.writeHead(200);
         res.end(JSON.stringify(result));
         return;

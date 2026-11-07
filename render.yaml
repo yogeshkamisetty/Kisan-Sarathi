@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: kisan-sarathi
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: node apps/api/src/main.js
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: PERSISTENCE
+        value: file
+      - key: DATA_DIR
+        value: .data
+      - key: GNANI_API_KEY
+        sync: false
+      - key: GNANI_STT_BASE_URL
+        value: https://api.vachana.ai
+      - key: GNANI_TTS_BASE_URL
+        value: https://api.vachana.ai
+      - key: GNANI_STT_MODEL
+        value: prisma-v3.0
+      - key: GNANI_TTS_MODEL
+        value: timbre-v2.5
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: ENABLE_DEV_MOCK_OTP
+        value: "true"
+      - key: ENABLE_DEMO_ENDPOINT
+        value: "false"
