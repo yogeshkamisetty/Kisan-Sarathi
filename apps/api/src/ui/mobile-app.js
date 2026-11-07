@@ -18,21 +18,21 @@ function renderMobileAppHtml() {
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090c15;
-      --surface: #121829;
-      --surface-border: #1e293b;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --gemini-blue: #4f8bf9;
-      --gemini-purple: #9b51e0;
-      --gemini-coral: #fa6555;
-      --primary: #10b981;
-      --primary-glow: rgba(16, 185, 129, 0.4);
+      --bg: #F4F8F3;
+      --surface: #FFFFFF;
+      --surface-border: #CBD5E1;
+      --text: #162419;
+      --muted: #4B5563;
+      --gemini-blue: #0D9488;
+      --gemini-purple: #4338CA;
+      --gemini-coral: #B45309;
+      --primary: #0F5132;
+      --primary-glow: rgba(15, 81, 50, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      font-family: 'Noto Sans', 'Plus Jakarta Sans', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -43,16 +43,17 @@ function renderMobileAppHtml() {
 
     /* Mobile Header */
     .app-header {
-      padding: 1rem 1.25rem;
+      padding: 0.85rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(9, 12, 21, 0.85);
+      border-bottom: 2px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 50;
+      box-shadow: 0 2px 8px rgba(15, 81, 50, 0.05);
     }
 
     .brand-group {
@@ -129,34 +130,35 @@ function renderMobileAppHtml() {
     }
 
     .msg-bubble {
-      padding: 0.85rem 1.1rem;
+      padding: 0.85rem 1.15rem;
       border-radius: 18px;
       font-size: 0.92rem;
       line-height: 1.5;
     }
 
     .message.assistant .msg-bubble {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      color: #f1f5f9;
+      background: #FFFFFF;
+      border: 1.5px solid var(--surface-border);
+      box-shadow: 0 3px 0 #CBD5E1;
+      color: var(--text);
       border-bottom-left-radius: 4px;
     }
 
     .message.user .msg-bubble {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: var(--primary);
       color: #ffffff;
       border-bottom-right-radius: 4px;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 3px 0 var(--primary-dark);
     }
 
     /* Dynamic Extracted Report Card */
     .intimation-card {
-      background: linear-gradient(145deg, #141c30 0%, #0d1322 100%);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: #FFFFFF;
+      border: 2px solid var(--primary);
       border-radius: 16px;
       padding: 1.25rem;
       margin-top: 0.5rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 16px rgba(15, 81, 50, 0.08), 0 3.5px 0 var(--primary);
     }
 
     .card-top {
@@ -164,13 +166,14 @@ function renderMobileAppHtml() {
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1.5px solid var(--surface-border);
       padding-bottom: 0.5rem;
     }
 
     .report-badge {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
+      background: #E8F5E9;
+      color: var(--primary);
+      border: 1px solid var(--primary);
       padding: 0.2rem 0.5rem;
       border-radius: 6px;
       font-size: 0.72rem;
@@ -187,7 +190,8 @@ function renderMobileAppHtml() {
     }
 
     .data-item {
-      background: rgba(255, 255, 255, 0.03);
+      background: #F8FAF5;
+      border: 1px solid var(--surface-border);
       padding: 0.5rem 0.65rem;
       border-radius: 8px;
     }
@@ -196,11 +200,12 @@ function renderMobileAppHtml() {
       color: var(--muted);
       font-size: 0.7rem;
       margin-bottom: 0.15rem;
+      font-weight: 600;
     }
 
     .data-val {
-      font-weight: 600;
-      color: #fff;
+      font-weight: 700;
+      color: var(--text);
     }
 
     .action-row {
@@ -216,25 +221,36 @@ function renderMobileAppHtml() {
       justify-content: center;
       gap: 0.4rem;
       padding: 0.65rem;
+      min-height: 48px;
       border-radius: 10px;
       font-size: 0.8rem;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       border: none;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
 
     .btn-pdf {
-      background: #3b82f6;
+      background: #1D4ED8;
       color: #fff;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      border: 1.5px solid #1E3A8A;
+      box-shadow: 0 3px 0 #1E3A8A;
+    }
+    .btn-pdf:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #1E3A8A;
     }
 
     .btn-call {
-      background: rgba(255, 255, 255, 0.08);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: #B45309;
+      color: #fff;
+      border: 1.5px solid #78350F;
+      box-shadow: 0 3px 0 #78350F;
+    }
+    .btn-call:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #78350F;
     }
 
     /* Quick Suggestion Chips */
@@ -252,27 +268,30 @@ function renderMobileAppHtml() {
     .chip-scroll::-webkit-scrollbar { display: none; }
 
     .chip {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      color: var(--muted);
+      background: #FFFFFF;
+      border: 1.5px solid var(--surface-border);
+      box-shadow: 0 2px 0 #CBD5E1;
+      color: var(--text);
       padding: 0.45rem 0.85rem;
       border-radius: 20px;
       font-size: 0.78rem;
+      font-weight: 600;
       white-space: nowrap;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
 
     .chip:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      border-color: #3b82f6;
+      background: #F0FDF4;
+      border-color: var(--primary);
+      color: var(--primary);
     }
 
     /* Gemini-Style Pulsating Voice Orb Area */
     .voice-control-area {
       padding: 1rem 1.25rem 1.75rem 1.25rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(9, 12, 21, 0.95) 40%, #090c15 100%);
+      background: #FFFFFF;
+      border-top: 2px solid var(--surface-border);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -283,6 +302,7 @@ function renderMobileAppHtml() {
       max-width: 600px;
       margin: 0 auto;
       width: 100%;
+      box-shadow: 0 -4px 16px rgba(15, 81, 50, 0.05);
     }
 
     .orb-wrapper {

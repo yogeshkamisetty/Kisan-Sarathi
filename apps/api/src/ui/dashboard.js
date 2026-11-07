@@ -28,43 +28,45 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070b13;
-      --bg-surface: #0e1524;
-      --card-bg: #131c30;
-      --card-border: #1e293b;
-      --card-hover: #1b2640;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #10b981;
-      --primary-dark: #059669;
-      --primary-light: #34d399;
-      --primary-glow: rgba(16, 185, 129, 0.4);
-      --accent: #3b82f6;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --whatsapp: #25d366;
-      --gold: #fbbf24;
+      --bg: #F4F8F3;
+      --bg-surface: #EBF3EA;
+      --card-bg: #FFFFFF;
+      --card-border: #D1DCD0;
+      --card-hover: #F0FDF4;
+      --text: #162419;
+      --text-muted: #4B5563;
+      --primary: #0F5132;
+      --primary-dark: #07361E;
+      --primary-light: #16A34A;
+      --primary-glow: rgba(15, 81, 50, 0.25);
+      --accent: #0D9488;
+      --secondary: #B45309;
+      --warning: #D97706;
+      --danger: #B91C1C;
+      --whatsapp: #128C7E;
+      --gold: #D97706;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Noto Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
     /* TOP APPLICATION HEADER */
     header {
-      background: rgba(14, 21, 36, 0.95);
-      border-bottom: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 2px solid var(--card-border);
       padding: 0.85rem 1.75rem;
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
+      box-shadow: 0 2px 10px rgba(15, 81, 50, 0.06);
     }
 
     .header-inner {
@@ -88,19 +90,21 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .brand-icon {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+      background: linear-gradient(135deg, #0F5132 0%, #07361E 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: 0 4px 16px var(--primary-glow);
+      box-shadow: 0 3px 0 #07361E;
+      border: 1.5px solid #07361E;
     }
 
     .brand-text h1 {
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.02em;
+      color: #0F5132;
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -109,15 +113,16 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .brand-text .tagline {
       font-size: 0.78rem;
       color: var(--text-muted);
+      font-weight: 600;
     }
 
     /* MODE TOGGLE SWITCHER */
     .mode-nav {
       display: flex;
-      background: #090e17;
+      background: #EBF3EA;
       padding: 0.3rem;
       border-radius: 12px;
-      border: 1px solid var(--card-border);
+      border: 1.5px solid var(--card-border);
       gap: 0.35rem;
     }
 
@@ -138,14 +143,14 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .mode-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--primary);
+      background: rgba(15, 81, 50, 0.06);
     }
 
     .mode-btn.active {
       color: #fff;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+      background: var(--primary);
+      box-shadow: 0 3px 0 var(--primary-dark);
     }
 
     /* MAIN CONTAINER */
@@ -175,11 +180,11 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--card-bg);
+      background: #FFFFFF;
       border: 1.5px solid var(--card-border);
       border-radius: 16px;
       padding: 0.85rem 1.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 3.5px 0 #CBD5E1;
       position: relative;
       overflow-x: auto;
       gap: 0.5rem;
@@ -201,37 +206,38 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .step-pill:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.04);
+      color: var(--primary);
+      background: var(--card-hover);
     }
 
     .step-pill.active {
-      color: #fff;
-      background: rgba(16, 185, 129, 0.15);
-      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--primary);
+      background: #F0FDF4;
+      border-color: var(--primary);
     }
 
     .step-pill.active .step-bubble {
       background: var(--primary);
       color: #fff;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 10px rgba(15, 81, 50, 0.4);
     }
 
     .step-pill.completed {
-      color: #34d399;
+      color: var(--primary);
     }
 
     .step-pill.completed .step-bubble {
-      background: #065f46;
-      color: #34d399;
+      background: #E8F5E9;
+      color: var(--primary);
+      border: 1px solid var(--primary);
     }
 
     .step-bubble {
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: #1e293b;
-      color: #94a3b8;
+      background: #E5E7EB;
+      color: #4B5563;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -247,12 +253,13 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     .stage-card {
       display: none;
-      background: var(--card-bg);
+      background: #FFFFFF;
       border: 1.5px solid var(--card-border);
       border-radius: 20px;
       padding: 2.25rem 2.5rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 4px 16px rgba(15, 81, 50, 0.06), 0 3.5px 0 #CBD5E1;
       animation: slideIn 0.25s ease-out;
+    }
     }
 
     .stage-card.active { display: block; }
@@ -269,23 +276,23 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
 
     .stage-badge {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 0.85rem;
       border-radius: 20px;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
+      background: #E8F5E9;
+      color: var(--primary);
       font-size: 0.78rem;
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       margin-bottom: 0.5rem;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      border: 1.5px solid var(--primary);
     }
 
     .stage-title {
       font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.35rem;
     }
 
@@ -310,33 +317,34 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .lang-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 2px solid var(--card-border);
+      background: #FFFFFF;
+      border: 1.5px solid var(--card-border);
+      box-shadow: 0 3px 0 #CBD5E1;
       border-radius: 16px;
       padding: 1.5rem 1rem;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s ease;
       position: relative;
       overflow: hidden;
     }
 
     .lang-card:hover {
-      background: rgba(16, 185, 129, 0.08);
+      background: var(--card-hover);
       border-color: var(--primary);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
     .lang-card.selected {
-      background: rgba(16, 185, 129, 0.18);
-      border-color: var(--primary-light);
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+      background: #F0FDF4;
+      border-color: var(--primary);
+      box-shadow: 0 4px 0 var(--primary);
     }
 
     .lang-script {
       font-size: 1.75rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.25rem;
       display: block;
     }
@@ -350,7 +358,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .lang-speaker-icon {
       font-size: 1.2rem;
       margin-top: 0.5rem;
-      color: #34d399;
+      color: var(--primary);
       opacity: 0.8;
     }
 
@@ -363,47 +371,51 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .district-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: #FFFFFF;
       border: 1.5px solid var(--card-border);
+      box-shadow: 0 3px 0 #CBD5E1;
       border-radius: 14px;
       padding: 1.25rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s ease;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
     .district-card:hover {
-      background: rgba(59, 130, 246, 0.08);
-      border-color: #3b82f6;
+      background: var(--card-hover);
+      border-color: var(--primary);
+      transform: translateY(-2px);
     }
 
     .district-card.selected {
-      background: rgba(16, 185, 129, 0.16);
-      border-color: var(--primary-light);
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+      background: #F0FDF4;
+      border-color: var(--primary);
+      box-shadow: 0 4px 0 var(--primary);
     }
 
     .district-icon {
       width: 44px;
       height: 44px;
       border-radius: 10px;
-      background: #1e293b;
+      background: #E8F5E9;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
       flex-shrink: 0;
+      border: 1px solid var(--card-border);
     }
 
     .district-card.selected .district-icon {
       background: var(--primary);
+      color: #fff;
     }
 
     .form-box {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--card-border);
+      background: #F8FAF5;
+      border: 1.5px solid var(--card-border);
       border-radius: 14px;
       padding: 1.25rem;
       margin-bottom: 1.5rem;
@@ -413,26 +425,27 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       display: block;
       font-size: 0.84rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
     .styled-input {
       width: 100%;
-      background: #070b13;
-      border: 1.5px solid var(--card-border);
+      background: #FFFFFF;
+      border: 2px solid #9CA3AF;
       border-radius: 10px;
       padding: 0.75rem 1rem;
-      color: #fff;
+      color: var(--text);
       font-size: 1rem;
       font-family: inherit;
+      font-weight: 600;
       transition: border-color 0.2s;
     }
 
     .styled-input:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.15);
     }
 
     /* STAGE 3: CALAMITY & CROP SELECTION */
@@ -448,25 +461,26 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .visual-tile {
-      background: rgba(255, 255, 255, 0.03);
-      border: 2px solid var(--card-border);
+      background: #FFFFFF;
+      border: 1.5px solid var(--card-border);
+      box-shadow: 0 3px 0 #CBD5E1;
       border-radius: 14px;
       padding: 1.25rem 0.85rem;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s ease;
     }
 
     .visual-tile:hover {
-      background: rgba(16, 185, 129, 0.08);
+      background: var(--card-hover);
       border-color: var(--primary);
       transform: translateY(-2px);
     }
 
     .visual-tile.selected {
-      background: rgba(16, 185, 129, 0.18);
-      border-color: var(--primary-light);
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+      background: #F0FDF4;
+      border-color: var(--primary);
+      box-shadow: 0 4px 0 var(--primary);
     }
 
     .visual-icon {
@@ -478,7 +492,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .visual-title {
       font-size: 0.95rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
     }
 
     .visual-sub {
@@ -499,15 +513,28 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       flex: 1;
       min-width: 100px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.04);
+      background: #FFFFFF;
       border: 1.5px solid var(--card-border);
+      box-shadow: 0 2px 0 #CBD5E1;
       border-radius: 12px;
       padding: 0.75rem 0.5rem;
       font-weight: 800;
       font-size: 0.95rem;
-      color: #fff;
+      color: var(--text);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
+    }
+
+    .acre-pill:hover {
+      border-color: var(--primary);
+      background: var(--card-hover);
+    }
+
+    .acre-pill.selected {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary-dark);
+      box-shadow: 0 3px 0 var(--primary-dark);
     }
 
     .acre-pill:hover {
@@ -611,7 +638,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .voice-prompt-big {
       font-size: 1.35rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
@@ -623,12 +650,13 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .transcript-display-box {
-      background: rgba(0, 0, 0, 0.35);
+      background: #F8FAF5;
       border: 1.5px solid var(--card-border);
       border-radius: 14px;
       padding: 1.25rem;
       text-align: left;
       margin-bottom: 1.5rem;
+      color: var(--text);
     }
 
     .sample-chip-row {
@@ -640,40 +668,41 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .sample-chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
+      background: #FFFFFF;
+      border: 1.5px solid var(--card-border);
+      box-shadow: 0 2px 0 #CBD5E1;
+      color: var(--text);
       padding: 0.45rem 0.85rem;
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
 
     .sample-chip:hover {
-      background: rgba(16, 185, 129, 0.12);
+      background: #F0FDF4;
       border-color: var(--primary);
-      color: #fff;
+      color: var(--primary);
     }
 
     /* STAGE 5: OFFICIAL SLIP & 24H ACTION */
     .slip-container {
-      background: #0b1322;
-      border: 2px solid rgba(16, 185, 129, 0.4);
+      background: #FFFFFF;
+      border: 2px solid var(--primary);
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 32px rgba(15, 81, 50, 0.08), 0 4px 0 var(--primary);
       margin-bottom: 2rem;
     }
 
     .slip-top-seal {
-      background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+      background: linear-gradient(135deg, #0F5132 0%, #07361E 100%);
       padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid rgba(16, 185, 129, 0.4);
+      border-bottom: 2px solid var(--primary-dark);
     }
 
     .slip-seal-title {
@@ -686,8 +715,8 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .regulatory-watermark-tag {
-      background: rgba(0, 0, 0, 0.45);
-      color: #fde047;
+      background: rgba(0, 0, 0, 0.4);
+      color: #FDE047;
       padding: 0.3rem 0.75rem;
       border-radius: 6px;
       font-size: 0.72rem;
@@ -701,8 +730,8 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .slip-id-banner {
-      background: rgba(16, 185, 129, 0.08);
-      border: 1.5px dashed rgba(16, 185, 129, 0.4);
+      background: #F0FDF4;
+      border: 2px dashed var(--primary);
       border-radius: 14px;
       padding: 1.15rem;
       display: flex;
@@ -715,7 +744,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.5rem;
       font-weight: 800;
-      color: #34d399;
+      color: #0F5132;
       letter-spacing: 0.05em;
     }
 
@@ -727,8 +756,8 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .slip-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #F8FAF5;
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 0.85rem 1.15rem;
     }
@@ -744,13 +773,13 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .slip-item-val {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin-top: 0.25rem;
     }
 
     .radar-grounding-box {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%);
-      border: 1.5px solid rgba(16, 185, 129, 0.35);
+      background: #F0FDF4;
+      border: 1.5px solid #86EFAC;
       border-radius: 14px;
       padding: 1.25rem;
       display: flex;
@@ -772,7 +801,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       font-size: 1.3rem;
       font-weight: 800;
       font-family: 'JetBrains Mono', monospace;
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 4px 12px rgba(15, 81, 50, 0.3);
       flex-shrink: 0;
     }
 
@@ -782,8 +811,8 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     }
 
     .sla-guarantee-box {
-      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-      border: 1.5px solid #4338ca;
+      background: #FEF3C7;
+      border: 1.5px solid #F59E0B;
       border-radius: 14px;
       padding: 1.25rem 1.5rem;
       display: flex;
@@ -792,13 +821,14 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       margin-bottom: 1.75rem;
       flex-wrap: wrap;
       gap: 1rem;
+      color: #92400E;
     }
 
     .sla-timer-clock {
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.75rem;
       font-weight: 800;
-      color: #a5b4fc;
+      color: #B45309;
     }
 
     /* STEP NAVIGATION FOOTER */
@@ -808,7 +838,7 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       align-items: center;
       gap: 1rem;
       margin-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--card-border);
       padding-top: 1.25rem;
     }
 
@@ -818,55 +848,73 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
       justify-content: center;
       gap: 0.55rem;
       padding: 0.85rem 1.5rem;
+      min-height: 52px;
       border-radius: 12px;
       font-size: 0.95rem;
       font-weight: 700;
       border: none;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s ease;
       font-family: inherit;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: var(--primary);
       color: #fff;
-      box-shadow: 0 4px 16px var(--primary-glow);
+      border: 2px solid var(--primary-dark);
+      box-shadow: 0 4px 0 var(--primary-dark);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    .btn-primary:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 var(--primary-dark);
     }
 
     .btn-outline {
-      background: transparent;
-      border: 1.5px solid var(--card-border);
-      color: var(--text-muted);
+      background: #FFFFFF;
+      border: 2px solid var(--card-border);
+      box-shadow: 0 2px 0 #CBD5E1;
+      color: var(--text);
     }
 
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      border-color: #475569;
+      background: var(--card-hover);
+      border-color: var(--primary);
     }
 
     .btn-pdf {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      background: #1D4ED8;
       color: #fff;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      border: 2px solid #1E3A8A;
+      box-shadow: 0 4px 0 #1E3A8A;
+    }
+
+    .btn-pdf:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #1E3A8A;
     }
 
     .btn-call {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: #B45309;
       color: #fff;
-      box-shadow: 0 4px 16px var(--primary-glow);
+      border: 2px solid #78350F;
+      box-shadow: 0 4px 0 #78350F;
+    }
+
+    .btn-call:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #78350F;
     }
 
     .btn-audio {
-      background: rgba(255, 255, 255, 0.06);
-      color: #93c5fd;
-      border: 1.5px solid rgba(147, 197, 253, 0.3);
+      background: #EBF3EA;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
     }
 
     /* OFFICER QUEUE TABLE */
@@ -879,20 +927,20 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
     .data-table th {
       text-align: left;
       padding: 0.85rem 1rem;
-      background: #090d16;
-      color: var(--text-muted);
+      background: #EBF3EA;
+      color: var(--text);
       font-weight: 700;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 2px solid var(--card-border);
     }
 
     .data-table td {
       padding: 0.95rem 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: #e5e7eb;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text);
     }
 
     .data-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: var(--card-hover);
     }
 
     /* COMPLIANCE ANCHOR FOR INTEGRATION TEST SUITES */
@@ -923,24 +971,36 @@ function renderDashboardHtml({ pilotDistricts = [], radarGrid = [], businessMetr
   <header>
     <div class="header-inner">
       <div class="brand">
+        <!-- Indian Tricolor Micro-Emblem -->
+        <div style="display:flex; flex-direction:column; width:8px; height:26px; border-radius:9999px; overflow:hidden; border:1px solid #CBD5E1; margin-right:4px;">
+          <div style="height:9px; background:#FF9933;"></div>
+          <div style="height:8px; background:#FFFFFF; display:flex; align-items:center; justify-content:center;"><div style="width:4px; height:4px; border-radius:50%; background:#000080;"></div></div>
+          <div style="height:9px; background:#138808;"></div>
+        </div>
         <div class="brand-icon">🌾</div>
         <div class="brand-text">
-          <h1>Kisan Sarathi <span style="font-size: 0.95rem; font-weight: 600; color: #10b981;">(किसान सारथी)</span></h1>
+          <h1>Kisan Sarathi <span style="font-size: 0.95rem; font-weight: 700; color: #0F5132;">(किसान सारथी)</span></h1>
           <div class="tagline">PMFBY Vernacular AI Voice Intake & 24-Hour Surveyor Triage Platform</div>
         </div>
       </div>
 
-      <!-- MAIN ROLE SWITCHER -->
-      <div class="mode-nav">
-        <button class="mode-btn active" id="btn-mode-farmer" onclick="setAppMode('farmer')">
-          <span>👨‍🌾 किसान सेवा पोर्टल (Farmer Flow)</span>
-        </button>
-        <button class="mode-btn" id="btn-mode-officer" onclick="setAppMode('officer')">
-          <span>🏛️ अधिकारी व बीमा डैशबोर्ड (Officer Console)</span>
-        </button>
-        <button class="mode-btn" id="btn-mode-mobile" onclick="setAppMode('mobile')">
-          <span>📱 मोबाइल सिम्युलेटर (Mobile View)</span>
-        </button>
+      <!-- Quick Action: 14447 Helpline Badge & Mode Nav -->
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="tel:14447" class="btn btn-call" style="min-height: 40px; padding: 0.4rem 0.9rem; font-size: 0.85rem; border-radius: 10px;">
+          <span>📞</span>
+          <span>हेल्पलाइन 14447</span>
+        </a>
+        <div class="mode-nav">
+          <button class="mode-btn active" id="btn-mode-farmer" onclick="setAppMode('farmer')">
+            <span>👨‍🌾 किसान सेवा पोर्टल (Farmer Flow)</span>
+          </button>
+          <button class="mode-btn" id="btn-mode-officer" onclick="setAppMode('officer')">
+            <span>🏛️ अधिकारी व बीमा डैशबोर्ड (Officer Console)</span>
+          </button>
+          <button class="mode-btn" id="btn-mode-mobile" onclick="setAppMode('mobile')">
+            <span>📱 मोबाइल सिम्युलेटर (Mobile View)</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
