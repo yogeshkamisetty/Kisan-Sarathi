@@ -172,9 +172,20 @@ function createRequestHandler(container = createAppContainer()) {
   return async (req, res) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, HEAD');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      res.end();
+      return;
+    }
+
+    const matchedPath = req.headers['x-matched-path'];
     const url = new URL(req.url, 'http://localhost');
-    const path = url.pathname;
+    const rawPath = (matchedPath && matchedPath !== '/api/index.js') ? matchedPath : url.pathname;
+    const path = (rawPath === '/api/index.js' || rawPath === '/api' || rawPath === '') ? '/' : rawPath;
 
     try {
       // 0. Executive Command Center & Mobile Web Interfaces
