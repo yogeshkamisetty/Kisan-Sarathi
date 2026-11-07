@@ -13,6 +13,7 @@
 
 // Tests run against in-memory state so suites never share or leave on-disk data.
 process.env.PERSISTENCE = 'memory';
+process.env.NODE_ENV = 'test';
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 

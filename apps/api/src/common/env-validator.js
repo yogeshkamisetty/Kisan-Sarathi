@@ -2,8 +2,44 @@
  * Startup Environment Configuration Validator
  * Ensures production deployments never run with missing secrets or development mock OTPs.
  */
+const fs = require('node:fs');
+const path = require('node:path');
+
+function loadDotEnv(searchDir = process.cwd()) {
+  if (process.env.NODE_ENV === 'test') {
+    return;
+  }
+  const envPath = path.resolve(searchDir, '.env');
+  if (fs.existsSync(envPath)) {
+    try {
+      const content = fs.readFileSync(envPath, 'utf8');
+      for (const rawLine of content.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith('#')) continue;
+        const eqIdx = line.indexOf('=');
+        if (eqIdx !== -1) {
+          const key = line.slice(0, eqIdx).trim();
+          let val = line.slice(eqIdx + 1).trim();
+          // Remove surrounding quotes if present
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
+          }
+          if (key && !(key in process.env)) {
+            process.env[key] = val;
+          }
+        }
+      }
+    } catch {
+      // Ignore read errors
+    }
+  }
+}
 
 function validateStartupConfig(env = process.env) {
+  if (env === process.env) {
+    loadDotEnv();
+  }
+
   const nodeEnv = env.NODE_ENV || 'development';
   const isProd = nodeEnv === 'production';
   const errors = [];
@@ -58,4 +94,4 @@ function validateStartupConfig(env = process.env) {
   };
 }
 
-module.exports = { validateStartupConfig };
+module.exports = { validateStartupConfig, loadDotEnv };
